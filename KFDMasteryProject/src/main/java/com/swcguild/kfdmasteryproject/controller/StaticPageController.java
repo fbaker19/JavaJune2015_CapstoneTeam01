@@ -5,10 +5,29 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
+import static javax.management.Query.value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  *
  * @author apprentice
  */
+@Controller
 public class StaticPageController {
+    
+   @RequestMapping(value={"/", "/index"}, method = RequestMethod.GET)
+  public String displayHomePage()
+   {
+       return "index";
+   }
+  
+    @RequestMapping(value={"/blogposts"}, method = RequestMethod.GET)
+  public String displayBlogPage()
+   {
+       return "blogposts";
+   }
+  
     
 }
