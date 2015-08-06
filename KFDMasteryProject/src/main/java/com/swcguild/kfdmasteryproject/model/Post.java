@@ -5,10 +5,189 @@
  */
 package com.swcguild.kfdmasteryproject.model;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
 /**
  *
  * @author apprentice
  */
 public class Post {
+    private int postId;
+    private String content;
+    private String title;
+    private int userId;
+    private int lastModifiedUserId;
+    private Date createDate;
+    private Date lastModifiedDate;
+    private Date expDate;
+    private boolean published;
+//    private List<Comment> comments;
+//    private List<Category> categories;
+//    private List<Tag> tags;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getLastModifiedUserId() {
+        return lastModifiedUserId;
+    }
+
+    public void setLastModifiedUserId(int lastModifiedUserId) {
+        this.lastModifiedUserId = lastModifiedUserId;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Date getExpDate() {
+        return expDate;
+    }
+
+    public void setExpDate(Date expDate) {
+        this.expDate = expDate;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+//    public List<Comment> getComments() {
+//        return comments;
+//    }
+//
+//    public void setComments(List<Comment> comments) {
+//        this.comments = comments;
+//    }
+//
+//    public List<Category> getCategories() {
+//        return categories;
+//    }
+//
+//    public void setCategories(List<Category> categories) {
+//        this.categories = categories;
+//    }
+//
+//    public List<Tag> getTags() {
+//        return tags;
+//    }
+//
+//    public void setTags(List<Tag> tags) {
+//        this.tags = tags;
+//    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.postId;
+        hash = 17 * hash + Objects.hashCode(this.content);
+        hash = 17 * hash + Objects.hashCode(this.title);
+        hash = 17 * hash + this.userId;
+        hash = 17 * hash + this.lastModifiedUserId;
+        hash = 17 * hash + Objects.hashCode(this.createDate);
+        hash = 17 * hash + Objects.hashCode(this.lastModifiedDate);
+        hash = 17 * hash + Objects.hashCode(this.expDate);
+        hash = 17 * hash + (this.published ? 1 : 0);
+//        hash = 17 * hash + Objects.hashCode(this.comments);
+//        hash = 17 * hash + Objects.hashCode(this.categories);
+//        hash = 17 * hash + Objects.hashCode(this.tags);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Post other = (Post) obj;
+        if (this.postId != other.postId) {
+            return false;
+        }
+        if (!Objects.equals(this.content, other.content)) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (this.userId != other.userId) {
+            return false;
+        }
+        if (this.lastModifiedUserId != other.lastModifiedUserId) {
+            return false;
+        }
+        if (!Objects.equals(this.createDate, other.createDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastModifiedDate, other.lastModifiedDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.expDate, other.expDate)) {
+            return false;
+        }
+        if (this.published != other.published) {
+            return false;
+        }
+//        if (!Objects.equals(this.comments, other.comments)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.categories, other.categories)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.tags, other.tags)) {
+//            return false;
+//        }
+        return true;
+    }
+    
     
 }
