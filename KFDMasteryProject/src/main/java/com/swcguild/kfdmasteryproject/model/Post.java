@@ -14,18 +14,17 @@ import java.util.Objects;
  * @author apprentice
  */
 public class Post {
+
     private int postId;
     private String content;
+    private String blurb;
     private String title;
     private int userId;
     private int lastModifiedUserId;
     private Date createDate;
     private Date lastModifiedDate;
     private Date expDate;
-    private boolean published;
-//    private List<Comment> comments;
-//    private List<Category> categories;
-//    private List<Tag> tags;
+    private int published;
 
     public int getPostId() {
         return postId;
@@ -91,53 +90,36 @@ public class Post {
         this.expDate = expDate;
     }
 
-    public boolean isPublished() {
+    public int isPublished() {
         return published;
     }
 
-    public void setPublished(boolean published) {
+    public void setPublished(int published) {
         this.published = published;
     }
 
-//    public List<Comment> getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(List<Comment> comments) {
-//        this.comments = comments;
-//    }
-//
-//    public List<Category> getCategories() {
-//        return categories;
-//    }
-//
-//    public void setCategories(List<Category> categories) {
-//        this.categories = categories;
-//    }
-//
-//    public List<Tag> getTags() {
-//        return tags;
-//    }
-//
-//    public void setTags(List<Tag> tags) {
-//        this.tags = tags;
-//    }
+
+    public String getBlurb() {
+        return blurb;
+    }
+
+    public void setBlurb(String blurb) {
+        this.blurb = blurb;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + this.postId;
-        hash = 17 * hash + Objects.hashCode(this.content);
-        hash = 17 * hash + Objects.hashCode(this.title);
-        hash = 17 * hash + this.userId;
-        hash = 17 * hash + this.lastModifiedUserId;
-        hash = 17 * hash + Objects.hashCode(this.createDate);
-        hash = 17 * hash + Objects.hashCode(this.lastModifiedDate);
-        hash = 17 * hash + Objects.hashCode(this.expDate);
-        hash = 17 * hash + (this.published ? 1 : 0);
-//        hash = 17 * hash + Objects.hashCode(this.comments);
-//        hash = 17 * hash + Objects.hashCode(this.categories);
-//        hash = 17 * hash + Objects.hashCode(this.tags);
+        hash = 61 * hash + this.postId;
+        hash = 61 * hash + Objects.hashCode(this.content);
+        hash = 61 * hash + Objects.hashCode(this.blurb);
+        hash = 61 * hash + Objects.hashCode(this.title);
+        hash = 61 * hash + this.userId;
+        hash = 61 * hash + this.lastModifiedUserId;
+        hash = 61 * hash + Objects.hashCode(this.createDate);
+        hash = 61 * hash + Objects.hashCode(this.lastModifiedDate);
+        hash = 61 * hash + Objects.hashCode(this.expDate);
+        hash = 61 * hash + this.published;
         return hash;
     }
 
@@ -154,6 +136,9 @@ public class Post {
             return false;
         }
         if (!Objects.equals(this.content, other.content)) {
+            return false;
+        }
+        if (!Objects.equals(this.blurb, other.blurb)) {
             return false;
         }
         if (!Objects.equals(this.title, other.title)) {
@@ -177,17 +162,7 @@ public class Post {
         if (this.published != other.published) {
             return false;
         }
-//        if (!Objects.equals(this.comments, other.comments)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.categories, other.categories)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.tags, other.tags)) {
-//            return false;
-//        }
         return true;
     }
-    
-    
+
 }

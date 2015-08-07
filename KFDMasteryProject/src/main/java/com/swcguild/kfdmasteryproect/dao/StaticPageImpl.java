@@ -5,8 +5,18 @@
  */
 package com.swcguild.kfdmasteryproect.dao;
 
+import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
+<<<<<<< HEAD
 import org.springframework.jdbc.core.JdbcTemplate;
+=======
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+
+>>>>>>> 9d0707add898daa97040302b9eed4227dd3c75d1
 
 /**
  *
@@ -14,10 +24,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class StaticPageImpl implements StaticPageInterface {
     
+<<<<<<< HEAD
     private JdbcTemplate jdbcTemplate;
     
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate)
     {
+=======
+
+    private JdbcTemplate jdbcTemplate;
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+>>>>>>> 9d0707add898daa97040302b9eed4227dd3c75d1
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -32,13 +49,17 @@ public class StaticPageImpl implements StaticPageInterface {
     }
 
     @Override
-    public StaticPage viewContent(StaticPage staticPage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   public StaticPage viewContent(StaticPage staticPage) {
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
+    
 
     @Override
     public void deleteContent(int pageId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
     
 }
