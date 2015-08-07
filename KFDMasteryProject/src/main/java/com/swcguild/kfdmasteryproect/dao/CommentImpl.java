@@ -7,12 +7,16 @@ package com.swcguild.kfdmasteryproect.dao;
 
 import com.swcguild.kfdmasteryproject.model.Comment;
 import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
  * @author apprentice
  */
 public class CommentImpl implements CommentInterface {
+   
+    private JdbcTemplate jtemp;
+    
 
     @Override
     public Comment viewComment(int commentId) {

@@ -6,12 +6,20 @@
 package com.swcguild.kfdmasteryproect.dao;
 
 import com.swcguild.kfdmasteryproject.model.StaticPage;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
  * @author apprentice
  */
 public class StaticPageImpl implements StaticPageInterface {
+    
+    private JdbcTemplate jdbcTemplate;
+    
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate)
+    {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public StaticPage addContent(StaticPage staticPage) {
