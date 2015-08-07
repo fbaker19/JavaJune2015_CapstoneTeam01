@@ -5,10 +5,13 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
+import org.springframework.stereotype.Controller;
+
 /**
  *
  * @author apprentice
  */
+@Controller
 public class PostController {
     
 }

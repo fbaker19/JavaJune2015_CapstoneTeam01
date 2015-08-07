@@ -33,20 +33,15 @@
             </ul>    
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Latest Blog Entry</h3>
-            </div>
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac enim cursus augue aliquet convallis nec sed velit. Ut vulputate venenatis massa, vel tincidunt elit vehicula sit amet. Donec tincidunt accumsan maximus. Aliquam convallis rhoncus augue eget suscipit. Ut elementum ante a erat efficitur posuere. Curabitur ut posuere dolor, at placerat risus. Vivamus quis tincidunt purus. Sed imperdiet quis neque non tristique.
-
-                Nulla ut nisi urna. Nulla consequat fringilla efficitur. Vestibulum quis diam faucibus, condimentum est a, vestibulum augue. Mauris luctus tempus mollis. Cras eu sodales sem, a congue diam. Vestibulum vehicula blandit neque at ornare. Aenean suscipit augue quis mi consectetur, eget lobortis metus eleifend. Ut consectetur luctus urna, a lacinia urna tincidunt nec. Vestibulum pretium pharetra augue, sit amet malesuada felis sodales in.
-
-                Integer et ipsum et purus aliquam tristique. Aliquam sed mauris imperdiet, fermentum nisi ac, consectetur justo. Nam non nisl sed nulla sollicitudin pellentesque placerat at turpis. Morbi facilisis metus eget mattis accumsan. Donec tristique efficitur egestas. In hac habitasse platea dictumst. Cras ac lorem sem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque rhoncus ex nec mi faucibus pretium. Phasellus quis vehicula augue. Vivamus bibendum, arcu a laoreet dictum, odio dolor malesuada neque, a faucibus enim ligula at lacus. Cras quam libero, maximus et lacinia ac, feugiat sit amet metus.
-
-                Aliquam interdum, dolor non finibus convallis, tortor risus maximus risus, non dictum nulla ex et sem. Sed nec congue nulla. Integer sit amet mi in augue aliquam scelerisque. Sed posuere ligula vel nulla venenatis, sit amet pretium sapien aliquet. Nullam ut lacus volutpat, viverra odio ut, porta justo. Nulla lacinia mauris ligula, varius porta augue molestie sit amet. Ut sem urna, malesuada at est eget, consequat rutrum nisl. Maecenas sit amet nunc vehicula, ultricies elit ac, pulvinar ex. Pellentesque iaculis purus quis est feugiat, a feugiat diam feugiat. Duis eget tristique augue, vitae porttitor metus. Nulla id dignissim leo, ut faucibus nisl.
+                <ul class="list-group">
+                    <li class="list-group-item" id="postTitle"></li>
+                    <li class="list-group-item" id="postBlurb"></li>
+                    <li class="list-group-item" id="postFooter"></li>
+                </ul>
             </div>
         </div>
-        
+
     </div>
 
 
