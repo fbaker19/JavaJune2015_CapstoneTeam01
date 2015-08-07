@@ -22,6 +22,7 @@
         <div class="row" style="padding-top: 20px">
             <img src="${pageContext.request.contextPath}/img/logo.jpg" class="img-rounded"; style="float:left; width:150px;height:150px" />
             <h1 style="text-align: center; padding-top: 30px">Sea Legs Nautical Academy</h1>
+            <h3 style="text-align: center; padding-top: 30px">Life on the High Seas Blog</h3>
         </div>
         <hr/>
         <div class="navbar">
@@ -32,24 +33,27 @@
                 <li role="presentation"><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
             </ul>    
         </div>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item" id="postTitle"></li>
-                    <li class="list-group-item" id="postBlurb"></li>
-                    <li class="list-group-item" id="postFooter"></li>
-                </ul>
+        <c:forEach var="post" items="${pList}">
+            <div class="panel panel-default">
+                
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a href="viewPost/${post.postId}">${post.title} </a>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    ${post.blurb}
+                </div>
+                <div class="panel-footer">Comments ()</div>
             </div>
-        </div>
-
+            <br/>
+        </c:forEach>
     </div>
 
 
-
-
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 </body>
 </html>
