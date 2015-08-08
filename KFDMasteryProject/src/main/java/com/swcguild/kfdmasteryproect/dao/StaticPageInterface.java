@@ -15,7 +15,7 @@ public interface StaticPageInterface {
     
    public StaticPage addContent(StaticPage staticPage);
    
-   public StaticPage editContent (StaticPage staticPage);
+   public void editContent (StaticPage staticPage);
    
    public StaticPage viewContent (StaticPage staticPage);
     

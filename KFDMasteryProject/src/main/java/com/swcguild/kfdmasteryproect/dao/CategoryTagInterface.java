@@ -18,7 +18,7 @@ public interface CategoryTagInterface {
     
     public Category addCategory(Category category);
     
-    public Category editCategory(Category category);
+    public void editCategory(Category category);
     
     public void deleteCategory(int categoryId);
     
@@ -26,7 +26,11 @@ public interface CategoryTagInterface {
     
     public List<Post> viewPostsByCategory(int categoryId);
     
-   public Tag addTag(Tag tag);
+   
+    
+    
+    
+    public Tag addTag(Tag tag);
    
    public Tag viewTag(int tagId);
    

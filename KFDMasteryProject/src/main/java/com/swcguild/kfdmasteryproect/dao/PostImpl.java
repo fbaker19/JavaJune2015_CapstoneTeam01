@@ -9,15 +9,14 @@ import com.swcguild.kfdmasteryproject.model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-<<<<<<< HEAD
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-=======
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
->>>>>>> 9d0707add898daa97040302b9eed4227dd3c75d1
+
 
 /**
  *
@@ -25,17 +24,13 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
  */
 public class PostImpl implements PostInterface {
 
-<<<<<<< HEAD
+
     //userid/foreign key?????
-    private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, last_modified_user_id, create_date, last_modified date, exp_date, published)VALUES(?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, user_id, last_modified_user_id, create_date, last_modified_date, expiration_date, published, blurb)VALUES(?,?,?,?,?,?,?,?,?)";
     private static final String SQL_DELETE_POST = "DELETE FROM posts WHERE post_id = ?";
-    private static final String SQL_UPDATE_POST = "UPDATE posts SET............................. WHERE post_id =?";
+    private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, blurb= ? WHERE post_id =?";
     private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id=?";
     private static final String SQL_SELECT_ALL_POST = "SELECT * FROM posts";
-=======
-    private static final String SQL_SELECT_ALL_POSTS = "SELECT * FROM posts";
-    private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
->>>>>>> 9d0707add898daa97040302b9eed4227dd3c75d1
 
     private JdbcTemplate jdbcTemplate;
 
@@ -49,12 +44,13 @@ public class PostImpl implements PostInterface {
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getContent(),
                 post.getTitle(),
-                //???post.getUserId(),
+                post.getUserId(),
                 post.getLastModifiedUserId(),
                 post.getCreateDate(),
                 post.getLastModifiedDate(),
                 post.getExpDate(),
-                post.isPublished());
+                post.isPublished(),
+                post.getBlurb());
        
         post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
                 
@@ -63,7 +59,7 @@ public class PostImpl implements PostInterface {
     }
 
     @Override
-    public Post editPost(Post post) {
+    public void editPost(Post post) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -83,13 +79,9 @@ public class PostImpl implements PostInterface {
 
     @Override
     public List<Post> viewAllPosts() {
-<<<<<<< HEAD
+
         return jdbcTemplate.query(SQL_SELECT_ALL_POST, new PostMapper());
-    }
-
-=======
-        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
-
+    
     }
 
     private static final class PostMapper implements ParameterizedRowMapper<Post> {
@@ -113,5 +105,5 @@ public class PostImpl implements PostInterface {
         }
 
     }
->>>>>>> 9d0707add898daa97040302b9eed4227dd3c75d1
+
 }

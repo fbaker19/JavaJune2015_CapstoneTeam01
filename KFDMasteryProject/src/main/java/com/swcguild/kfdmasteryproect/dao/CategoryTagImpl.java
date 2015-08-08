@@ -9,6 +9,9 @@ import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.Tag;
 import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -16,15 +19,36 @@ import java.util.List;
  */
 public class CategoryTagImpl implements CategoryTagInterface {
     
+       private static final String SQL_INSERT_CATEGORY = "";
+       private static final String SQL_DELETE_CATEGORY = "";
+       private static final String SQL_UPDATE_CATEGORY = "";
+       private static final String SQL_SELECT_CATEGORY = "";
+       private static final String SQL_SELECT_ALL_CATEGORIES = "";
+       
+       private static final String SQL_INSERT_TAG = "";
+       private static final String SQL_SELECT_TAG = "";
+       private static final String SQL_SELECT_ALL_POSTS_WITH_TAG = "";
     
 
+       
+      private JdbcTemplate jdbcTemplate;
+      
+      private void setJdbcTemplate(JdbcTemplate jdbcTemplate)
+      {
+          this.jdbcTemplate = jdbcTemplate;
+      }
+
+      
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly=false)
     public Category addCategory(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_INSERT_CATEGORY,
+                
+                )
     }
 
     @Override
-    public Category editCategory(Category category) {
+    public void editCategory(Category category) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -42,6 +66,12 @@ public class CategoryTagImpl implements CategoryTagInterface {
     public List<Post> viewPostsByCategory(int categoryId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+    
+    
+    
+    
 
     @Override
     public Tag addTag(Tag tag) {
@@ -53,9 +83,9 @@ public class CategoryTagImpl implements CategoryTagInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    @Override//all
     public List<Post> viewPostsByTag(int tagId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      throw new UnsupportedOperationException("Not supported yet.");  
     }
     
 }
