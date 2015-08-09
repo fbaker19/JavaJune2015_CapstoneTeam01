@@ -33,8 +33,33 @@
                 <li role="presentation"><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
             </ul>    
         </div>
-        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    ${post.title} 
+                </h3>
+            </div>
+            <div class="panel-body">
+                ${post.content}
+            </div>
+        </div>
+
+        <div class="input-group col-lg-10 col-lg-offset-1">
+            <textarea class="form-control" rows="4" placeholder="Add Your Comment"></textarea>
+        </div>
+        <br/>
+            <div class="input-group col-lg-4 col-lg-offset-1">
+                <input type="text" class="form-control" placeholder="Your Name (optional)">
+            </div>
+        <br/>
+            <div class="input-group col-lg-4 col-lg-offset-1">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="add-comment-button" type="button">Add Comment</button>
+                </span>
+            </div> 
     </div>
+    <br/>
+</div>
 
 
 <!-- Placed at the end of the document so the pages load faster -->

@@ -19,7 +19,7 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
  */
 public class PostImpl implements PostInterface {
 
-    private static final String SQL_SELECT_ALL_POSTS = "SELECT * FROM posts";
+    private static final String SQL_SELECT_ALL_POSTS = "SELECT * FROM posts ORDER BY post_id DESC";
     private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
 
     private JdbcTemplate jdbcTemplate;
