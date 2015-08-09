@@ -60,7 +60,17 @@ public class PostImpl implements PostInterface {
 
     @Override
     public void editPost(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_UPDATE_POST,
+                post.getContent(),
+                post.getTitle(),
+                post.getUserId(),
+                post.getLastModifiedUserId(),
+                post.getCreateDate(),
+                post.getLastModifiedDate(),
+                post.getExpDate(),
+                post.isPublished(),
+                post.getBlurb(),
+                post.getPostId());
     }
 
     @Override
