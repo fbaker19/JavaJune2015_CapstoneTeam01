@@ -18,8 +18,12 @@ public class StaticPage {
     private int pageId;
 
     private String content;
-
+    
+    private String title;
+    
     private Date date;
+    
+    private int userId;
 
     public int getPageId() {
         return pageId;
@@ -45,12 +49,30 @@ public class StaticPage {
         this.date = date;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.pageId;
-        hash = 83 * hash + Objects.hashCode(this.content);
-        hash = 83 * hash + Objects.hashCode(this.date);
+        int hash = 3;
+        hash = 67 * hash + this.pageId;
+        hash = 67 * hash + Objects.hashCode(this.content);
+        hash = 67 * hash + Objects.hashCode(this.title);
+        hash = 67 * hash + Objects.hashCode(this.date);
+        hash = 67 * hash + this.userId;
         return hash;
     }
 
@@ -69,10 +91,18 @@ public class StaticPage {
         if (!Objects.equals(this.content, other.content)) {
             return false;
         }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
         if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        if (this.userId != other.userId) {
             return false;
         }
         return true;
     }
 
+    
+    
 }

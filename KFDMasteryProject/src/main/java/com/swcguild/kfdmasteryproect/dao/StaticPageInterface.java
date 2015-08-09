@@ -6,6 +6,7 @@
 package com.swcguild.kfdmasteryproect.dao;
 
 import com.swcguild.kfdmasteryproject.model.StaticPage;
+import java.util.List;
 
 /**
  *
@@ -17,7 +18,9 @@ public interface StaticPageInterface {
    
    public void editContent (StaticPage staticPage);
    
-   public StaticPage viewContent (StaticPage staticPage);
+   public StaticPage viewContentById (int pageId);
+   
+   public List<StaticPage> viewAllContent ();
     
    public void deleteContent(int pageId);
       
