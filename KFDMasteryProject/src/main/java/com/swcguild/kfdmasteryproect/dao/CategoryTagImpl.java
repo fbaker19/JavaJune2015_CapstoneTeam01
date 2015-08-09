@@ -43,8 +43,10 @@ public class CategoryTagImpl implements CategoryTagInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly=false)
     public Category addCategory(Category category) {
         jdbcTemplate.update(SQL_INSERT_CATEGORY,
-                
-                )
+                category.getCategoryName()
+                );
+            category.setCategoryId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+            return category;
     }
 
     @Override
