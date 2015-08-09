@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CategoryTagImpl implements CategoryTagInterface {
     
        private static final String SQL_INSERT_CATEGORY = "";
-       private static final String SQL_DELETE_CATEGORY = "";
+       private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories";//delete from categories post as  well
        private static final String SQL_UPDATE_CATEGORY = "";
        private static final String SQL_SELECT_CATEGORY = "";
        private static final String SQL_SELECT_ALL_CATEGORIES = "";
@@ -43,8 +43,7 @@ public class CategoryTagImpl implements CategoryTagInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly=false)
     public Category addCategory(Category category) {
         jdbcTemplate.update(SQL_INSERT_CATEGORY,
-                category.getCategoryName()
-                );
+                category.getCategoryName());
             category.setCategoryId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
             return category;
     }
