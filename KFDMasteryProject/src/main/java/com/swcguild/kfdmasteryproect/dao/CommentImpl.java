@@ -6,32 +6,84 @@
 package com.swcguild.kfdmasteryproect.dao;
 
 import com.swcguild.kfdmasteryproject.model.Comment;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author apprentice
  */
 public class CommentImpl implements CommentInterface {
+   
+    private static final String SQL_INSERT_COMMENT ="INSERT INTO comments (comment, post_id, create_date, commenter, published) VALUES(?,?,?,?,?)";
+    private static final String SQL_DELETE_COMMENT ="DELETE FROM comments WHERE comment_id = ?";
+    private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM comments";
+    private static final String SQL_SELECT_COMMENT = "SELECT * FROM comments WHERE comment_id = ?";
+    
+  
+    
+    
+    private JdbcTemplate jdbcTemplate;
+    
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate)
+    {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly =false)
     public Comment viewComment(int commentId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try{
+          return jdbcTemplate.queryForObject(SQL_SELECT_COMMENT, new CommentMapper(), commentId);
+       }catch(EmptyResultDataAccessException ex){
+           return null;
+       }
     }
 
     @Override
     public List<Comment> viewAllComments(int postId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jdbcTemplate.query(SQL_SELECT_ALL_COMMENTS, new CommentMapper(), postId);
     }
 
     @Override
     public Comment addComment(Comment comment) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         jdbcTemplate.update(SQL_INSERT_COMMENT,
+                comment.getComment(),
+                comment.getCommentDate(),
+                comment.getPostId());
+         
+         comment.setCommentId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
+         return comment;
+         
     }
 
     @Override
     public void deleteComment(int commentId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_DELETE_COMMENT, commentId);
     }
     
+    
+    private static final class CommentMapper implements ParameterizedRowMapper<Comment>
+    {
+
+        @Override
+        public Comment mapRow(ResultSet rs, int i) throws SQLException {
+            
+            Comment comment = new Comment();
+            
+            comment.setComment(rs.getString("comment"));
+            comment.setCommentDate(rs.getDate("create_date"));
+            comment.setCommentId(rs.getInt("comment_id"));
+            comment.setPostId(rs.getInt("post_id"));
+                       
+            return comment;
+        }
+    
+    } 
 }

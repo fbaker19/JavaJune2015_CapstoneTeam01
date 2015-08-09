@@ -41,7 +41,7 @@
                         <a href="viewPost/${post.postId}">${post.title} </a>
                     </h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body editor">
                     ${post.blurb}
                 </div>
                 <div class="panel-footer">Comments ()</div>
@@ -54,7 +54,23 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+            tinymce.init({
+                selector: ".editor", theme: "modern",
+                 plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                    "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
+                ],
+                toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+                toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+                image_advtab: true,
+                external_filemanager_path: "${pageContext.request.contextPath}/filemanager/",
+                filemanager_title: "Responsive Filemanager",
+                external_plugins: {"filemanager": "${pageContext.request.contextPath}/filemanager/plugin.min.js"}
+            });
+        </script>
 </body>
 </html>
 

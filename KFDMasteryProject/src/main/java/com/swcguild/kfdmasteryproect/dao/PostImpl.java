@@ -9,9 +9,14 @@ import com.swcguild.kfdmasteryproject.model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+
 
 /**
  *
@@ -19,8 +24,18 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
  */
 public class PostImpl implements PostInterface {
 
+<<<<<<< HEAD
     private static final String SQL_SELECT_ALL_POSTS = "SELECT * FROM posts ORDER BY post_id DESC";
     private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
+=======
+
+    //userid/foreign key????? post? catagory  deletion?
+    private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, user_id, last_modified_user_id, create_date, last_modified_date, expiration_date, published, blurb)VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_DELETE_POST = "DELETE FROM posts WHERE post_id = ?";
+    private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, blurb= ? WHERE post_id =?";
+    private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id=?";
+    private static final String SQL_SELECT_ALL_POST = "SELECT * FROM posts";
+>>>>>>> e8a64bcc7040d9eed8584a836898b847a5736805
 
     private JdbcTemplate jdbcTemplate;
 
@@ -29,18 +44,43 @@ public class PostImpl implements PostInterface {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Post addPost(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_INSERT_POST,
+                post.getContent(),
+                post.getTitle(),
+                post.getUserId(),
+                post.getLastModifiedUserId(),
+                post.getCreateDate(),
+                post.getLastModifiedDate(),
+                post.getExpDate(),
+                post.isPublished(),
+                post.getBlurb());
+       
+        post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
+                
+             return post;
+        
     }
 
     @Override
-    public Post editPost(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editPost(Post post) {
+        jdbcTemplate.update(SQL_UPDATE_POST,
+                post.getContent(),
+                post.getTitle(),
+                post.getUserId(),
+                post.getLastModifiedUserId(),
+                post.getCreateDate(),
+                post.getLastModifiedDate(),
+                post.getExpDate(),
+                post.isPublished(),
+                post.getBlurb(),
+                post.getPostId());
     }
 
     @Override
     public void deletePost(int postId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_DELETE_POST, postId );
     }
 
     @Override
@@ -54,8 +94,9 @@ public class PostImpl implements PostInterface {
 
     @Override
     public List<Post> viewAllPosts() {
-        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
 
+        return jdbcTemplate.query(SQL_SELECT_ALL_POST, new PostMapper());
+    
     }
 
     private static final class PostMapper implements ParameterizedRowMapper<Post> {
@@ -79,4 +120,5 @@ public class PostImpl implements PostInterface {
         }
 
     }
+
 }
