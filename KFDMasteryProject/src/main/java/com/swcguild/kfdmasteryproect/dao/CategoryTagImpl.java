@@ -8,8 +8,11 @@ package com.swcguild.kfdmasteryproect.dao;
 import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.Tag;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +26,7 @@ public class CategoryTagImpl implements CategoryTagInterface {
        private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories";//delete from categories post as  well
        private static final String SQL_UPDATE_CATEGORY = "";
        private static final String SQL_SELECT_CATEGORY = "";
-       private static final String SQL_SELECT_ALL_CATEGORIES = "";
+       private static final String SQL_SELECT_ALL_POST_BY_CATEGORY = "";
        
        private static final String SQL_INSERT_TAG = "";
        private static final String SQL_SELECT_TAG = "";
@@ -43,32 +46,48 @@ public class CategoryTagImpl implements CategoryTagInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly=false)
     public Category addCategory(Category category) {
         jdbcTemplate.update(SQL_INSERT_CATEGORY,
-                category.getCategoryName());
-            category.setCategoryId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
-            return category;
+               
+             category.getCategoryName());
+             category.setCategoryId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+            
+             return category;
     }
 
     @Override
     public void editCategory(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_UPDATE_CATEGORY,
+                category.getCategoryId(),
+                category.getCategoryId());
     }
 
     @Override
     public void deleteCategory(int categoryId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update(SQL_DELETE_CATEGORY, categoryId);
     }
 
     @Override
     public Category viewCategory(int categoryId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jdbcTemplate.queryForObject(SQL_SELECT_CATEGORY, new CategoryMapper(), categoryId);
     }
 
-    @Override
+    @Override//link to postImpl?
     public List<Post> viewPostsByCategory(int categoryId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");  
+        //return jdbcTemplate.query(SQL_SELECT_ALL_POST_BY_CATEGORY, new CategoryMapper(), categoryId);
     }
     
+    /*
+    Library MVC example
     
+     @Override
+    public List<Author> getAuthorsByBookId(int bookId) {
+    return jdbcTemplate.query(SQL_SELECT_AUTHORS_BY_BOOK_ID, new AuthorMapper(), bookId);
+    }
+    
+    <Author> new AuthorMapper(), ------ <post> & <postMapper>??
+    should we we combine this(catTagImpl) with postimple and dto's on 1 = CatTagPostImpl?? 
+    
+    */
     
     
     
@@ -89,4 +108,33 @@ public class CategoryTagImpl implements CategoryTagInterface {
       throw new UnsupportedOperationException("Not supported yet.");  
     }
     
+    private static final class CategoryMapper implements ParameterizedRowMapper <Category>
+    {
+
+        @Override
+        public Category mapRow(ResultSet rs, int i) throws SQLException {
+            Category category = new Category();
+            
+            category.setCategoryId(rs.getInt("category_id"));
+            category.setCategoryName(rs.getString("category_name"));
+            
+            return category;
+        }
+        
+    }
+    
+    
+    private static final class TagMapper implements ParameterizedRowMapper <Tag>
+    {
+
+        @Override
+        public Tag mapRow(ResultSet rs, int i) throws SQLException {
+                Tag tag = new Tag();
+                tag.setTagId(rs.getInt("tag_id"));
+                tag.setTagName(rs.getString("tag_name"));
+                
+                return tag;
+        }
+    
+    }
 }
