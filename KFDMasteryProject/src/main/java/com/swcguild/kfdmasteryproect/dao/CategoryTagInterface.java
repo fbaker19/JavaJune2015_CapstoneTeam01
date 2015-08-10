@@ -22,6 +22,8 @@ public interface CategoryTagInterface {
     
     public void deleteCategory(int categoryId);
     
+    public void deleteCategoryFromPost(int categoryId);
+    
     public Category viewCategory(int categoryId);
     
     public List<Post> viewPostsByCategory(int categoryId);

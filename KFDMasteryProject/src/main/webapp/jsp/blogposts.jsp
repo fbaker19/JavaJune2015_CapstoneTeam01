@@ -41,7 +41,7 @@
                         <a href="viewPost/${post.postId}">${post.title} </a>
                     </h3>
                 </div>
-                <div class="panel-body editor">
+                <div class="panel-body ">
                     ${post.blurb}
                 </div>
                 <div class="panel-footer">Comments ()</div>
@@ -51,11 +51,11 @@
     </div>
 
 
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- Placed at the end of the document so the pages load faster --><!--.editor can be placed in multiple divs, can be ".woodchuck"-->
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"> 
             tinymce.init({
                 selector: ".editor", theme: "modern",
                  plugins: [
