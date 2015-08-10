@@ -5,16 +5,19 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
-import com.swcguild.kfdmasteryproect.dao.PostInterface;
-import com.swcguild.kfdmasteryproect.dao.StaticPageInterface;
+import com.swcguild.kfdmasteryproject.dao.PostInterface;
+import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
 import javax.inject.Inject;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  *
@@ -26,10 +29,12 @@ public class PostController {
     private StaticPageInterface sp;
     private PostInterface pdao;
     
+    
     @Inject
     public PostController(StaticPageInterface sp, PostInterface pdao){
         this.pdao=pdao;
         this.sp=sp;
+        
     }
     
     
@@ -40,6 +45,18 @@ public String displayPost(@PathVariable("postId") int postId, Model model)
        model.addAttribute("post", post);
        return "viewPost";
    }
+
+@RequestMapping(value="/addPost", method=RequestMethod.GET)
+public String displayAddPost(){
+    return "addPost";
+}
   
+@RequestMapping(value="addPost", method=RequestMethod.POST)
+@ResponseStatus(HttpStatus.CREATED)
+@ResponseBody public Post addPost(@RequestBody Post post){
+    return pdao.addPost(post);
+   
+    
+}
     
 }

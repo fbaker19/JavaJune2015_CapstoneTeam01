@@ -34,19 +34,20 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
-    <bean id="pdao" class="com.swcguild.kfdmasteryproect.dao.PostImpl">
+    <bean id="pdao" class="com.swcguild.kfdmasteryproject.dao.PostImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     
-    <bean id="sp" class="com.swcguild.kfdmasteryproect.dao.StaticPageImpl">
+    <bean id="sp" class="com.swcguild.kfdmasteryproject.dao.StaticPageImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+    
     
     <!--ADDED 8/9-->
-   <bean id="comment" class="com.swcguild.kfdmasteryproect.dao.CommentImpl">
+   <bean id="com" class="com.swcguild.kfdmasteryproject.dao.CommentImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
-    <bean id="categoryTag" class="com.swcguild.kfdmasteryproect.dao.CategoryTagImpl">
+    <bean id="cat" class="com.swcguild.kfdmasteryproject.dao.CategoryTagImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 </beans>

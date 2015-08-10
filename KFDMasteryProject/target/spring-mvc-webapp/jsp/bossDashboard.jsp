@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(img/background1.jpg)">
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
 
     <div class="container">
         <div class="row" style="padding-top: 20px">
@@ -40,12 +40,9 @@
                 </div>
                 <div class="panel-body" style="max-height: 300px">
                     <table class="table table-striped">
-                        <c:forEach var="pendingPosts" items="${ppList}">
-                            <s:url value="viewPendingPost" var="viewPendingPost_url">
-                                <s:param name="postId" value="${post.postId}"/>
-                            </s:url>
+                        <c:forEach var="pendingPost" items="${ppList}">
                             <tr>
-                                <td><a href="viewPendingPost_url">${post.title} </a></td>
+                                <td><a href="editPost/${pendingPost.postId}">${pendingPost.title} </a></td>
                             </tr>
                         </c:forEach>
                     </table> 
@@ -57,12 +54,9 @@
                 </div>
                 <div class="panel-body" style="max-height: 300px">
                     <table class="table table-striped">
-                        <c:forEach var="pendingComments" items="${pcList}">
-                            <s:url value="viewPendingComment" var="viewPendingComment_url">
-                                <s:param name="commentId" value="${comment.commentId}"/>
-                            </s:url>
+                        <c:forEach var="pendingComment" items="${pcList}">
                             <tr>
-                                <td><a href="viewPendingComment_url">Comment ${comment.commentId} </a></td>
+                                <td><a href="editComment/${pendingComment.commentId}">${pendingComment.commentId} </a></td>
                             </tr>
                         </c:forEach>
                     </table> 
@@ -76,6 +70,13 @@
                     <h3 class="dashboard-page-title">Static Pages</h3>
                 </div>
                 <div class="panel-body" style="max-height: 300px">
+                    <table class="table table-striped">
+                        <c:forEach var="staticPage" items="${spList}">
+                            <tr>
+                                <td><a href="editPage/${staticPage.pageId}">${staticPage.title} </a></td>
+                            </tr>
+                        </c:forEach>
+                    </table> 
 
 
                 </div>
@@ -85,7 +86,13 @@
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>
                 <div class="panel-body" style="max-height: 300px">
-
+                    <table class="table table-striped">
+                        <c:forEach var="category" items="${catList}">
+                            <tr>
+                                <td><a href="editPage/${category.categoryId}">${category.categoryName} </a></td>
+                            </tr>
+                        </c:forEach>
+                    </table> 
 
                 </div>
             </div>

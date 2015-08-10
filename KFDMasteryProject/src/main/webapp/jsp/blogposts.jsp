@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(img/background1.jpg)">
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
 
     <div class="container">
         <div class="row" style="padding-top: 20px">
@@ -41,7 +41,7 @@
                         <a href="viewPost/${post.postId}">${post.title} </a>
                     </h3>
                 </div>
-                <div class="panel-body editor">
+                <div class="panel-body">
                     ${post.blurb}
                 </div>
                 <div class="panel-footer">Comments ()</div>
