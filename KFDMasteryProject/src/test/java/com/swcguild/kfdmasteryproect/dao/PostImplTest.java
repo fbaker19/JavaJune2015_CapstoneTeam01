@@ -164,7 +164,7 @@ public class PostImplTest {
 
         dao.addPost(p2);
         
-        List<Post> pList = dao.viewAllPosts();
+        List<Post> pList = dao.viewAllPublishedPosts();
         
         Assert.assertEquals(5, pList.size());
         
@@ -174,7 +174,7 @@ public class PostImplTest {
         
         dao.deletePost(p2.getPostId());
         
-        pList = dao.viewAllPosts();
+        pList = dao.viewAllPublishedPosts();
         
         Assert.assertEquals(4, pList.size());
         
@@ -182,7 +182,7 @@ public class PostImplTest {
         
         dao.deletePost(p.getPostId());
         
-        pList = dao.viewAllPosts();
+        pList = dao.viewAllPublishedPosts();
         
         Assert.assertEquals(3, pList.size());
         

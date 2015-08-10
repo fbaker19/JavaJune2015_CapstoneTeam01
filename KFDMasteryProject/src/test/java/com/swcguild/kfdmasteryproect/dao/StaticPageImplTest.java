@@ -53,6 +53,7 @@ public class StaticPageImplTest {
         s.setContent("Content");
         s.setDate(dtf.parse("2015-08-08"));
         s.setTitle("Static Page Title");
+        s.setPublished(1);
         s.setUserId(1);
         
         dao.addContent(s);
@@ -78,7 +79,8 @@ public class StaticPageImplTest {
         s.setContent("Content");
         s.setDate(dtf.parse("2015-08-08"));
         s.setTitle("Static Page Title");
-        s.setUserId(1);
+        s.setPublished(1);
+        s.setUserId(2);
         
         dao.addContent(s);
         
@@ -87,7 +89,7 @@ public class StaticPageImplTest {
         
         StaticPage fromDb = dao.viewContentById(s.getPageId());
         
-        Assert.assertEquals(fromDb, s);
+        Assert.assertEquals(fromDb.getTitle(), s.getTitle());
         
         dao.deleteContent(s.getPageId());
         
@@ -106,6 +108,7 @@ public class StaticPageImplTest {
         s.setContent("Content");
         s.setDate(dtf.parse("2015-08-08"));
         s.setTitle("Static Page Title");
+        s.setPublished(1);
         s.setUserId(1);
 
         dao.addContent(s);
@@ -114,6 +117,7 @@ public class StaticPageImplTest {
         s2.setContent("Content2");
         s2.setDate(dtf.parse("2015-07-07"));
         s2.setTitle("Static Page Title2");
+        s2.setPublished(1);
         s2.setUserId(2);
 
         dao.addContent(s2);

@@ -23,21 +23,16 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class CategoryTagImpl implements CategoryTagInterface {
 
-<<<<<<< HEAD:KFDMasteryProject/src/main/java/com/swcguild/kfdmasteryproject/dao/CategoryTagImpl.java
-    private static final String SQL_INSERT_CATEGORY = "";
-    private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories";//delete from categories post as  well
-    private static final String SQL_UPDATE_CATEGORY = "";
-    private static final String SQL_SELECT_CATEGORY = "";
-    private static final String SQL_SELECT_ALL_POST_BY_CATEGORY = "";
+
+    
     private static final String SQL_SELECT_ALL_CATEGORIES = "SELECT * FROM categories";
-=======
+    
     private static final String SQL_INSERT_CATEGORY = "INSERT INTO categories (category_name)Values(?)";
     private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories WHERE category_id =?";//delete from categories post as well
     private static final String SQL_DELETE_CATEGORY_FROM_POST = "DELETE FROM categories_posts WHERE category_id";
     private static final String SQL_UPDATE_CATEGORY = "UPDATE posts SET category_name = ?";
     private static final String SQL_SELECT_CATEGORY = "SELECT * FROM categories WHERE category_id = ?";
     private static final String SQL_SELECT_ALL_POST_BY_CATEGORY = "SELECT * FROM categories_posts";
->>>>>>> cd4a854a98a0b6ae536e416f3d310ab5290f1263:KFDMasteryProject/src/main/java/com/swcguild/kfdmasteryproject/dao/CategoryTagImpl.java
 
     private static final String SQL_INSERT_TAG = "INSERT INTO tags (tag_name) VALUES (?) ";
     private static final String SQL_SELECT_TAG = "SELECT * FROM tags WHERE tag_id =?";

@@ -24,6 +24,8 @@ public class StaticPage {
     private Date date;
     
     private int userId;
+    
+    private int published;
 
     public int getPageId() {
         return pageId;
@@ -65,14 +67,23 @@ public class StaticPage {
         this.userId = userId;
     }
 
+    public int getPublished() {
+        return published;
+    }
+
+    public void setPublished(int published) {
+        this.published = published;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.pageId;
-        hash = 67 * hash + Objects.hashCode(this.content);
-        hash = 67 * hash + Objects.hashCode(this.title);
-        hash = 67 * hash + Objects.hashCode(this.date);
-        hash = 67 * hash + this.userId;
+        int hash = 7;
+        hash = 37 * hash + this.pageId;
+        hash = 37 * hash + Objects.hashCode(this.content);
+        hash = 37 * hash + Objects.hashCode(this.title);
+        hash = 37 * hash + Objects.hashCode(this.date);
+        hash = 37 * hash + this.userId;
+        hash = 37 * hash + this.published;
         return hash;
     }
 
@@ -100,9 +111,13 @@ public class StaticPage {
         if (this.userId != other.userId) {
             return false;
         }
+        if (this.published != other.published) {
+            return false;
+        }
         return true;
     }
 
+    
     
     
 }

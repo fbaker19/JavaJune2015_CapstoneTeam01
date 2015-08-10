@@ -22,9 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class StaticPageImpl implements StaticPageInterface {
 
-    private static final String SQL_INSERT_STATIC_PAGE = "INSERT INTO static_pages (content, title, date, user_id) VALUES(?,?,?,?)";
+    private static final String SQL_INSERT_STATIC_PAGE = "INSERT INTO static_pages (content, title, date, user_id, published) VALUES(?,?,?,?,?)";
     private static final String SQL_DELETE_STATIC_PAGE = "DELETE FROM static_pages WHERE page_id = ?";
-    private static final String SQL_UPDATE_STATIC_PAGE = "UPDATE static_pages SET content = ?, title = ?, date = ?, user_id = ? WHERE page_id =?";
+    private static final String SQL_UPDATE_STATIC_PAGE = "UPDATE static_pages SET content = ?, title = ?, date = ?, user_id = ?, published = ? WHERE page_id =?";
     private static final String SQL_SELECT_STATIC_PAGE = "SELECT * FROM static_pages WHERE page_id=?";
     private static final String SQL_SELECT_ALL_STATIC_PAGE = "SELECT * FROM static_pages";
 
@@ -42,7 +42,8 @@ public class StaticPageImpl implements StaticPageInterface {
                 staticPage.getContent(),
                 staticPage.getTitle(),
                 staticPage.getDate(),
-                staticPage.getUserId());
+                staticPage.getUserId(),
+                staticPage.getPublished());
 
         staticPage.setPageId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
 
@@ -56,6 +57,7 @@ public class StaticPageImpl implements StaticPageInterface {
                 staticPage.getTitle(),
                 staticPage.getDate(),
                 staticPage.getUserId(),
+                staticPage.getPublished(),
                 staticPage.getPageId());
     }
 
@@ -89,6 +91,7 @@ public class StaticPageImpl implements StaticPageInterface {
             sp.setDate(rs.getDate("date"));
             sp.setTitle(rs.getString("title"));
             sp.setUserId(rs.getInt("user_id"));
+            sp.setPublished(rs.getInt("published"));
 
             return sp;
         }
