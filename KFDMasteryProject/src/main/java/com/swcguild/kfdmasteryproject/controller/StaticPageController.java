@@ -5,8 +5,8 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
-import com.swcguild.kfdmasteryproect.dao.PostInterface;
-import com.swcguild.kfdmasteryproect.dao.StaticPageInterface;
+import com.swcguild.kfdmasteryproject.dao.PostInterface;
+import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
 import java.util.List;
 import javax.inject.Inject;

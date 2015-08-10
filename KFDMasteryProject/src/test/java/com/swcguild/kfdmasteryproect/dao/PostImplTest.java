@@ -5,6 +5,7 @@
  */
 package com.swcguild.kfdmasteryproect.dao;
 
+import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
