@@ -5,12 +5,17 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
+<<<<<<< HEAD
 import com.swcguild.kfdmasteryproject.dao.CategoryTagInterface;
 import com.swcguild.kfdmasteryproject.dao.CommentInterface;
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Comment;
+=======
+import com.swcguild.kfdmasteryproject.dao.PostInterface;
+import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
+>>>>>>> cd4a854a98a0b6ae536e416f3d310ab5290f1263
 import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.util.List;
