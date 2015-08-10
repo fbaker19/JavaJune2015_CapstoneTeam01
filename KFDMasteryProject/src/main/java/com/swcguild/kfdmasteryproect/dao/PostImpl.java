@@ -24,13 +24,13 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
  */
 public class PostImpl implements PostInterface {
 
+    private static final String SQL_SELECT_ALL_POSTS = "SELECT * FROM posts ORDER BY post_id DESC";
+    private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
 
     //userid/foreign key????? post? catagory  deletion?
     private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, user_id, last_modified_user_id, create_date, last_modified_date, expiration_date, published, blurb)VALUES(?,?,?,?,?,?,?,?,?)";
     private static final String SQL_DELETE_POST = "DELETE FROM posts WHERE post_id = ?";
     private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, blurb= ? WHERE post_id =?";
-    private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id=?";
-    private static final String SQL_SELECT_ALL_POST = "SELECT * FROM posts";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -90,7 +90,7 @@ public class PostImpl implements PostInterface {
     @Override
     public List<Post> viewAllPosts() {
 
-        return jdbcTemplate.query(SQL_SELECT_ALL_POST, new PostMapper());
+        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
     
     }
 
