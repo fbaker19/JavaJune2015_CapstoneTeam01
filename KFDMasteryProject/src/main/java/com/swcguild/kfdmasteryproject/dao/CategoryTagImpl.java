@@ -23,15 +23,18 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class CategoryTagImpl implements CategoryTagInterface {
 
-    private static final String SQL_INSERT_CATEGORY = "";
-    private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories";//delete from categories post as  well
-    private static final String SQL_UPDATE_CATEGORY = "";
-    private static final String SQL_SELECT_CATEGORY = "";
-    private static final String SQL_SELECT_ALL_POST_BY_CATEGORY = "";
+    private static final String SQL_INSERT_CATEGORY = "INSERT INTO categories (category_name)Values(?)";
+    private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories WHERE category_id =?";//delete from categories post as well
+    private static final String SQL_DELETE_CATEGORY_FROM_POST = "DELETE FROM categories_posts WHERE category_id";
+    private static final String SQL_UPDATE_CATEGORY = "UPDATE posts SET category_name = ?";
+    private static final String SQL_SELECT_CATEGORY = "SELECT * FROM categories WHERE category_id = ?";
+    private static final String SQL_SELECT_ALL_POST_BY_CATEGORY = "SELECT * FROM categories_posts";
 
-    private static final String SQL_INSERT_TAG = "";
-    private static final String SQL_SELECT_TAG = "";
-    private static final String SQL_SELECT_ALL_POSTS_WITH_TAG = "";
+    private static final String SQL_INSERT_TAG = "INSERT INTO tags (tag_name) VALUES (?) ";
+    private static final String SQL_SELECT_TAG = "SELECT * FROM tags WHERE tag_id";
+    private static final String SQL_SELECT_ALL_POSTS_WITH_TAG = "SELECT * FROM tag_post";
+    
+    
 
     private JdbcTemplate jdbcTemplate;
 
@@ -44,7 +47,8 @@ public class CategoryTagImpl implements CategoryTagInterface {
     public Category addCategory(Category category) {
         jdbcTemplate.update(SQL_INSERT_CATEGORY,
                 category.getCategoryName());
-        category.setCategoryId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+       
+        category.setCategoryId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
 
         return category;
     }
@@ -61,9 +65,14 @@ public class CategoryTagImpl implements CategoryTagInterface {
         jdbcTemplate.update(SQL_DELETE_CATEGORY, categoryId);
     }
 
+      @Override
+    public void deleteCategoryFromPost(int categoryId) {
+        jdbcTemplate.update(SQL_DELETE_CATEGORY_FROM_POST, categoryId);
+    }
+    
     @Override
     public Category viewCategory(int categoryId) {
-        try {
+        try {                                                           //postMapper??
             return jdbcTemplate.queryForObject(SQL_SELECT_CATEGORY, new CategoryMapper(), categoryId);
         } catch (EmptyResultDataAccessException ex) {
             return null;
@@ -73,22 +82,10 @@ public class CategoryTagImpl implements CategoryTagInterface {
 
     @Override//link to postImpl?
     public List<Post> viewPostsByCategory(int categoryId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-        //return jdbcTemplate.query(SQL_SELECT_ALL_POST_BY_CATEGORY, new CategoryMapper(), categoryId);
+        return jdbcTemplate.query(SQL_SELECT_ALL_POST_BY_CATEGORY, new PostMapper(), categoryId);
     }
 
-    /*
-     Library MVC example
     
-     @Override
-     public List<Author> getAuthorsByBookId(int bookId) {
-     return jdbcTemplate.query(SQL_SELECT_AUTHORS_BY_BOOK_ID, new AuthorMapper(), bookId);
-     }
-    
-     <Author> new AuthorMapper(), ------ <post> & <postMapper>??
-     should we we combine this(catTagImpl) with postimple and dto's on 1 = CatTagPostImpl?? 
-    
-     */
     @Override
     public Tag addTag(Tag tag) {
         jdbcTemplate.update(SQL_INSERT_TAG,
@@ -100,7 +97,7 @@ public class CategoryTagImpl implements CategoryTagInterface {
 
     @Override
     public Tag viewTag(int tagId) {
-        try {
+        try {                                                   //postMapper??
             return jdbcTemplate.queryForObject(SQL_SELECT_TAG, new TagMapper(), tagId);
         } catch (EmptyResultDataAccessException ex) {
             return null;
@@ -109,27 +106,9 @@ public class CategoryTagImpl implements CategoryTagInterface {
 
     @Override//all
     public List<Post> viewPostsByTag(int tagId) {
-        throw new UnsupportedOperationException("Not supported yet.");
-        //return jdbcTemplate.query(SQL_SELECT_ALL_POSTS_WITH_TAG , new TagMapper(), tagId);
+        //throw new UnsupportedOperationException("Not supported yet.");
+        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS_WITH_TAG , new PostMapper(), tagId);
     }
-    
-    
-    //SAME ISSUE ABOVE  WITH CATEGORY
-     /*
-     Library MVC example
-    
-     @Override
-     public List<Author> getAuthorsByBookId(int bookId) {
-     return jdbcTemplate.query(SQL_SELECT_AUTHORS_BY_BOOK_ID, new AuthorMapper(), bookId);
-     }
-    
-     <Author> new AuthorMapper(), ------ <post> & <postMapper>??
-     should we we combine this(catTagImpl) with postimple and dto's on 1 = CatTagPostImpl?? 
-    
-     */
-    
-    
-    
     
 
     private static final class CategoryMapper implements ParameterizedRowMapper<Category> {
@@ -155,6 +134,27 @@ public class CategoryTagImpl implements CategoryTagInterface {
             tag.setTagName(rs.getString("tag_name"));
 
             return tag;
+        }
+    }
+    
+    private static final class PostMapper implements ParameterizedRowMapper <Post> {
+
+        @Override
+        public Post mapRow(ResultSet rs, int i) throws SQLException {
+            Post post = new Post();
+           
+            post.setBlurb(rs.getString("blurb"));
+            post.setContent(rs.getString("content"));
+            post.setCreateDate(rs.getDate("create_date"));
+            post.setExpDate(rs.getDate("expiration_date"));
+            post.setLastModifiedDate(rs.getDate("last_modified_date"));
+            post.setLastModifiedUserId(rs.getInt("last_modified_user_id"));
+            post.setPostId(rs.getInt("post_id"));
+            post.setPublished(rs.getInt("published"));
+            post.setTitle(rs.getString("title"));
+            post.setUserId(rs.getInt("user_id"));
+           
+            return post;
         }
 
     }
