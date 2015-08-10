@@ -44,6 +44,9 @@
     
     <!--ADDED 8/9-->
 <<<<<<< HEAD
+   <bean id="comment" class="com.swcguild.kfdmasteryproect.dao.CommentImpl">
+=======
+<<<<<<< HEAD
  <!--  <bean id="comment" class="com.swcguild.kfdmasteryproect.dao.CommentImpl">
 =======
 <<<<<<< HEAD
@@ -52,6 +55,7 @@
    <bean id="comment" class="com.swcguild.kfdmasteryproect.dao.CommentImpl">
 >>>>>>> 70069127b411400b3a669480558cc6f581beb9c3
 >>>>>>> c304a175da2a9c261b095a8f64b937f1be32a5fc
+>>>>>>> 0e5808a3f244517da6ceb0591f16a5615026a7bb
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     <bean id="categoryTag" class="com.swcguild.kfdmasteryproect.dao.CategoryTagImpl">

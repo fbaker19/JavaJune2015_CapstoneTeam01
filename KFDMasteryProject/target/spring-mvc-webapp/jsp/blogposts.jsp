@@ -41,7 +41,11 @@
                         <a href="viewPost/${post.postId}">${post.title} </a>
                     </h3>
                 </div>
+<<<<<<< HEAD
+                <div class="panel-body">
+=======
                 <div class="panel-body ">
+>>>>>>> 0e5808a3f244517da6ceb0591f16a5615026a7bb
                     ${post.blurb}
                 </div>
                 <div class="panel-footer">Comments ()</div>
