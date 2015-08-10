@@ -37,8 +37,16 @@
     <bean id="pdao" class="com.swcguild.kfdmasteryproect.dao.PostImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+    
     <bean id="sp" class="com.swcguild.kfdmasteryproect.dao.StaticPageImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     
+    <!--ADDED 8/9-->
+   <bean id="comment" class="com.swcguild.kfdmasteryproect.dao.CommentImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="categoryTag" class="com.swcguild.kfdmasteryproect.dao.CategoryTagImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
 </beans>
