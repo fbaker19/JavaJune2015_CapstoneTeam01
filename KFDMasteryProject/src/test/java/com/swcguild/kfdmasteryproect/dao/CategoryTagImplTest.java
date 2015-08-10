@@ -5,6 +5,7 @@
  */
 package com.swcguild.kfdmasteryproect.dao;
 
+import com.swcguild.kfdmasteryproject.dao.CategoryTagInterface;
 import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Tag;
 import junit.framework.Assert;

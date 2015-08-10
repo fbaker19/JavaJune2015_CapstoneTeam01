@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<<<<<<< HEAD
-<testsuite tests="3" failures="0" name="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" time="1.876" errors="0" skipped="0">
-=======
-<<<<<<< HEAD
-<testsuite tests="3" failures="0" name="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" time="1.173" errors="0" skipped="0">
-=======
-<testsuite tests="3" failures="0" name="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" time="1.971" errors="0" skipped="0">
->>>>>>> c304a175da2a9c261b095a8f64b937f1be32a5fc
->>>>>>> 0e5808a3f244517da6ceb0591f16a5615026a7bb
+<testsuite tests="3" failures="0" name="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" time="0.284" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64"/>
     <property name="java.vm.version" value="25.45-b02"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/apprentice/Documents/CapstoneTeam01/JavaJune2015_CapstoneTeam01/KFDMasteryProject"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -22,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/apprentice/Documents/JavaJune2015/Capstone/JavaJune2015_CapstoneTeam01/KFDMasteryProject"/>
+    <property name="user.dir" value="/home/apprentice/Documents/CapstoneTeam01/JavaJune2015_CapstoneTeam01/KFDMasteryProject"/>
     <property name="java.runtime.version" value="1.8.0_45-b14"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/endorsed"/>
@@ -33,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Linux"/>
     <property name="maven.ext.class.path" value="/home/apprentice/netbeans-8.0.2/java/maven-nblib/netbeans-eventspy.jar"/>
-    <property name="classworlds.conf" value="/home/apprentice/netbeans-8.0.2/java/maven/bin/m2.conf"/>
+    <property name="classworlds.conf" value="/home/apprentice/apache-maven-3.3.3/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64:/usr/lib/jvm/java-8-oracle/jre/lib/i386::/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -46,7 +39,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="apprentice"/>
-    <property name="java.class.path" value="/home/apprentice/netbeans-8.0.2/java/maven/boot/plexus-classworlds-2.4.jar"/>
+    <property name="java.class.path" value="/home/apprentice/apache-maven-3.3.3/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-8-oracle/jre"/>
@@ -60,7 +53,7 @@
     <property name="securerandom.source" value="file:/dev/./urandom"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/home/apprentice/netbeans-8.0.2/java/maven"/>
+    <property name="maven.home" value="/home/apprentice/apache-maven-3.3.3"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -68,19 +61,7 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-<<<<<<< HEAD
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddGetDeleteContent" time="1.486"/>
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddEditDeleteContent" time="0.131"/>
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddViewDeleteContent" time="0.259"/>
-=======
-<<<<<<< HEAD
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddGetDeleteContent" time="0.857"/>
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddEditDeleteContent" time="0.118"/>
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddViewDeleteContent" time="0.125"/>
-=======
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddGetDeleteContent" time="1.671"/>
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddEditDeleteContent" time="0.152"/>
-  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddViewDeleteContent" time="0.148"/>
->>>>>>> c304a175da2a9c261b095a8f64b937f1be32a5fc
->>>>>>> 0e5808a3f244517da6ceb0591f16a5615026a7bb
+  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddGetDeleteContent" time="0.087"/>
+  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddEditDeleteContent" time="0.108"/>
+  <testcase classname="com.swcguild.kfdmasteryproect.dao.StaticPageImplTest" name="testAddViewDeleteContent" time="0.089"/>
 </testsuite>
