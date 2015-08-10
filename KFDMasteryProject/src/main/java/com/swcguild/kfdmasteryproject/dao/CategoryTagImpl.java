@@ -31,7 +31,7 @@ public class CategoryTagImpl implements CategoryTagInterface {
     private static final String SQL_SELECT_ALL_POST_BY_CATEGORY = "SELECT * FROM categories_posts";
 
     private static final String SQL_INSERT_TAG = "INSERT INTO tags (tag_name) VALUES (?) ";
-    private static final String SQL_SELECT_TAG = "SELECT * FROM tags WHERE tag_id";
+    private static final String SQL_SELECT_TAG = "SELECT * FROM tags WHERE tag_id =?";
     private static final String SQL_SELECT_ALL_POSTS_WITH_TAG = "SELECT * FROM tag_post";
     
     
@@ -80,17 +80,19 @@ public class CategoryTagImpl implements CategoryTagInterface {
 
     }
 
-    @Override//link to postImpl?
+    @Override
     public List<Post> viewPostsByCategory(int categoryId) {
         return jdbcTemplate.query(SQL_SELECT_ALL_POST_BY_CATEGORY, new PostMapper(), categoryId);
     }
 
     
+    
+    
     @Override
     public Tag addTag(Tag tag) {
         jdbcTemplate.update(SQL_INSERT_TAG,
                 tag.getTagName());
-        tag.setTagId(jdbcTemplate.queryForObject("SELECT INSERT_LAST_ID()", Integer.class));
+        tag.setTagId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
 
         return tag;
     }

@@ -43,7 +43,7 @@ public class CategoryTagImplTest {
     }
 
    
-
+//CATEGORY
     @Test
     public void testAddGetDeleteCategory() {
         Category c = new Category();
@@ -70,12 +70,13 @@ public class CategoryTagImplTest {
     public void testAddEditCategory() {
         
         
+        
     }
 
    
 
     
-    
+    //CATEGORY/POST
     @Test
     public void testDeleteCategoryFromPost() {
     }
@@ -91,13 +92,12 @@ public class CategoryTagImplTest {
     
     
     
-    
-    
+    //TAGS
     @Test
     public void testAddGetTag() {
         //set
         Tag tag = new Tag();
-        tag.setTagId(1);
+        tag.setTagId(0);
         tag.setTagName("tag test");
         
         //add
@@ -106,10 +106,7 @@ public class CategoryTagImplTest {
         
         //get
         Tag resultFromDb = dao.viewTag(tag.getTagId());
-        Assert.assertEquals(resultFromDb, tag);
-        
-        
-        
+        Assert.assertEquals(resultFromDb, tag); 
         
     }
 

@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.swcguild.kfdmasteryproect.dao.CategoryTagImplTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.457 sec <<< FAILURE!
 testAddGetTag(com.swcguild.kfdmasteryproect.dao.CategoryTagImplTest)  Time elapsed: 0.194 sec  <<< ERROR!
 org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [SELECT INSERT_LAST_ID()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION Capstone_Sea_Legs_Nautical_Academy.INSERT_LAST_ID does not exist
@@ -74,3 +75,6 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION C
 	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:402)
 	... 44 more
 
+=======
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.393 sec
+>>>>>>> 921a317136a5ac53a08ad0c7c33b2fa511eed014
