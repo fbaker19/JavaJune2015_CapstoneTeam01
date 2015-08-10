@@ -34,7 +34,7 @@ public class PostController {
     
     
 @RequestMapping(value="/viewPost/{postId}", method = RequestMethod.GET)
-@ResponseBody  public String displayPost(@PathVariable("postId") int postId, Model model)
+public String displayPost(@PathVariable("postId") int postId, Model model)
    {
        Post post = pdao.viewPost(postId);
        model.addAttribute("post", post);
