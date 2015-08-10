@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(img/background1.jpg)">
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)">
 
     <div class="container">
         <div class="row" style="padding-top: 20px">
