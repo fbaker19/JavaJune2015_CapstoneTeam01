@@ -6,6 +6,8 @@
 package com.swcguild.kfdmasteryproect.dao;
 
 import com.swcguild.kfdmasteryproject.dao.CommentInterface;
+import com.swcguild.kfdmasteryproject.model.Comment;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import org.junit.After;
 import org.junit.Before;
@@ -29,18 +31,11 @@ public class CommentImplTest {
     public void setUp() {
         
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
-        dao = ctx.getBean("" ,CommentInterface.class);
+        dao = ctx.getBean("comment" ,CommentInterface.class);
     }
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of setJdbcTemplate method, of class CommentImpl.
-     */
-    @Test
-    public void testSetJdbcTemplate() {
     }
 
     /**
@@ -61,7 +56,15 @@ public class CommentImplTest {
      * Test of addComment method, of class CommentImpl.
      */
     @Test
-    public void testAddComment() {
+    public void testAddViewDeleteComment() throws ParseException {
+        
+//        Comment c = new Comment();
+//        
+//        c.setComment("Comment text");
+//        c.setPostId(1);
+//        c.setCommentDate(dtf.parse("2015-08-08"));
+        
+        
     }
 
     /**
