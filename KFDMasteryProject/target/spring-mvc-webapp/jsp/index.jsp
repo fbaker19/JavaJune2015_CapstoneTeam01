@@ -38,7 +38,7 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">${currentPost.title}</h3>
+                    <h3 class="panel-title">Latest Blog Post: ${currentPost.title}</h3>
                 </div>
                 <div class="panel-body">
                     ${currentPost.content}

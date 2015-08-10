@@ -51,7 +51,7 @@ public String displayAddPost(){
     return "addPost";
 }
   
-@RequestMapping(value="addPost", method=RequestMethod.POST)
+@RequestMapping(value="/addPost", method=RequestMethod.POST)
 @ResponseStatus(HttpStatus.CREATED)
 @ResponseBody public Post addPost(@RequestBody Post post){
     return pdao.addPost(post);

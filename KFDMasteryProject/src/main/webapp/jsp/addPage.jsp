@@ -41,20 +41,8 @@
             <div class="panel-footer">
                 <div class="row">
                     
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" aria-label="..." placeholder="Add New Category">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Category<span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#">Add Category</a></li>
-                                    <li><a href="#">Events</a></li>
-                                    <li><a href="#">Good Times</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-2 col-lg-offset-3">
+                    
+                    <div class="col-lg-2 col-lg-offset-9">
                     <button type="submit" id="publish-add-button" class="btn btn-default btn-block">Publish</button>
                     <button type="submit" id="save-add-button" class="btn btn-default btn-block">Save</button>
                     </div>
@@ -62,15 +50,8 @@
                 </div><!--row-->
                 <br/>
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Add New Tag">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Add Tag</button>
-                            </span>
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
-                      <div class="col-lg-2 col-lg-offset-3">
+                    
+                      <div class="col-lg-2 col-lg-offset-9">
                     <button type="submit" id="delete-add-button" class="btn btn-default btn-block">Delete</button>
                     <button type="submit" id="cancel-add-button" class="btn btn-default btn-block">Cancel</button>
                     </div>

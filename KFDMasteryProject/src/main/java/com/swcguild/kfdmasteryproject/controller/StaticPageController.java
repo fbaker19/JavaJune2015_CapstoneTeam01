@@ -5,15 +5,14 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
-
 import com.swcguild.kfdmasteryproject.dao.CategoryTagInterface;
 import com.swcguild.kfdmasteryproject.dao.CommentInterface;
 import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Comment;
-
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
-
+import com.swcguild.kfdmasteryproject.dao.PostInterface;
+import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.util.List;
@@ -34,6 +33,7 @@ public class StaticPageController {
     private PostInterface pdao;
     private CommentInterface com;
     private CategoryTagInterface cat;
+    private Object RequestMethos;
     
     @Inject
     public StaticPageController(StaticPageInterface sp, PostInterface pdao, CommentInterface com, CategoryTagInterface cat){
@@ -70,11 +70,15 @@ public class StaticPageController {
        
        model.addAttribute("ppList", ppList);
        model.addAttribute("pcList", pcList);
+       model.addAttribute("spList", spList);
        model.addAttribute("catList", catList);
        
        return "bossDashboard";
    }
   
- 
+ @RequestMapping(value="/addPage", method=RequestMethod.GET)
+ public String displayAddPage(){
+     return "addPage";
+ }
     
 }
