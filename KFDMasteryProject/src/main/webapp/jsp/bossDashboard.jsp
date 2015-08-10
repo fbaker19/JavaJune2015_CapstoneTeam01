@@ -37,6 +37,7 @@
             <div class="panel panel-default  col-md-5">
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Pending Blog Posts</h3>
+                   
                 </div>
                 <div class="panel-body" style="max-height: 300px">
                     <table class="table table-striped">
@@ -46,6 +47,13 @@
                             </tr>
                         </c:forEach>
                     </table> 
+                </div>
+                <div class="panel-footer">
+                   <ul>
+                        <li class="btn btn-default col-md-offset-8">
+                            <a href="addPost">Add New Post</a>
+                        </li>
+                    </ul> 
                 </div>
             </div>
             <div class="panel panel-default col-md-5 col-md-offset-1">
@@ -77,8 +85,13 @@
                             </tr>
                         </c:forEach>
                     </table> 
-
-
+                </div>
+                <div class="panel-footer">
+                    <ul>
+                        <li class="btn btn-default col-md-offset-8">
+                            <a href="addPage">Add New Page</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="panel panel-default col-md-5 col-md-offset-1">

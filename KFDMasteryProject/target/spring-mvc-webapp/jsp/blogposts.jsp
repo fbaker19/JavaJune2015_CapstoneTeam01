@@ -41,19 +41,7 @@
                         <a href="viewPost/${post.postId}">${post.title} </a>
                     </h3>
                 </div>
-<<<<<<< HEAD
                 <div class="panel-body ">
-=======
-<<<<<<< HEAD
-                <div class="panel-body">
-=======
-<<<<<<< HEAD
-                <div class="panel-body">
-=======
-                <div class="panel-body ">
->>>>>>> 0e5808a3f244517da6ceb0591f16a5615026a7bb
->>>>>>> cd4a854a98a0b6ae536e416f3d310ab5290f1263
->>>>>>> 7d3a186f9aa48b986c809aeb05d629d1aedc8bf5
                     ${post.blurb}
                 </div>
                 <div class="panel-footer">Comments ()</div>
@@ -63,31 +51,6 @@
     </div>
 
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<!-- Placed at the end of the document so the pages load faster --><!--.editor can be placed in multiple divs, can be ".woodchuck"-->
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript"> 
-            tinymce.init({
-                selector: ".editor", theme: "modern",
-                 plugins: [
-                    "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-                    "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
-                    "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
-                ],
-                toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
-                toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
-                image_advtab: true,
-                external_filemanager_path: "${pageContext.request.contextPath}/filemanager/",
-                filemanager_title: "Responsive Filemanager",
-                external_plugins: {"filemanager": "${pageContext.request.contextPath}/filemanager/plugin.min.js"}
-            });
-        </script>
-=======
->>>>>>> 7d3a186f9aa48b986c809aeb05d629d1aedc8bf5
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -104,10 +67,6 @@
             relative_urls: false,
         });
     </script>
-<<<<<<< HEAD
-=======
->>>>>>> c304a175da2a9c261b095a8f64b937f1be32a5fc
->>>>>>> 7d3a186f9aa48b986c809aeb05d629d1aedc8bf5
 </body>
 </html>
 

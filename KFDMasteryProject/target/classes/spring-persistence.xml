@@ -44,22 +44,11 @@
     
     
     <!--ADDED 8/9-->
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
- <bean id="comment" class="com.swcguild.kfdmasteryproject.dao.CommentImpl">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
-    </bean>
-    <bean id="categoryTag" class="com.swcguild.kfdmasteryproject.dao.CategoryTagImpl">
-=======
-<<<<<<< HEAD
->>>>>>> 7d3a186f9aa48b986c809aeb05d629d1aedc8bf5
    <bean id="com" class="com.swcguild.kfdmasteryproject.dao.CommentImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
  
     <bean id="cat" class="com.swcguild.kfdmasteryproject.dao.CategoryTagImpl">
->>>>>>> c9aa5f87cda0a4bfafc650a5d7d1f4848ae8fed0
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean> 
 </beans>

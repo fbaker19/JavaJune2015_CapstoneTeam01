@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class StaticPageImpl implements StaticPageInterface {
 
-    private static final String SQL_INSERT_STATIC_PAGE = "INSERT INTO static_pages (content, title, date, user_id, published) VALUES(?,?,?,?,?)";
+    private static final String SQL_INSERT_STATIC_PAGE = "INSERT INTO static_pages (content, title, date, user_id, published) VALUES(?, ?,?,?,?,?)";
     private static final String SQL_DELETE_STATIC_PAGE = "DELETE FROM static_pages WHERE page_id = ?";
     private static final String SQL_UPDATE_STATIC_PAGE = "UPDATE static_pages SET content = ?, title = ?, date = ?, user_id = ?, published = ? WHERE page_id =?";
     private static final String SQL_SELECT_STATIC_PAGE = "SELECT * FROM static_pages WHERE page_id=?";
@@ -39,6 +39,7 @@ public class StaticPageImpl implements StaticPageInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public StaticPage addContent(StaticPage staticPage) {
         jdbcTemplate.update(SQL_INSERT_STATIC_PAGE,
+                
                 staticPage.getContent(),
                 staticPage.getTitle(),
                 staticPage.getDate(),
@@ -53,6 +54,7 @@ public class StaticPageImpl implements StaticPageInterface {
     @Override
     public void editContent(StaticPage staticPage) {
         jdbcTemplate.update(SQL_UPDATE_STATIC_PAGE,
+                
                 staticPage.getContent(),
                 staticPage.getTitle(),
                 staticPage.getDate(),
