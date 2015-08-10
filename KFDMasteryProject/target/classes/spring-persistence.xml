@@ -43,7 +43,11 @@
     </bean>
     
     <!--ADDED 8/9-->
+<<<<<<< HEAD
     <bean id="comment" class="com.swcguild.kfdmasteryproect.dao.CommentImpl">
+=======
+   <bean id="comment" class="com.swcguild.kfdmasteryproect.dao.CommentImpl">
+>>>>>>> 70069127b411400b3a669480558cc6f581beb9c3
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     <bean id="categoryTag" class="com.swcguild.kfdmasteryproect.dao.CategoryTagImpl">
