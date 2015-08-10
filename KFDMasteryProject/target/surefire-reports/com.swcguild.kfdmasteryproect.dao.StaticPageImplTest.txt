@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.swcguild.kfdmasteryproect.dao.StaticPageImplTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.172 sec
+=======
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.104 sec
+>>>>>>> c304a175da2a9c261b095a8f64b937f1be32a5fc
