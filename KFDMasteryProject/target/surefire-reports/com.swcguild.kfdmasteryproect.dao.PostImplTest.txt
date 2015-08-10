@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.swcguild.kfdmasteryproect.dao.PostImplTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.202 sec
-=======
-<<<<<<< HEAD
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.083 sec
-=======
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.505 sec
->>>>>>> ee1e630e0631ed66020bbc949245d05f8b032c50
->>>>>>> 70069127b411400b3a669480558cc6f581beb9c3
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.354 sec

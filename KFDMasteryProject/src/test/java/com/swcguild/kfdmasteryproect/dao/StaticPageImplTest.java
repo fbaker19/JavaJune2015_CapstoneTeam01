@@ -5,6 +5,7 @@
  */
 package com.swcguild.kfdmasteryproect.dao;
 
+import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

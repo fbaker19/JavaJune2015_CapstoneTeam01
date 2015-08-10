@@ -5,9 +5,11 @@
  */
 package com.swcguild.kfdmasteryproect.dao;
 
+import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,7 +17,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 /**
  *
@@ -74,7 +75,7 @@ public class PostImplTest {
      * Test of editPost method, of class PostImpl.
      */
     @Test
-    public void testAddEditPost() throws ParseException {
+    public void testAddEditDeletePost() throws ParseException {
         Post p = new Post();
         p.setContent("Test content");
         p.setTitle("Test Title 4");
@@ -100,26 +101,91 @@ public class PostImplTest {
         Assert.assertNull(dao.viewPost(p.getPostId()));
         
     }
-//
-//    /**
-//     * Test of deletePost method, of class PostImpl.
-//     */
-//    @Test
-//    public void testDeletePost() {
-//    }
-//
-//    /**
-//     * Test of viewPost method, of class PostImpl.
-//     */
-//    @Test
-//    public void testViewPost() {
-//    }
-//
-//    /**
-//     * Test of viewAllPosts method, of class PostImpl.
-//     */
-//    @Test
-//    public void testViewAllPosts() {
-//    }
+
+
+    /**
+     * Test of viewPost method, of class PostImpl.
+     */
+    @Test
+    public void testAddViewDeletePost() throws ParseException {
+        Post p = new Post();
+        p.setContent("Test content");
+        p.setTitle("Test Title 4");
+        p.setUserId(1);
+        p.setLastModifiedUserId(1);
+        p.setCreateDate(dtf.parse("2015-08-06"));
+        p.setLastModifiedDate(dtf.parse("2015-08-07"));
+        p.setExpDate(dtf.parse("2015-12-31"));
+        p.setPublished(1);
+        p.setBlurb("Blurb");
+
+        dao.addPost(p);
+        
+        Post fromDb = dao.viewPost(p.getPostId());
+        
+        Assert.assertEquals(fromDb, p);
+        
+        dao.deletePost(p.getPostId());
+        
+        Assert.assertNull(dao.viewPost(p.getPostId()));
+        
+        
+    }
+
+    /**
+     * Test of viewAllPosts method, of class PostImpl.
+     */
+    @Test
+    public void testViewAllPosts() throws ParseException {
+        
+        Post p = new Post();
+        p.setContent("Test content");
+        p.setTitle("Test Title 4");
+        p.setUserId(1);
+        p.setLastModifiedUserId(1);
+        p.setCreateDate(dtf.parse("2015-08-06"));
+        p.setLastModifiedDate(dtf.parse("2015-08-07"));
+        p.setExpDate(dtf.parse("2015-12-31"));
+        p.setPublished(1);
+        p.setBlurb("Blurb");
+
+        dao.addPost(p);
+        
+        Post p2 = new Post();
+        p2.setContent("Test content");
+        p2.setTitle("Test Title 4");
+        p2.setUserId(1);
+        p2.setLastModifiedUserId(1);
+        p2.setCreateDate(dtf.parse("2015-08-06"));
+        p2.setLastModifiedDate(dtf.parse("2015-08-07"));
+        p2.setExpDate(dtf.parse("2015-12-31"));
+        p2.setPublished(1);
+        p2.setBlurb("Blurb");
+
+        dao.addPost(p2);
+        
+        List<Post> pList = dao.viewAllPosts();
+        
+        Assert.assertEquals(5, pList.size());
+        
+        Assert.assertEquals(pList.get(0).getTitle(), p.getTitle());
+        
+        Assert.assertEquals(pList.get(1).getTitle(), p2.getTitle());
+        
+        dao.deletePost(p2.getPostId());
+        
+        pList = dao.viewAllPosts();
+        
+        Assert.assertEquals(4, pList.size());
+        
+        Assert.assertNull(dao.viewPost(p2.getPostId()));
+        
+        dao.deletePost(p.getPostId());
+        
+        pList = dao.viewAllPosts();
+        
+        Assert.assertEquals(3, pList.size());
+        
+    }
     
 }
