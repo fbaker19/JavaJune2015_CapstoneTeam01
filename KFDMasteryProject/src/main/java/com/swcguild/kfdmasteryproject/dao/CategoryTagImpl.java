@@ -23,7 +23,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class CategoryTagImpl implements CategoryTagInterface {
 
+<<<<<<< HEAD
     private static final String SQL_SELECT_ALL_CATEGORIES = "SELECT * FROM categories";
+=======
+
+    
+    private static final String SQL_SELECT_ALL_CATEGORIES = "SELECT * FROM categories";
+    
+>>>>>>> 7d3a186f9aa48b986c809aeb05d629d1aedc8bf5
     private static final String SQL_INSERT_CATEGORY = "INSERT INTO categories (category_name)Values(?)";
     private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories WHERE category_id =?";//delete from categories post as well
     private static final String SQL_DELETE_CATEGORY_FROM_POST = "DELETE FROM categories_posts WHERE category_id";

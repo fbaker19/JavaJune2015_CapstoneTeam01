@@ -5,24 +5,31 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d3a186f9aa48b986c809aeb05d629d1aedc8bf5
 import com.swcguild.kfdmasteryproject.dao.CategoryTagInterface;
 import com.swcguild.kfdmasteryproject.dao.CommentInterface;
-import com.swcguild.kfdmasteryproject.dao.PostInterface;
-import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Comment;
+<<<<<<< HEAD
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
+=======
+
+import com.swcguild.kfdmasteryproject.dao.PostInterface;
+import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
+
+>>>>>>> 7d3a186f9aa48b986c809aeb05d629d1aedc8bf5
 import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.util.List;
 import javax.inject.Inject;
-import static javax.management.Query.value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
