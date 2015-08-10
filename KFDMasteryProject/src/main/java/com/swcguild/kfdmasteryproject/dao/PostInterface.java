@@ -18,5 +18,7 @@ public interface PostInterface {
     public void editPost(Post post);
     public void deletePost(int postId);
     public Post viewPost(int postId);
-    public List<Post> viewAllPosts();
+    public List<Post> viewAllPublishedPosts();
+    public Post viewLatestPost();
+    public List<Post> viewAllPendingPosts();
 }

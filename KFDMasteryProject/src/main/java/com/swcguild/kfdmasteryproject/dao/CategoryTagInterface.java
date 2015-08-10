@@ -27,6 +27,7 @@ public interface CategoryTagInterface {
     public Category viewCategory(int categoryId);
     
     public List<Post> viewPostsByCategory(int categoryId);
+    public List<Category> viewAllCategories();
     
    
     

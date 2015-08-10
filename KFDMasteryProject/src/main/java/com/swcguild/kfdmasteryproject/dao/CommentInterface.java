@@ -21,5 +21,7 @@ public interface CommentInterface {
     public Comment addComment(Comment comment);
     
     public void deleteComment (int commentId);
+    
+    public List<Comment> viewAllPendingComments();
        
 }
