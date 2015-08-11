@@ -23,7 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class CategoryTagImpl implements CategoryTagInterface {
 
+<<<<<<< HEAD
     private static final String SQL_INSERT_CATEGORY = "INSERT INTO categories (category_name)VALUES(?)";
+=======
+    private static final String SQL_SELECT_ALL_CATEGORIES = "SELECT * FROM categories";
+    private static final String SQL_INSERT_CATEGORY = "INSERT INTO categories (category_name)Values(?)";
+>>>>>>> bee40384cf71aa557a7428d747540dd5da104b63
     private static final String SQL_DELETE_CATEGORY = "DELETE FROM categories WHERE category_id =?";//delete from categories post as well
     private static final String SQL_DELETE_CATEGORY_FROM_POST = "DELETE FROM categories_posts WHERE category_id";
     private static final String SQL_UPDATE_CATEGORY = "UPDATE categories SET category_name = ? WHERE category_id = ?";
@@ -83,6 +88,11 @@ public class CategoryTagImpl implements CategoryTagInterface {
     @Override
     public List<Post> viewPostsByCategory(int categoryId) {
         return jdbcTemplate.query(SQL_SELECT_ALL_POST_BY_CATEGORY, new PostMapper(), categoryId);
+    }
+    
+    @Override
+    public List<Category> viewAllCategories(){
+        return jdbcTemplate.query(SQL_SELECT_ALL_CATEGORIES, new CategoryMapper());
     }
 
     

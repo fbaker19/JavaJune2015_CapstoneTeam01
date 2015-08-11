@@ -24,6 +24,7 @@ public class CommentImpl implements CommentInterface {
     private static final String SQL_INSERT_COMMENT ="INSERT INTO comments (comment, post_id, create_date, commenter, published) VALUES(?,?,?,?,?)";
     private static final String SQL_DELETE_COMMENT ="DELETE FROM comments WHERE comment_id = ?";
     private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM comments";
+    private static final String SQL_SELECT_ALL_PENDING_COMMENTS = "SELECT * FROM comments WHERE pending=1";
     private static final String SQL_SELECT_COMMENT = "SELECT * FROM comments WHERE comment_id = ?";
     
   
@@ -49,6 +50,11 @@ public class CommentImpl implements CommentInterface {
     @Override
     public List<Comment> viewAllComments(int postId) {
         return jdbcTemplate.query(SQL_SELECT_ALL_COMMENTS, new CommentMapper(), postId);
+    }
+    
+    @Override
+    public List<Comment> viewAllPendingComments(){
+        return jdbcTemplate.query(SQL_SELECT_ALL_PENDING_COMMENTS, new CommentMapper());
     }
 
     @Override

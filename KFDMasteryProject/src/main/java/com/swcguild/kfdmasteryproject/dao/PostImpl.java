@@ -24,13 +24,19 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
  */
 public class PostImpl implements PostInterface {
 
-    private static final String SQL_SELECT_ALL_POSTS = "SELECT * FROM posts ORDER BY post_id DESC";
+    private static final String SQL_SELECT_ALL_PUBLISHED_POSTS = "SELECT * FROM posts WHERE published=1 ORDER BY create_date DESC"; //make sure unpublished ones don't show up
     private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
-
+    private static final String SQL_SELECT_LATEST_POST = "SELECT * FROM posts ORDER BY create_date DESC LIMIT 1";//make sure unpublished ones don't show up
+    private static final String SQL_SELECT_ALL_PENDING_POSTS = "SELECT * FROM posts WHERE pending=1";
+    
+    
     //userid/foreign key????? post? catagory  deletion?
-    private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, user_id, last_modified_user_id, create_date, last_modified_date, expiration_date, published, blurb)VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, user_id, "
+            + "last_modified_user_id, create_date, last_modified_date, expiration_date, published, pending, blurb)VALUES(?,?,?,?,?,?,?,?,?,?)";
+    
     private static final String SQL_DELETE_POST = "DELETE FROM posts WHERE post_id = ?";
-    private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, blurb= ? WHERE post_id =?";
+    private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, "
+            + "last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, pending = ?, blurb= ? WHERE post_id =?";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -50,6 +56,7 @@ public class PostImpl implements PostInterface {
                 post.getLastModifiedDate(),
                 post.getExpDate(),
                 post.isPublished(),
+                post.isPending(),
                 post.getBlurb());
        
         post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
@@ -69,6 +76,7 @@ public class PostImpl implements PostInterface {
                 post.getLastModifiedDate(),
                 post.getExpDate(),
                 post.isPublished(),
+                post.isPending(),
                 post.getBlurb(),
                 post.getPostId());
     }
@@ -86,11 +94,25 @@ public class PostImpl implements PostInterface {
             return null;
         }
     }
+    @Override
+     public Post viewLatestPost() {
+        try {
+            return jdbcTemplate.queryForObject(SQL_SELECT_LATEST_POST, new PostMapper());
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+     
+    @Override
+     public List<Post> viewAllPendingPosts(){
+         return jdbcTemplate.query(SQL_SELECT_ALL_PENDING_POSTS, new PostMapper());
+     }
+
 
     @Override
-    public List<Post> viewAllPosts() {
+    public List<Post> viewAllPublishedPosts() {
 
-        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
+        return jdbcTemplate.query(SQL_SELECT_ALL_PUBLISHED_POSTS, new PostMapper());
     
     }
 
@@ -107,6 +129,7 @@ public class PostImpl implements PostInterface {
             post.setLastModifiedUserId(rs.getInt("last_modified_user_id"));
             post.setPostId(rs.getInt("post_id"));
             post.setPublished(rs.getInt("published"));
+            post.setPending(rs.getInt("pending"));
             post.setTitle(rs.getString("title"));
             post.setUserId(rs.getInt("user_id"));
 

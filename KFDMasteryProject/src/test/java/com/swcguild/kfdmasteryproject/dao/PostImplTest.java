@@ -57,6 +57,7 @@ public class PostImplTest {
         p.setLastModifiedDate(dtf.parse("2015-08-07"));
         p.setExpDate(dtf.parse("2015-12-31"));
         p.setPublished(1);
+        p.setPending(1);
         p.setBlurb("Blurb");
                 
         dao.addPost(p);
@@ -85,6 +86,7 @@ public class PostImplTest {
         p.setLastModifiedDate(dtf.parse("2015-08-07"));
         p.setExpDate(dtf.parse("2015-12-31"));
         p.setPublished(1);
+        p.setPending(1);
         p.setBlurb("Blurb");
                 
         dao.addPost(p);
@@ -117,6 +119,7 @@ public class PostImplTest {
         p.setLastModifiedDate(dtf.parse("2015-08-07"));
         p.setExpDate(dtf.parse("2015-12-31"));
         p.setPublished(1);
+        p.setPending(1);
         p.setBlurb("Blurb");
 
         dao.addPost(p);
@@ -147,26 +150,28 @@ public class PostImplTest {
         p.setLastModifiedDate(dtf.parse("2015-08-07"));
         p.setExpDate(dtf.parse("2015-12-31"));
         p.setPublished(1);
+        p.setPending(1);
         p.setBlurb("Blurb");
 
         dao.addPost(p);
         
         Post p2 = new Post();
         p2.setContent("Test content");
-        p2.setTitle("Test Title 4");
+        p2.setTitle("Test Title 5");
         p2.setUserId(1);
         p2.setLastModifiedUserId(1);
         p2.setCreateDate(dtf.parse("2015-08-06"));
         p2.setLastModifiedDate(dtf.parse("2015-08-07"));
         p2.setExpDate(dtf.parse("2015-12-31"));
         p2.setPublished(1);
-        p2.setBlurb("Blurb");
+        p2.setPending(1);
+        p2.setBlurb("Blurb5");
 
         dao.addPost(p2);
         
-        List<Post> pList = dao.viewAllPosts();
+        List<Post> pList = dao.viewAllPublishedPosts();
         
-        Assert.assertEquals(5, pList.size());
+        Assert.assertEquals(4, pList.size());
         
         Assert.assertEquals(pList.get(0).getTitle(), p.getTitle());
         
@@ -174,17 +179,17 @@ public class PostImplTest {
         
         dao.deletePost(p2.getPostId());
         
-        pList = dao.viewAllPosts();
+        pList = dao.viewAllPublishedPosts();
         
-        Assert.assertEquals(4, pList.size());
+        Assert.assertEquals(3, pList.size());
         
         Assert.assertNull(dao.viewPost(p2.getPostId()));
         
         dao.deletePost(p.getPostId());
         
-        pList = dao.viewAllPosts();
+        pList = dao.viewAllPublishedPosts();
         
-        Assert.assertEquals(3, pList.size());
+        Assert.assertEquals(2, pList.size());
         
     }
     

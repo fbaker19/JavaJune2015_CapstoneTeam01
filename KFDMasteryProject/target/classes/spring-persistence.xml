@@ -42,11 +42,20 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     
+    
     <!--ADDED 8/9-->
+<<<<<<< HEAD
  <bean id="comment" class="com.swcguild.kfdmasteryproject.dao.CommentImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     <bean id="categoryTag" class="com.swcguild.kfdmasteryproject.dao.CategoryTagImpl">
+=======
+   <bean id="com" class="com.swcguild.kfdmasteryproject.dao.CommentImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+ 
+    <bean id="cat" class="com.swcguild.kfdmasteryproject.dao.CategoryTagImpl">
+>>>>>>> bee40384cf71aa557a7428d747540dd5da104b63
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean> 
 </beans>

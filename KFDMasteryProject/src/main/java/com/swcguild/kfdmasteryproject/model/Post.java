@@ -25,6 +25,15 @@ public class Post {
     private Date lastModifiedDate;
     private Date expDate;
     private int published;
+    private int pending;
+
+    public int isPending() {
+        return pending;
+    }
+
+    public void setPending(int pending) {
+        this.pending = pending;
+    }
 
     public int getPostId() {
         return postId;
@@ -120,6 +129,7 @@ public class Post {
         hash = 61 * hash + Objects.hashCode(this.lastModifiedDate);
         hash = 61 * hash + Objects.hashCode(this.expDate);
         hash = 61 * hash + this.published;
+        hash = 61 * hash + this.pending;
         return hash;
     }
 
@@ -160,6 +170,8 @@ public class Post {
             return false;
         }
         if (this.published != other.published) {
+            return false;
+        }if (this.pending != other.pending) {
             return false;
         }
         return true;
