@@ -41,7 +41,7 @@
                         <a href="viewPost/${post.postId}">${post.title} </a>
                     </h3>
                 </div>
-                <div class="panel-body ">
+                <div class="panel-body">
                     ${post.blurb}
                 </div>
                 <div class="panel-footer">Comments ()</div>
@@ -55,18 +55,7 @@
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
-    <script type="text/javascript">
-        tinymce.init({
-            selector: ".editor", theme: "modern",
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste jbimages"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages",
-            relative_urls: false,
-        });
-    </script>
+    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
 </body>
 </html>
 

@@ -92,6 +92,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript">
         tinymce.init({
             selector: ".editor", theme: "modern",
@@ -110,5 +111,8 @@
     </script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
 
+=======
+    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
+>>>>>>> e5df311ba53565b9b9964c8e7138c1ca66fe2653
 </body>
 </html>
