@@ -20,7 +20,7 @@
     
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/Capstone_Sea_Legs_Nautical_Academy"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/Capstone_Sea_Legs_Nautical_Academy_Test"/>
         <property name="username" value="root"/>
         <property name="password" value="apprentice"/>
         <property name="initialSize" value="5"/>
