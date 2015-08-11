@@ -38,7 +38,8 @@
             <br/>
             <div class="panel-header">
                 <div class="input-group col-lg-10 col-lg-offset-1">
-                    <input type="text" class="form-control" id="post-title" placeholder="Title">
+                    <input type="hidden" id="post-id">
+                    <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title">
                 </div>
             </div>
             <br/>
@@ -46,6 +47,10 @@
 
             </div>
             <div class="panel-footer">
+                   <div class="input-group col-lg-5">
+                    <input type="text" class="form-control" id="exp-date" value="${post.expDate}" placeholder="Expiration Date (optional)">
+                </div>
+                <br/>
                 <div class="row">
 
                     <div class="col-lg-6">
@@ -61,13 +66,14 @@
                             </div><!-- /btn-group -->
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-2 col-lg-offset-3">
-                        <button type="submit" id="save-post-button" class="btn btn-default btn-block">Save</button>
-                        <button type="submit" id="publish-post-button" class="btn btn-default btn-block">Publish</button>
+                    <div class="col-lg-2 col-lg-offset-4">
+                        <button type="submit" id="save-post-button" class="btn btn-default">Save</button>
+                        <button type="submit" id="publish-post-button" class="btn btn-default">Publish</button>
                     </div>
 
                 </div><!--row-->
                 <br/>
+               
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
@@ -77,13 +83,12 @@
                             </span>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-2 col-lg-offset-3">
-                        <button type="submit" id="delete-post-button" class="btn btn-default btn-block">Delete</button>
-                        <button type="submit" id="cancel-post-button" class="btn btn-default btn-block">Cancel</button>
+                    <div class="col-lg-2 col-lg-offset-4">
+                        <button type="submit" id="delete-post-button" class="btn btn-default ">Delete</button>
+                        <button type="submit" id="cancel-post-button" class="btn btn-default ">Cancel</button>
                     </div>
-
-
                 </div><!--row-->
+              
             </div><!--panel footer-->
         </div>
         <br/>
@@ -92,7 +97,6 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
-<<<<<<< HEAD
     <script type="text/javascript">
         tinymce.init({
             selector: ".editor", theme: "modern",
@@ -111,8 +115,6 @@
     </script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
 
-=======
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
->>>>>>> e5df311ba53565b9b9964c8e7138c1ca66fe2653
 </body>
 </html>

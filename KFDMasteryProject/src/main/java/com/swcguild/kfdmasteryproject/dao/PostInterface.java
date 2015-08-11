@@ -15,8 +15,8 @@ import java.util.List;
  */
 public interface PostInterface {
     
-    public Post savePost(Post post, User user);
-    public void editPost(Post post, User user);
+    public Post savePost(Post post);
+    public Post publishPost(Post post);
     public void deletePost(int postId);
     public Post viewPost(int postId);
     public List<Post> viewAllPublishedPosts();

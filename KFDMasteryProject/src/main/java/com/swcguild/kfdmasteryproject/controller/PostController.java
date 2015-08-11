@@ -52,11 +52,27 @@ public String displayAddPost(){
     return "addPost";
 }
   
-@RequestMapping(value="/savePost", method=RequestMethod.POST)
+@RequestMapping(value={"/savePost", "/addPost/savePost"}, method=RequestMethod.POST)
 @ResponseStatus(HttpStatus.OK)
-public void savePost(Post post, User user){
+public void savePost(@RequestBody Post post){
     
-    pdao.savePost(post, user);
+    pdao.savePost(post);
 }
-    
+   
+@RequestMapping(value="/addPost/{postId}", method=RequestMethod.GET)
+public String displayEditPost (@PathVariable("postId") int postId, Model model)
+{
+    Post post = pdao.viewPost(postId);
+    model.addAttribute("post", post);
+    return "addPost";
+}
+
+@RequestMapping(value={"/publishPost", "/addPost/publishPost"}, method=RequestMethod.POST)
+@ResponseStatus(HttpStatus.OK)
+public void publishPost(@RequestBody Post post){
+   
+    pdao.publishPost(post);
+}
+
+
 }
