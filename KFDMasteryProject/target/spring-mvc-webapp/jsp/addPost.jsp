@@ -35,12 +35,19 @@
         </div>
 
         <div class="panel panel-default">
+            <br/>
+            <div class="panel-header">
+                <div class="input-group col-lg-10 col-lg-offset-1">
+                    <input type="text" class="form-control" id="post-title" placeholder="Title">
+                </div>
+            </div>
+            <br/>
             <div class="panel-body editor">
 
             </div>
             <div class="panel-footer">
                 <div class="row">
-                    
+
                     <div class="col-lg-6">
                         <div class="input-group">
                             <input type="text" class="form-control" aria-label="..." placeholder="Add New Category">
@@ -55,8 +62,8 @@
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
                     <div class="col-lg-2 col-lg-offset-3">
-                    <button type="submit" id="publish-add-button" class="btn btn-default btn-block">Publish</button>
-                    <button type="submit" id="save-add-button" class="btn btn-default btn-block">Save</button>
+                        <button type="submit" id="save-post-button" class="btn btn-default btn-block">Save</button>
+                        <button type="submit" id="publish-post-button" class="btn btn-default btn-block">Publish</button>
                     </div>
 
                 </div><!--row-->
@@ -70,12 +77,12 @@
                             </span>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                      <div class="col-lg-2 col-lg-offset-3">
-                    <button type="submit" id="delete-add-button" class="btn btn-default btn-block">Delete</button>
-                    <button type="submit" id="cancel-add-button" class="btn btn-default btn-block">Cancel</button>
+                    <div class="col-lg-2 col-lg-offset-3">
+                        <button type="submit" id="delete-post-button" class="btn btn-default btn-block">Delete</button>
+                        <button type="submit" id="cancel-post-button" class="btn btn-default btn-block">Cancel</button>
                     </div>
 
-                   
+
                 </div><!--row-->
             </div><!--panel footer-->
         </div>
@@ -101,5 +108,7 @@
             external_plugins: {"filemanager": "${pageContext.request.contextPath}/filemanager/plugin.min.js"}
         });
     </script>
+    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+
 </body>
 </html>

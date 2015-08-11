@@ -8,6 +8,7 @@ package com.swcguild.kfdmasteryproject.controller;
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
+import com.swcguild.kfdmasteryproject.model.User;
 import javax.inject.Inject;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -51,12 +52,11 @@ public String displayAddPost(){
     return "addPost";
 }
   
-@RequestMapping(value="/addPost", method=RequestMethod.POST)
-@ResponseStatus(HttpStatus.CREATED)
-@ResponseBody public Post addPost(@RequestBody Post post){
-    return pdao.addPost(post);
-   
+@RequestMapping(value="/savePost", method=RequestMethod.POST)
+@ResponseStatus(HttpStatus.OK)
+public void savePost(Post post, User user){
     
+    pdao.savePost(post, user);
 }
     
 }

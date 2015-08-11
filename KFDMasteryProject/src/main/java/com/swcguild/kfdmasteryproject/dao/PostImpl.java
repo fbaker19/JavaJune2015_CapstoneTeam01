@@ -6,8 +6,10 @@
 package com.swcguild.kfdmasteryproject.dao;
 
 import com.swcguild.kfdmasteryproject.model.Post;
+import com.swcguild.kfdmasteryproject.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
@@ -43,7 +45,14 @@ public class PostImpl implements PostInterface {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Post addPost(Post post) {
+    public Post savePost(Post post, User user) {
+        
+            post.setCreateDate(new Date());
+            post.setUserId(user.getUserId());
+            post.setPending(1);
+            post.setPublished(0);
+            post.setBlurb(post.getContent().substring(0, 500));
+        
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getContent(),
                 post.getTitle(),
@@ -63,7 +72,13 @@ public class PostImpl implements PostInterface {
     }
 
     @Override
-    public void editPost(Post post) {
+    public void editPost(Post post, User user) {
+        
+            post.setLastModifiedDate(new Date());
+            post.setLastModifiedUserId(user.getUserId());
+            post.setPending(0);
+            post.setPublished(1);
+        
         jdbcTemplate.update(SQL_UPDATE_POST,
                 post.getContent(),
                 post.getTitle(),

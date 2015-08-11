@@ -6,6 +6,7 @@
 package com.swcguild.kfdmasteryproject.dao;
 
 import com.swcguild.kfdmasteryproject.model.Post;
+import com.swcguild.kfdmasteryproject.model.User;
 import java.util.List;
 
 /**
@@ -14,8 +15,8 @@ import java.util.List;
  */
 public interface PostInterface {
     
-    public Post addPost(Post post);
-    public void editPost(Post post);
+    public Post savePost(Post post, User user);
+    public void editPost(Post post, User user);
     public void deletePost(int postId);
     public Post viewPost(int postId);
     public List<Post> viewAllPublishedPosts();

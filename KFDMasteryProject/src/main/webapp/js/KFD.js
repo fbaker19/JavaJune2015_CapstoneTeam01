@@ -4,25 +4,35 @@
  * and open the template in the editor.
  */
 
-//function  fillBlog(postList, status) {
-//    //clearContactTable();
-//    var pBlurb = $("#postBlurb");
-//    var pTitle = $("#postTitle");
-//    var pFooter = $("#postFooter");
-//    $.each(postList, function (index, contact)
-//    {
-//        pTitle.append($("<tr>")
-//                .append($("<td>").append($("<a>")
-//                        .attr({
-//                            "data-post-id": post.postId,
-//                            "data-toggle": "modal",
-//                            "data-target": "#postModal"
-//                        })
-//                        .text(post.title))));
-//        pBlurb.append($("<tr>")
-//                .append($("<td>").text(post.content)));
-//        pFooter.append($("<tr>")
-//                .append($("<td>").text("Comments (" + comments.length + ")")
-//                        ));
-//    });
-//}
+$(document).ready(function(){
+    
+    $("#save-post-button").on("click", function (e){
+        console.log("GOT HERE FIRST");
+        //e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "savePost",
+            data: JSON.stringify({
+                content: $("#mceu_45").val()
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status){
+            $("#mceu_45").val("");
+            window.location = "bossDashboard";
+            console.log("GOT HERE");
+                    
+        }).error(function(jqXHR,  textStatus,  errorThrown ){
+            console.log(jqXHR);
+                        console.log(textStatus);
+
+            console.log(errorThrown);
+
+        });
+    });
+    
+    });
+    
