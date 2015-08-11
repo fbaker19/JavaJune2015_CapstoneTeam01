@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 10, 2015 at 10:54 PM
+-- Generation Time: Aug 11, 2015 at 09:46 AM
 -- Server version: 5.5.44-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.11
 
@@ -61,6 +61,19 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `pending` tinyint(1) NOT NULL,
   PRIMARY KEY (`comment_id`),
   UNIQUE KEY `post_id` (`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photos`
+--
+
+CREATE TABLE IF NOT EXISTS `photos` (
+  `photo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `photo` blob NOT NULL,
+  PRIMARY KEY (`photo_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
