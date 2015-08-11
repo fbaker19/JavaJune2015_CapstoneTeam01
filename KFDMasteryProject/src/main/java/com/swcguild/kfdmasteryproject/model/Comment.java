@@ -16,7 +16,10 @@ public class Comment {
     private int commentId;
     private String comment;
     private int postId;
-    private Date commentDate;
+    private Date createDate;
+    private String commenter;
+    private int published;
+    private int pending;
 
     public int getCommentId() {
         return commentId;
@@ -42,21 +45,48 @@ public class Comment {
         this.postId = postId;
     }
 
-    public Date getCommentDate() {
-        return commentDate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCommentDate(Date commentDate) {
-        this.commentDate = commentDate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getCommenter() {
+        return commenter;
+    }
+
+    public void setCommenter(String commenter) {
+        this.commenter = commenter;
+    }
+
+    public int getPublished() {
+        return published;
+    }
+
+    public void setPublished(int published) {
+        this.published = published;
+    }
+
+    public int getPending() {
+        return pending;
+    }
+
+    public void setPending(int pending) {
+        this.pending = pending;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + this.commentId;
-        hash = 59 * hash + Objects.hashCode(this.comment);
-        hash = 59 * hash + this.postId;
-        hash = 59 * hash + Objects.hashCode(this.commentDate);
+        hash = 79 * hash + this.commentId;
+        hash = 79 * hash + Objects.hashCode(this.comment);
+        hash = 79 * hash + this.postId;
+        hash = 79 * hash + Objects.hashCode(this.createDate);
+        hash = 79 * hash + Objects.hashCode(this.commenter);
+        hash = 79 * hash + this.published;
+        hash = 79 * hash + this.pending;
         return hash;
     }
 
@@ -78,10 +108,21 @@ public class Comment {
         if (this.postId != other.postId) {
             return false;
         }
-        if (!Objects.equals(this.commentDate, other.commentDate)) {
+        if (!Objects.equals(this.createDate, other.createDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.commenter, other.commenter)) {
+            return false;
+        }
+        if (this.published != other.published) {
+            return false;
+        }
+        if (this.pending != other.pending) {
             return false;
         }
         return true;
     }
+
+
     
 }

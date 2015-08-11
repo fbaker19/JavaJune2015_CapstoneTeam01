@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 11, 2015 at 09:46 AM
+-- Generation Time: Aug 11, 2015 at 11:58 AM
 -- Server version: 5.5.44-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.11
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(25) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -59,9 +59,15 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `commenter` varchar(50) NOT NULL,
   `published` tinyint(1) NOT NULL,
   `pending` tinyint(1) NOT NULL,
-  PRIMARY KEY (`comment_id`),
-  UNIQUE KEY `post_id` (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`comment_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `comment`, `post_id`, `create_date`, `commenter`, `published`, `pending`) VALUES
+(45, 'This is a second comment', 1, '2015-08-11', 'Stranger danger', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -95,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `blurb` varchar(1000) NOT NULL,
   `pending` tinyint(1) NOT NULL,
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `posts`
@@ -132,9 +138,8 @@ CREATE TABLE IF NOT EXISTS `static_pages` (
   `date` date NOT NULL,
   `user_id` int(11) NOT NULL,
   `published` tinyint(1) NOT NULL,
-  PRIMARY KEY (`page_id`),
-  UNIQUE KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`page_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 -- --------------------------------------------------------
 
@@ -146,7 +151,15 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(50) NOT NULL,
   PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`tag_id`, `tag_name`) VALUES
+(1, 'tag test'),
+(2, 'tag test');
 
 -- --------------------------------------------------------
 

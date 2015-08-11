@@ -40,7 +40,7 @@ public class StaticPageImplTest {
         dao = ctx.getBean("sp", StaticPageInterface.class);
         JdbcTemplate jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
 
-        jdbcTemplate.execute("DELETE FROM static_pages");
+        //jdbcTemplate.execute("DELETE FROM static_pages");
         
         s = new StaticPage();
         s.setContent("Content");
@@ -55,8 +55,6 @@ public class StaticPageImplTest {
         s2.setTitle("Static Page Title");
         s2.setPublished(1);
         s2.setUserId(1);
-        
-        //jdbcTemplate.execute("DELETE FROM static_pages");
 
     }
     
@@ -69,12 +67,7 @@ public class StaticPageImplTest {
      */
     @Test
     public void testAddGetDeleteContent() throws ParseException {
-        
-        StaticPage s = new  StaticPage();
-        s.setContent("Content");
-        s.setDate(dtf.parse("2015-08-08"));
-        s.setTitle("Static Page Title");
-        s.setUserId(1);
+       
         
         dao.addContent(s);
         
@@ -94,12 +87,7 @@ public class StaticPageImplTest {
      */
     @Test
     public void testAddEditDeleteContent() throws ParseException {
-        
-        StaticPage s = new  StaticPage();
-        s.setContent("Content");
-        s.setDate(dtf.parse("2015-08-08"));
-        s.setTitle("Static Page Title");
-        s.setUserId(1);
+  
         
         dao.addContent(s);
         
@@ -118,48 +106,33 @@ public class StaticPageImplTest {
     }
 
     /**
-     * Test of viewContent method, of class StaticPageImpl.
+     * Test of viewContentById method, of class StaticPageImpl.
      */
-//    @Test
-//    public void testAddViewDeleteContent() throws ParseException {
-//        
-//        
-//        dao.addContent(s);
-//
-//        dao.addContent(s2);
-//        
-//        List<StaticPage> sList = dao.viewAllContent();
-//        
-//        Assert.assertEquals(2, sList.size());
-//        Assert.assertEquals(sList.get(0).getTitle(), s.getTitle());
-//        
-//        dao.deleteContent(s.getPageId());
-//        dao.deleteContent(s2.getPageId());
-//        
-//        Assert.assertEquals(0, dao.viewAllContent().size());
-//        Assert.assertNull(dao.viewContentById(s.getPageId()));
-//        Assert.assertNull(dao.viewContentById(s2.getPageId()));
-//
-//    }
-//}
-
     @Test
-    public void testAddViewDeleteContent() throws ParseException {
-        
-        StaticPage s = new StaticPage();
-        s.setContent("Content");
-        s.setDate(dtf.parse("2015-08-08"));
-        s.setTitle("Static Page Title");
-        s.setUserId(1);
+    public void testAddViewByIdDeleteContent() throws ParseException {
+
 
         dao.addContent(s);
         
-        StaticPage s2 = new StaticPage();
-        s2.setContent("Content2");
-        s2.setDate(dtf.parse("2015-07-07"));
-        s2.setTitle("Static Page Title2");
-        s2.setUserId(2);
+        StaticPage fromDb1 = dao.viewContentById(s.getPageId());
+        
+        Assert.assertEquals(fromDb1, s);
+        Assert.assertEquals(fromDb1.getTitle(), s.getTitle());
+        
+        dao.deleteContent(s.getPageId());
+      
+        Assert.assertNull(dao.viewContentById(s.getPageId()));
 
+    }
+    
+    /**
+     * Test of viewAllContent method, of class StaticPageImpl.
+     */
+    @Test
+    public void testAddViewAllDeleteContent() throws ParseException {
+
+
+        dao.addContent(s);
         dao.addContent(s2);
         
         List<StaticPage> sList = dao.viewAllContent();

@@ -21,9 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class CommentImpl implements CommentInterface {
    
-    private static final String SQL_INSERT_COMMENT ="INSERT INTO comments (comment, post_id, create_date, commenter, published) VALUES(?,?,?,?,?)";
+    private static final String SQL_INSERT_COMMENT ="INSERT INTO comments (comment, post_id, create_date, commenter, published, pending) VALUES(?,?,?,?,?,?)";
     private static final String SQL_DELETE_COMMENT ="DELETE FROM comments WHERE comment_id = ?";
-    private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM comments";
+    private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM comments WHERE post_id = ?";
     private static final String SQL_SELECT_ALL_PENDING_COMMENTS = "SELECT * FROM comments WHERE pending=1";
     private static final String SQL_SELECT_COMMENT = "SELECT * FROM comments WHERE comment_id = ?";
     
@@ -61,8 +61,12 @@ public class CommentImpl implements CommentInterface {
     public Comment addComment(Comment comment) {
          jdbcTemplate.update(SQL_INSERT_COMMENT,
                 comment.getComment(),
-                comment.getCommentDate(),
-                comment.getPostId());
+                comment.getPostId(),
+                comment.getCreateDate(),
+                comment.getCommenter(),
+                comment.getPublished(),
+                comment.getPending()
+                );
          
          comment.setCommentId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
          return comment;
@@ -81,13 +85,14 @@ public class CommentImpl implements CommentInterface {
         @Override
         public Comment mapRow(ResultSet rs, int i) throws SQLException {
             
-            Comment comment = new Comment();
-            
-            comment.setComment(rs.getString("comment"));
-            comment.setCommentDate(rs.getDate("create_date"));
+            Comment comment = new Comment();    
             comment.setCommentId(rs.getInt("comment_id"));
+            comment.setComment(rs.getString("comment"));
             comment.setPostId(rs.getInt("post_id"));
-                       
+            comment.setCreateDate(rs.getDate("create_date"));
+            comment.setCommenter(rs.getString("commenter"));
+            comment.setPublished(rs.getInt("published"));
+            comment.setPending(rs.getInt("pending"));           
             return comment;
         }
     
