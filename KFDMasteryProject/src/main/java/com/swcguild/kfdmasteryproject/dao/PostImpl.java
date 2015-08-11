@@ -55,6 +55,8 @@ public class PostImpl implements PostInterface {
             post.setPending(1);
             post.setPublished(0);
             post.setBlurb(post.getContent().substring(0, 500));
+            post.setLastModifiedDate(new Date());
+            post.setLastModifiedUserId(user.getUserId());
         
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getContent(),
