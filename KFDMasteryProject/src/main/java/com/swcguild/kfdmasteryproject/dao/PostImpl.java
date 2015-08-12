@@ -29,7 +29,7 @@ public class PostImpl implements PostInterface {
 
     private static final String SQL_SELECT_ALL_PUBLISHED_POSTS = "SELECT * FROM posts WHERE published=1 ORDER BY create_date DESC"; //make sure unpublished ones don't show up
     private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
-    private static final String SQL_SELECT_LATEST_POST = "SELECT * FROM posts ORDER BY create_date DESC LIMIT 1";//make sure unpublished ones don't show up
+    private static final String SQL_SELECT_LATEST_POST = "SELECT * FROM posts WHERE published=1 ORDER BY create_date DESC LIMIT 1";//make sure unpublished ones don't show up
     private static final String SQL_SELECT_ALL_PENDING_POSTS = "SELECT * FROM posts WHERE pending=1";
     
     
@@ -59,7 +59,6 @@ public class PostImpl implements PostInterface {
             post.setPublished(0);
             post.setBlurb(post.getContent().substring(0, 500));
             post.setLastModifiedDate(new Date());
-            post.setLastModifiedUserId(user.getUserId());
         
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getContent(),
@@ -84,11 +83,15 @@ public class PostImpl implements PostInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Post publishPost(Post post) {
         
-            if (post.getPostId()==null){
+            if (post.getPostId()==0){
             post.setCreateDate(new Date());
             post.setUserId(1);
             post.setBlurb(post.getContent().substring(0, 500));
             post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
+            post.setLastModifiedDate(new Date());
+            post.setLastModifiedUserId(1);
+            post.setPending(0);
+            post.setPublished(1);
             } else{
             
             Post existingPost = viewPost(post.getPostId());
@@ -98,7 +101,8 @@ public class PostImpl implements PostInterface {
             post.setLastModifiedDate(new Date());
             post.setLastModifiedUserId(2);
             post.setPending(0);
-            post.setPublished(1);}
+            post.setPublished(1);
+    }
         
         
         jdbcTemplate.update(SQL_UPDATE_POST,

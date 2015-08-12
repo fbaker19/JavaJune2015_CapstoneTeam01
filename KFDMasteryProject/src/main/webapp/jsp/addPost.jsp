@@ -17,7 +17,7 @@
     </div>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
-
+    <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
     <div class="container">
         <div class="row" style="padding-top: 20px">
             <img src="${pageContext.request.contextPath}/img/logo.jpg" class="img-rounded"; style="float:left; width:150px;height:150px" />
@@ -43,12 +43,12 @@
                 </div>
             </div>
             <br/>
-            <div class="panel-body editor">
-
+            <div class="panel-body ">
+                <input type="text" class="form-control editor" id="post-content" placeholder="Blog Content"> 
             </div>
             <div class="panel-footer">
                    <div class="input-group col-lg-5">
-                    <input type="text" class="form-control" id="exp-date" value="${post.expDate}" placeholder="Expiration Date (optional)">
+                    <input type="date" class="form-control" id="exp-date" value="${post.expDate}" placeholder="Expiration Date (optional)">
                 </div>
                 <br/>
                 <div class="row">

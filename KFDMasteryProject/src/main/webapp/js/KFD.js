@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var projectRoot = $("#projectRoot").val();
 $(document).ready(function () {
 
     $("#save-post-button").on("click", function (e) {
@@ -11,7 +11,7 @@ $(document).ready(function () {
         //e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "savePost",
+            url: projectRoot + "/savePost",
             data: JSON.stringify({
                 content: tinyMCE.activeEditor.getContent(),
                 expDate: $("#exp-date").val(),
@@ -23,7 +23,7 @@ $(document).ready(function () {
             }//,
             //dataType: "json"
         }).success(function (data, status) {
-            window.location = "bossDashboard";
+            window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
         }).error(function (jqXHR, textStatus, errorThrown) {
@@ -41,7 +41,7 @@ $("#edit-post").on("click", function (e) {
         //e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "addPost/" + postId,
+            url: projectRoot + "/addPost/" + postId,
             data: JSON.stringify({
                 content: tinyMCE.activeEditor.getContent(),
                 expDate: $("#exp-date").val(),
@@ -50,7 +50,7 @@ $("#edit-post").on("click", function (e) {
             }),
             
         }).success(function (post) {
-            window.location = "../bossDashboard";
+            window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
         }).error(function (jqXHR, textStatus, errorThrown) {
@@ -66,7 +66,7 @@ $("#publish-post-button").on("click", function (e) {
         //e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "publishPost",
+            url: projectRoot + "/publishPost",
             data: JSON.stringify({
                 content: tinyMCE.activeEditor.getContent(),
                 expDate: $("#exp-date").val(),
@@ -78,7 +78,7 @@ $("#publish-post-button").on("click", function (e) {
             }//,
             //dataType: "json"
         }).success(function (data, status) {
-            window.location = "../bossDashboard";
+            window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
         }).error(function (jqXHR, textStatus, errorThrown) {
@@ -90,4 +90,4 @@ $("#publish-post-button").on("click", function (e) {
     });
 
 });
-    
+   
