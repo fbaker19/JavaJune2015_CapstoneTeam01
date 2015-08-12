@@ -38,26 +38,37 @@
             <br/>
             <div class="panel-header">
                 <div class="input-group col-lg-10 col-lg-offset-1">
-                    <input type="hidden" id="post-id">
-                    <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title">
+                    <input type="hidden" id="post-id" value="${post.postId}"/>
+                    <input type="hidden" id="post-blurb" value="${post.blurb}">
+                    <input type="hidden" id="post-create-date" value="${post.createDate}"/>
+                    <input type="hidden" id="post-last-modified-date" value="${post.lastModifiedDate}"/>
+                    <input type="hidden" id="post-last-modified-user-id" value="${post.lastModifiedUserId}"/>
+                    <input type="hidden" id="post-user-id" value="${post.userId}"/>
+                    
+                    <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title"/>
                 </div>
             </div>
             <br/>
             <div class="panel-body ">
-                <input type="text" class="form-control editor" id="post-content" placeholder="Blog Content"> 
+                <input type="text" class="form-control editor" id="post-content" value ="${post.content}" placeholder="Blog Content"/> 
             </div>
             <div class="panel-footer">
+<<<<<<< HEAD
                    <div class="input-group col-lg-5">
                        Expiration Date (optional)
                     <input type="date" class="form-control" id="exp-date" value="${post.expDate}" >
                     
+=======
+                <div class="input-group col-lg-5">
+                    <input type="date" class="form-control" id="exp-date" value="${post.expDate}" placeholder="Expiration Date (optional)"/>
+>>>>>>> 01689f5f31a2dc9c43a94866614e112f3499db38
                 </div>
                 <br/>
                 <div class="row">
 
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" aria-label="..." placeholder="Add New Category">
+                            <input type="text" class="form-control" aria-label="..." placeholder="Add New Category"/>
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Category<span class="caret"></span></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
@@ -75,11 +86,11 @@
 
                 </div><!--row-->
                 <br/>
-               
+
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Add New Tag">
+                            <input type="text" class="form-control" placeholder="Add New Tag"/>
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">Add Tag</button>
                             </span>
@@ -90,7 +101,7 @@
                         <button type="submit" id="cancel-post-button" class="btn btn-default ">Cancel</button>
                     </div>
                 </div><!--row-->
-              
+
             </div><!--panel footer-->
         </div>
         <br/>
@@ -99,31 +110,9 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
-<<<<<<< HEAD
-    <script type="text/javascript">
-        tinymce.init({
-            selector: ".editor", theme: "modern",
-            plugins: [
-                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
-                "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
-            ],
-            toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
-            toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
-            image_advtab: true,
-            external_filemanager_path: "${pageContext.request.contextPath}/filemanager/",
-            filemanager_title: "Responsive Filemanager",
-            external_plugins: {"filemanager": "${pageContext.request.contextPath}/filemanager/plugin.min.js"}
-        });
-    </script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
-
-    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
-=======
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
 
-
->>>>>>> c62398546603d88e22e40b3206cc15c074216ac3
 </body>
 </html>

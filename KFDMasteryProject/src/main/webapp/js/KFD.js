@@ -15,7 +15,15 @@ $(document).ready(function () {
             data: JSON.stringify({
                 content: tinyMCE.activeEditor.getContent(),
                 expDate: $("#exp-date").val(),
-                title: $("#post-title").val()
+                title: $("#post-title").val(),
+                postId: $("#post-id").val(),
+                blurb: $("#post-blurb").val(),
+                createDate: $("#post-create-date").val(),
+                lastModifiedDate: $("#post-last-modified-date").val(),
+                published: $("#post-published").val(),
+                pending: $("#post-pending").val(),
+                lastModifiedUserId: $("#post-last-modified-user-id").val(),
+                userId: $("#post-user-id").val()
             }),
             headers: {
                 "Accept": "application/json",
@@ -70,7 +78,15 @@ $("#publish-post-button").on("click", function (e) {
             data: JSON.stringify({
                 content: tinyMCE.activeEditor.getContent(),
                 expDate: $("#exp-date").val(),
-                title: $("#post-title").val()
+                title: $("#post-title").val(),
+                postId: $("#post-id").val(),
+                blurb: $("#post-blurb").val(),
+                createDate: $("#post-create-date").val(),
+                lastModifiedDate: $("#post-last-modified-date").val(),
+                published: $("#post-published").val(),
+                pending: $("#post-pending").val(),
+                lastModifiedUserId: $("#post-last-modified-user-id").val(),
+                userId: $("#post-user-id").val()
             }),
             headers: {
                 "Accept": "application/json",

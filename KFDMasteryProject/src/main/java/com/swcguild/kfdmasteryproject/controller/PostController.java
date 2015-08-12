@@ -48,15 +48,21 @@ public String displayPost(@PathVariable("postId") int postId, Model model)
    }
 
 @RequestMapping(value="/addPost", method=RequestMethod.GET)
-public String displayAddPost(){
+public String displayAddPost(Model model){
+    Post post = new Post();
+    post.setPostId(-1);
+    model.addAttribute("post", post);
     return "addPost";
 }
   
-@RequestMapping(value={"/savePost", "/addPost/savePost"}, method=RequestMethod.POST)
+@RequestMapping(value={"/savePost"}, method=RequestMethod.POST)
 @ResponseStatus(HttpStatus.OK)
 public void savePost(@RequestBody Post post){
-    
-    pdao.savePost(post);
+    if (post.getPostId()<0){
+    pdao.saveNewPost(post);
+    } else {
+        pdao.saveOldPost(post);
+    }
 }
    
 @RequestMapping(value="/addPost/{postId}", method=RequestMethod.GET)
@@ -67,11 +73,14 @@ public String displayEditPost (@PathVariable("postId") int postId, Model model)
     return "addPost";
 }
 
-@RequestMapping(value={"/publishPost", "/addPost/publishPost"}, method=RequestMethod.POST)
+@RequestMapping(value={"/publishPost"}, method=RequestMethod.POST)
 @ResponseStatus(HttpStatus.OK)
 public void publishPost(@RequestBody Post post){
-   
-    pdao.publishPost(post);
+   if (post.getPostId()<0){
+    pdao.publishNewPost(post);
+   } else {
+       pdao.publishOldPost(post);
+   }
 }
 
 
