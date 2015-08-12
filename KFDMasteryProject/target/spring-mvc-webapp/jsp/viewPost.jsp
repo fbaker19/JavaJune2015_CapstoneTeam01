@@ -16,11 +16,9 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<<<<<<< HEAD
 <body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
-=======
-<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)">
->>>>>>> cd4a854a98a0b6ae536e416f3d310ab5290f1263
+
+    <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
     <div class="container">
         <div class="row" style="padding-top: 20px">

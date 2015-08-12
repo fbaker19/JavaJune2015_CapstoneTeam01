@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 /**
@@ -48,15 +49,16 @@ public class PostImpl implements PostInterface {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Post savePost(Post post, User user) {
+    public Post savePost(Post post) {
         
             post.setCreateDate(new Date());
-            post.setUserId(user.getUserId());
+            post.setLastModifiedDate(new Date());
+            post.setUserId(1);
+            post.setLastModifiedUserId(1);
             post.setPending(1);
             post.setPublished(0);
             post.setBlurb(post.getContent().substring(0, 500));
             post.setLastModifiedDate(new Date());
-            post.setLastModifiedUserId(user.getUserId());
         
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getContent(),
@@ -75,14 +77,33 @@ public class PostImpl implements PostInterface {
              return post;
         
     }
+    
 
     @Override
-    public void editPost(Post post, User user) {
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Post publishPost(Post post) {
         
+            if (post.getPostId()==0){
+            post.setCreateDate(new Date());
+            post.setUserId(1);
+            post.setBlurb(post.getContent().substring(0, 500));
+            post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
             post.setLastModifiedDate(new Date());
-            post.setLastModifiedUserId(user.getUserId());
+            post.setLastModifiedUserId(1);
             post.setPending(0);
             post.setPublished(1);
+            } else{
+            
+            Post existingPost = viewPost(post.getPostId());
+            post.setPostId(existingPost.getPostId());
+            post.setUserId(existingPost.getUserId());
+            post.setCreateDate(existingPost.getCreateDate());
+            post.setLastModifiedDate(new Date());
+            post.setLastModifiedUserId(2);
+            post.setPending(0);
+            post.setPublished(1);
+    }
+        
         
         jdbcTemplate.update(SQL_UPDATE_POST,
                 post.getContent(),
@@ -96,6 +117,8 @@ public class PostImpl implements PostInterface {
                 post.isPending(),
                 post.getBlurb(),
                 post.getPostId());
+        
+        return post;
     }
 
     @Override

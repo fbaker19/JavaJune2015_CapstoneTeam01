@@ -17,6 +17,7 @@
     </div>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+    <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
     <div class="container">
         <div class="row" style="padding-top: 20px">
@@ -43,7 +44,7 @@
                     <table class="table table-striped">
                         <c:forEach var="pendingPost" items="${ppList}">
                             <tr>
-                                <td><a href="editPost/${pendingPost.postId}">${pendingPost.title} </a></td>
+                                <td><a href="addPost/${pendingPost.postId}" id="edit-post">${pendingPost.title} </a></td>
                             </tr>
                         </c:forEach>
                     </table> 

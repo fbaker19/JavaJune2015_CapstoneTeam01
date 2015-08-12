@@ -21,6 +21,7 @@
         </div>
     </head>
     <body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+    <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
         <div class="container">
             <div class="row" style="padding-top: 20px">

@@ -33,7 +33,6 @@ public class StaticPageController {
     private PostInterface pdao;
     private CommentInterface com;
     private CategoryTagInterface cat;
-    private Object RequestMethos;
     
     @Inject
     public StaticPageController(StaticPageInterface sp, PostInterface pdao, CommentInterface com, CategoryTagInterface cat){

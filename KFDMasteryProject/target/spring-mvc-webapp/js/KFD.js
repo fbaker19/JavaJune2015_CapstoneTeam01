@@ -3,36 +3,91 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var projectRoot = $("#projectRoot").val();
+$(document).ready(function () {
 
-$(document).ready(function(){
-    
-    $("#save-post-button").on("click", function (e){
+    $("#save-post-button").on("click", function (e) {
         console.log("GOT HERE FIRST");
         //e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "savePost",
+            url: projectRoot + "/savePost",
             data: JSON.stringify({
-                content: $("#mceu_45").val()
+                content: tinyMCE.activeEditor.getContent(),
+                expDate: $("#exp-date").val(),
+                title: $("#post-title").val()
             }),
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             }//,
             //dataType: "json"
-        }).success(function (data, status){
-            $("#mceu_45").val("");
-            window.location = "bossDashboard";
+        }).success(function (data, status) {
+            window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
-                    
-        }).error(function(jqXHR,  textStatus,  errorThrown ){
-            console.log(jqXHR);
-                        console.log(textStatus);
 
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
             console.log(errorThrown);
 
         });
     });
-    
+
+$("#edit-post").on("click", function (e) {
+        console.log("GOT HERE FIRST");
+        var element = $(event.relatedTarget);
+        var postId = element.data("post-id");
+        //e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: projectRoot + "/addPost/" + postId,
+            data: JSON.stringify({
+                content: tinyMCE.activeEditor.getContent(),
+                expDate: $("#exp-date").val(),
+                title: $("#post-title").val(),
+                postId: $("#post-id").val()
+            }),
+            
+        }).success(function (post) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
     });
-    
+
+$("#publish-post-button").on("click", function (e) {
+        console.log("GOT HERE FIRST");
+        //e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: projectRoot + "/publishPost",
+            data: JSON.stringify({
+                content: tinyMCE.activeEditor.getContent(),
+                expDate: $("#exp-date").val(),
+                title: $("#post-title").val()
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    });
+
+});
+   

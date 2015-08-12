@@ -17,7 +17,7 @@
     </div>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
-
+    <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
     <div class="container">
         <div class="row" style="padding-top: 20px">
             <img src="${pageContext.request.contextPath}/img/logo.jpg" class="img-rounded"; style="float:left; width:150px;height:150px" />
@@ -38,14 +38,19 @@
             <br/>
             <div class="panel-header">
                 <div class="input-group col-lg-10 col-lg-offset-1">
-                    <input type="text" class="form-control" id="post-title" placeholder="Title">
+                    <input type="hidden" id="post-id">
+                    <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title">
                 </div>
             </div>
             <br/>
-            <div class="panel-body editor">
-
+            <div class="panel-body ">
+                <input type="text" class="form-control editor" id="post-content" placeholder="Blog Content"> 
             </div>
             <div class="panel-footer">
+                   <div class="input-group col-lg-5">
+                    <input type="date" class="form-control" id="exp-date" value="${post.expDate}" placeholder="Expiration Date (optional)">
+                </div>
+                <br/>
                 <div class="row">
 
                     <div class="col-lg-6">
@@ -61,13 +66,14 @@
                             </div><!-- /btn-group -->
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-2 col-lg-offset-3">
-                        <button type="submit" id="save-post-button" class="btn btn-default btn-block">Save</button>
-                        <button type="submit" id="publish-post-button" class="btn btn-default btn-block">Publish</button>
+                    <div class="col-lg-2 col-lg-offset-4">
+                        <button type="submit" id="save-post-button" class="btn btn-default">Save</button>
+                        <button type="submit" id="publish-post-button" class="btn btn-default">Publish</button>
                     </div>
 
                 </div><!--row-->
                 <br/>
+               
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
@@ -77,13 +83,12 @@
                             </span>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-2 col-lg-offset-3">
-                        <button type="submit" id="delete-post-button" class="btn btn-default btn-block">Delete</button>
-                        <button type="submit" id="cancel-post-button" class="btn btn-default btn-block">Cancel</button>
+                    <div class="col-lg-2 col-lg-offset-4">
+                        <button type="submit" id="delete-post-button" class="btn btn-default ">Delete</button>
+                        <button type="submit" id="cancel-post-button" class="btn btn-default ">Cancel</button>
                     </div>
-
-
                 </div><!--row-->
+              
             </div><!--panel footer-->
         </div>
         <br/>
@@ -92,9 +97,31 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+<<<<<<< HEAD
+    <script type="text/javascript">
+        tinymce.init({
+            selector: ".editor", theme: "modern",
+            plugins: [
+                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
+            ],
+            toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+            toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+            image_advtab: true,
+            external_filemanager_path: "${pageContext.request.contextPath}/filemanager/",
+            filemanager_title: "Responsive Filemanager",
+            external_plugins: {"filemanager": "${pageContext.request.contextPath}/filemanager/plugin.min.js"}
+        });
+    </script>
+    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+
+    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
+=======
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
 
 
+>>>>>>> c62398546603d88e22e40b3206cc15c074216ac3
 </body>
 </html>
