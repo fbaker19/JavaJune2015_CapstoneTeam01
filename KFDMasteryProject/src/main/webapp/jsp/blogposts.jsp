@@ -43,7 +43,7 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    ${post.blurb}
+                    ${post.blurb}...
                 </div>
                 <div class="panel-footer">Comments ()</div>
             </div>

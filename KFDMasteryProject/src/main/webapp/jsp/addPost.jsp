@@ -48,7 +48,9 @@
             </div>
             <div class="panel-footer">
                    <div class="input-group col-lg-5">
-                    <input type="date" class="form-control" id="exp-date" value="${post.expDate}" placeholder="Expiration Date (optional)">
+                       Expiration Date (optional)
+                    <input type="date" class="form-control" id="exp-date" value="${post.expDate}" >
+                    
                 </div>
                 <br/>
                 <div class="row">
