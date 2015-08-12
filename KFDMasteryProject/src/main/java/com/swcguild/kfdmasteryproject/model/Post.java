@@ -27,7 +27,7 @@ public class Post {
     private int published;
     private int pending;
 
-    public int isPending() {
+    public int getPending() {
         return pending;
     }
 
@@ -99,7 +99,7 @@ public class Post {
         this.expDate = expDate;
     }
 
-    public int isPublished() {
+    public int getPublished() {
         return published;
     }
 

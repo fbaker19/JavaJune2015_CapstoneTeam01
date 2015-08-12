@@ -49,7 +49,8 @@ public class PostImpl implements PostInterface {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Post savePost(Post post) {
+    public Post saveNewPost(Post post) {
+        
         
             post.setCreateDate(new Date());
             post.setLastModifiedDate(new Date());
@@ -58,7 +59,7 @@ public class PostImpl implements PostInterface {
             post.setPending(1);
             post.setPublished(0);
             post.setBlurb(post.getContent().substring(0, 500));
-            post.setLastModifiedDate(new Date());
+        
         
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getContent(),
@@ -68,8 +69,8 @@ public class PostImpl implements PostInterface {
                 post.getCreateDate(),
                 post.getLastModifiedDate(),
                 post.getExpDate(),
-                post.isPublished(),
-                post.isPending(),
+                post.getPublished(),
+                post.getPending(),
                 post.getBlurb());
        
         post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
@@ -78,31 +79,15 @@ public class PostImpl implements PostInterface {
         
     }
     
-
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Post publishPost(Post post) {
+    public Post saveOldPost(Post post) {
         
-            if (post.getPostId()==0){
-            post.setCreateDate(new Date());
-            post.setUserId(1);
-            post.setBlurb(post.getContent().substring(0, 500));
-            post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
-            post.setLastModifiedDate(new Date());
-            post.setLastModifiedUserId(1);
-            post.setPending(0);
-            post.setPublished(1);
-            } else{
-            
-            Post existingPost = viewPost(post.getPostId());
-            post.setPostId(existingPost.getPostId());
-            post.setUserId(existingPost.getUserId());
-            post.setCreateDate(existingPost.getCreateDate());
+      
             post.setLastModifiedDate(new Date());
             post.setLastModifiedUserId(2);
-            post.setPending(0);
-            post.setPublished(1);
-    }
+            post.setBlurb(post.getContent().substring(0, 500));
+            post.setPending(1);
         
         
         jdbcTemplate.update(SQL_UPDATE_POST,
@@ -113,8 +98,68 @@ public class PostImpl implements PostInterface {
                 post.getCreateDate(),
                 post.getLastModifiedDate(),
                 post.getExpDate(),
-                post.isPublished(),
-                post.isPending(),
+                post.getPublished(),
+                post.getPending(),
+                post.getBlurb(),
+                post.getPostId());
+       
+             return post;
+        
+    }
+    
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Post publishNewPost(Post post) {
+            post.setCreateDate(new Date());
+            post.setUserId(1);
+            post.setBlurb(post.getContent().substring(0, 500));
+            post.setLastModifiedDate(new Date());
+            post.setLastModifiedUserId(1);
+            post.setPending(0);
+            post.setPublished(1);
+            
+           
+        
+        jdbcTemplate.update(SQL_INSERT_POST,
+                post.getContent(),
+                post.getTitle(),
+                post.getUserId(),
+                post.getLastModifiedUserId(),
+                post.getCreateDate(),
+                post.getLastModifiedDate(),
+                post.getExpDate(),
+                post.getPublished(),
+                post.getPending(),
+                post.getBlurb());
+                
+        post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
+        return post;
+    }
+    
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Post publishOldPost(Post post) {
+        
+            Post existingPost = viewPost(post.getPostId());
+            post.setPostId(existingPost.getPostId());
+            post.setUserId(existingPost.getUserId());
+            post.setCreateDate(existingPost.getCreateDate());
+            post.setLastModifiedDate(new Date());
+            post.setLastModifiedUserId(2);
+            post.setPending(0);
+            post.setPublished(1);
+        
+        jdbcTemplate.update(SQL_UPDATE_POST,
+                post.getContent(),
+                post.getTitle(),
+                post.getUserId(),
+                post.getLastModifiedUserId(),
+                post.getCreateDate(),
+                post.getLastModifiedDate(),
+                post.getExpDate(),
+                post.getPublished(),
+                post.getPending(),
                 post.getBlurb(),
                 post.getPostId());
         
