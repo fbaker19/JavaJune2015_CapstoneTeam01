@@ -6,20 +6,17 @@
 package com.swcguild.kfdmasteryproject.dao;
 
 import com.swcguild.kfdmasteryproject.model.Post;
-import com.swcguild.kfdmasteryproject.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import org.jsoup.Jsoup;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 /**
