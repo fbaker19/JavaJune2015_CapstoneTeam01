@@ -61,8 +61,12 @@ public class PostImpl implements PostInterface {
             post.setLastModifiedUserId(1);
             post.setPending(1);
             post.setPublished(0);
+
+            if (post.getContent().length()<500){
+                post.setBlurb(post.getContent());
+            } else {
             post.setBlurb(Jsoup.parse(post.getContent()).text().substring(0, 500));
-        
+            }
         
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getContent(),
@@ -90,12 +94,16 @@ public class PostImpl implements PostInterface {
     public Post publishNewPost(Post post) {
             post.setCreateDate(new Date());
             post.setUserId(1);
-            post.setBlurb(Jsoup.parse(post.getContent()).text().substring(0, 500));
             post.setLastModifiedDate(new Date());
             post.setLastModifiedUserId(1);
             post.setPending(0);
             post.setPublished(1);
             
+            if (post.getContent().length()<500){
+                post.setBlurb(post.getContent());
+            } else {
+            post.setBlurb(Jsoup.parse(post.getContent()).text().substring(0, 500));
+            }
            
         
         jdbcTemplate.update(SQL_INSERT_POST,
@@ -124,8 +132,12 @@ public class PostImpl implements PostInterface {
             post.setCreateDate(existingPost.getCreateDate());
             post.setLastModifiedDate(new Date());
             post.setLastModifiedUserId(2);
+            
+            if (post.getContent().length()<500){
+                post.setBlurb(post.getContent());
+            } else {
             post.setBlurb(Jsoup.parse(post.getContent()).text().substring(0, 500));
-
+            }
         
         jdbcTemplate.update(SQL_UPDATE_POST,
                 post.getContent(),
@@ -170,12 +182,21 @@ public class PostImpl implements PostInterface {
          return jdbcTemplate.query(SQL_SELECT_ALL_PENDING_POSTS, new PostMapper());
      }
 
+     public void expirePosts(){
+         Date date = new Date();
+         List <Post> exPosts = jdbcTemplate.query(SQL_SELECT_ALL_PUBLISHED_POSTS, new PostMapper());
+         for (Post post : exPosts){
+             if ((post.getExpDate() != null) && date.after(post.getExpDate())){
+                 post.setPublished(0);
+             }
+         }
+     }
+
 
     @Override
     public List<Post> viewAllPublishedPosts() {
-
+        expirePosts();
         return jdbcTemplate.query(SQL_SELECT_ALL_PUBLISHED_POSTS, new PostMapper());
-    
     }
 
     private static final class PostMapper implements ParameterizedRowMapper<Post> {

@@ -107,6 +107,42 @@ $("#publish-post-button").click(function (e) {
 
         });
     });
+    
+$("#delete-post-button").unbind("click");
+$("#delete-post-button").click(function (e) {
+        console.log("GOT HERE FIRST");
+        e.preventDefault();
+        var postId = $("#post-id").val();//element.data("post-id");
+        var answer = confirm("Do you really want to delete this blog post?");
+    if (answer === true) {
+        $.ajax({
+            type: "DELETE",
+            url: projectRoot + "/deletePost/" + postId,
+         
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
 
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    
+        };
+
+        });
+
+$("#cancel-post-button").unbind("click");
+$("#cancel-post-button").click( function (e){
+    e.preventDefault();
+    window.location = projectRoot + "/bossDashboard";
 });
-   
+
+});    

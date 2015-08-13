@@ -84,5 +84,11 @@ public void publishPost(@RequestBody Post post){
    }
 }
 
+@RequestMapping(value={"/deletePost/{postId}"}, method=RequestMethod.DELETE)
+@ResponseStatus(HttpStatus.NO_CONTENT)
+public void deletePost(@PathVariable int postId){
+    pdao.deletePost(postId);
+}
+
 
 }
