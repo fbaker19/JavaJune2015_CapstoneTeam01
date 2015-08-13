@@ -5,10 +5,11 @@
  */
 var projectRoot = $("#projectRoot").val();
 $(document).ready(function () {
-
-    $("#save-post-button").on("click", function (e) {
+    
+$("#save-post-button").unbind("click");
+    $("#save-post-button").click(function (e) {
         console.log("GOT HERE FIRST");
-        //e.preventDefault();
+        e.preventDefault();
         $.ajax({
             type: "POST",
             url: projectRoot + "/savePost",
@@ -20,8 +21,8 @@ $(document).ready(function () {
                 blurb: $("#post-blurb").val(),
                 createDate: $("#post-create-date").val(),
                 lastModifiedDate: $("#post-last-modified-date").val(),
-                published: $("#post-published").val(),
-                pending: $("#post-pending").val(),
+                published: 0,
+                pending: 1,
                 lastModifiedUserId: $("#post-last-modified-user-id").val(),
                 userId: $("#post-user-id").val()
             }),
@@ -41,12 +42,13 @@ $(document).ready(function () {
 
         });
     });
-
-$("#edit-post").on("click", function (e) {
+    
+$("#edit-post").unbind("click");
+$("#edit-post").click(function (e) {
         console.log("GOT HERE FIRST");
         var element = $(event.relatedTarget);
         var postId = element.data("post-id");
-        //e.preventDefault();
+        e.preventDefault();
         $.ajax({
             type: "GET",
             url: projectRoot + "/addPost/" + postId,
@@ -68,10 +70,11 @@ $("#edit-post").on("click", function (e) {
 
         });
     });
-
-$("#publish-post-button").on("click", function (e) {
+    
+$("#publish-post-button").unbind("click");
+$("#publish-post-button").click(function (e) {
         console.log("GOT HERE FIRST");
-        //e.preventDefault();
+        e.preventDefault();
         $.ajax({
             type: "POST",
             url: projectRoot + "/publishPost",
@@ -83,8 +86,8 @@ $("#publish-post-button").on("click", function (e) {
                 blurb: $("#post-blurb").val(),
                 createDate: $("#post-create-date").val(),
                 lastModifiedDate: $("#post-last-modified-date").val(),
-                published: $("#post-published").val(),
-                pending: $("#post-pending").val(),
+                published: 1,
+                pending: 0,
                 lastModifiedUserId: $("#post-last-modified-user-id").val(),
                 userId: $("#post-user-id").val()
             }),

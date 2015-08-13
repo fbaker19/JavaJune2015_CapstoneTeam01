@@ -39,30 +39,20 @@
             <div class="panel-header">
                 <div class="input-group col-lg-10 col-lg-offset-1">
                     <input type="hidden" id="post-id" value="${post.postId}"/>
-                    <input type="hidden" id="post-blurb" value="${post.blurb}">
-                    <input type="hidden" id="post-create-date" value="${post.createDate}"/>
-                    <input type="hidden" id="post-last-modified-date" value="${post.lastModifiedDate}"/>
-                    <input type="hidden" id="post-last-modified-user-id" value="${post.lastModifiedUserId}"/>
-                    <input type="hidden" id="post-user-id" value="${post.userId}"/>
+                    
                     
                     <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title"/>
                 </div>
             </div>
             <br/>
             <div class="panel-body ">
-                <input type="text" class="form-control editor" id="post-content" value ="${post.content}" placeholder="Blog Content"/> 
+                <input type="text" class="form-control editor" id="post-content" value ='${post.content}' placeholder="Blog Content"/> 
             </div>
             <div class="panel-footer">
-<<<<<<< HEAD
                    <div class="input-group col-lg-5">
                        Expiration Date (optional)
                     <input type="date" class="form-control" id="exp-date" value="${post.expDate}" >
-                    
-=======
-                <div class="input-group col-lg-5">
-                    <input type="date" class="form-control" id="exp-date" value="${post.expDate}" placeholder="Expiration Date (optional)"/>
->>>>>>> 01689f5f31a2dc9c43a94866614e112f3499db38
-                </div>
+                   </div>
                 <br/>
                 <div class="row">
 

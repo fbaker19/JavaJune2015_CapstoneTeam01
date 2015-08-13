@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import org.jsoup.Jsoup;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,8 @@ public class PostImpl implements PostInterface {
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    
+    
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -58,7 +61,7 @@ public class PostImpl implements PostInterface {
             post.setLastModifiedUserId(1);
             post.setPending(1);
             post.setPublished(0);
-            post.setBlurb(post.getContent().substring(0, 500));
+            post.setBlurb(Jsoup.parse(post.getContent()).text().substring(0, 500));
         
         
         jdbcTemplate.update(SQL_INSERT_POST,
@@ -79,33 +82,7 @@ public class PostImpl implements PostInterface {
         
     }
     
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Post saveOldPost(Post post) {
-        
-      
-            post.setLastModifiedDate(new Date());
-            post.setLastModifiedUserId(2);
-            post.setBlurb(post.getContent().substring(0, 500));
-            post.setPending(1);
-        
-        
-        jdbcTemplate.update(SQL_UPDATE_POST,
-                post.getContent(),
-                post.getTitle(),
-                post.getUserId(),
-                post.getLastModifiedUserId(),
-                post.getCreateDate(),
-                post.getLastModifiedDate(),
-                post.getExpDate(),
-                post.getPublished(),
-                post.getPending(),
-                post.getBlurb(),
-                post.getPostId());
-       
-             return post;
-        
-    }
+    
     
 
     @Override
@@ -113,7 +90,7 @@ public class PostImpl implements PostInterface {
     public Post publishNewPost(Post post) {
             post.setCreateDate(new Date());
             post.setUserId(1);
-            post.setBlurb(post.getContent().substring(0, 500));
+            post.setBlurb(Jsoup.parse(post.getContent()).text().substring(0, 500));
             post.setLastModifiedDate(new Date());
             post.setLastModifiedUserId(1);
             post.setPending(0);
@@ -139,16 +116,16 @@ public class PostImpl implements PostInterface {
     
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Post publishOldPost(Post post) {
-        
+    public Post updatePost(Post post) {
+       
             Post existingPost = viewPost(post.getPostId());
             post.setPostId(existingPost.getPostId());
             post.setUserId(existingPost.getUserId());
             post.setCreateDate(existingPost.getCreateDate());
             post.setLastModifiedDate(new Date());
             post.setLastModifiedUserId(2);
-            post.setPending(0);
-            post.setPublished(1);
+            post.setBlurb(Jsoup.parse(post.getContent()).text().substring(0, 500));
+
         
         jdbcTemplate.update(SQL_UPDATE_POST,
                 post.getContent(),

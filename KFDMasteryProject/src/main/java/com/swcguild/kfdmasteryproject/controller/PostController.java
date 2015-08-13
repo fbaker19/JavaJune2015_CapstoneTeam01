@@ -58,10 +58,11 @@ public String displayAddPost(Model model){
 @RequestMapping(value={"/savePost"}, method=RequestMethod.POST)
 @ResponseStatus(HttpStatus.OK)
 public void savePost(@RequestBody Post post){
+   
     if (post.getPostId()<0){
     pdao.saveNewPost(post);
     } else {
-        pdao.saveOldPost(post);
+        pdao.updatePost(post);
     }
 }
    
@@ -79,7 +80,7 @@ public void publishPost(@RequestBody Post post){
    if (post.getPostId()<0){
     pdao.publishNewPost(post);
    } else {
-       pdao.publishOldPost(post);
+       pdao.updatePost(post);
    }
 }
 

@@ -34,21 +34,25 @@
                 <li role="presentation"><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
             </ul>    
         </div>
-        <c:forEach var="post" items="${pList}">
-            <div class="panel panel-default">
 
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <a href="viewPost/${post.postId}">${post.title} </a>
-                    </h3>
+        <c:forEach var="post" items="${pList}">
+            <div class="container">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a href="viewPost/${post.postId}">${post.title} </a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        ${post.blurb}...
+                    </div>
+                    <div class="panel-footer">Comments ()</div>
                 </div>
-                <div class="panel-body">
-                    ${post.blurb}...
-                </div>
-                <div class="panel-footer">Comments ()</div>
             </div>
             <br/>
         </c:forEach>
+
     </div>
 
 

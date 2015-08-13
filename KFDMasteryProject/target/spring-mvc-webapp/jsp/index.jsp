@@ -76,7 +76,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form class="form-horizontal" role="form" action="signIn" method="POST">
+                <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/bossDashboard" method="POST">
                     <div class="form-group">
                         <label for="login-user-name" class="col-md-4 control-label">User Name</label>
                         <div class="col-md-8">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-4 col-md-8">
-                            <button type="submit" id="login-button" class="btn btn-default" onclick="window.open("${pageContext.request.contextPath}/jsp/bossDashboard", "_blank";)">Sign In</button>
+                            <button type="submit" id="login-button" class="btn btn-default">Sign In</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
