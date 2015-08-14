@@ -145,4 +145,116 @@ $("#cancel-post-button").click( function (e){
     window.location = projectRoot + "/bossDashboard";
 });
 
+$("#add-comment-button").unbind("click");
+$("#add-comment-button").click(function(e){
+    console.log("GOT HERE FIRST");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: projectRoot + "/addComment",
+            data: JSON.stringify({
+                comment: $("#add-comment").val(),
+                commenter: $("#commenter").val(),
+                postId: $("#post-id").val(),
+                published: 0,
+                pending: 1,
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            $("#commentModal").modal();
+            window.location = projectRoot + "/viewPost/" + postId;
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    });
+
+$("#editCommentModal").on("show.bs.modal", function (event){
+    var element = $(event.relatedTarget);
+    var commentId = element.data("comment-id");
+    var modal = $(this);
+
+    $.ajax({
+        type: "GET",
+        url: projectRoot + "/comment/" + commentId
+    }).success(function (comment) {
+        modal.find("#comment-id").text(comment.commentId);
+        modal.find("#comment-create-date").text(comment.createDate);
+        modal.find("#comment-commenter").text(comment.commenter);
+        modal.find("#comment-comment").text(comment.comment);
+    });
+});
+
+$("#delete-comment-button").unbind("click");
+$("#delete-comment-button").click(function (e) {
+        console.log("GOT HERE FIRST");
+        e.preventDefault();
+        var commentId = $("#comment-id").val();//element.data("post-id");
+        var answer = confirm("Do you really want to delete this comment?");
+    if (answer === true) {
+        $.ajax({
+            type: "DELETE",
+            url: projectRoot + "/deleteComment/" + commentId,
+         
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    
+        };
+
+        });
+        
+        
+$("#publish-comment-button").unbind("click");
+$("#publish-comment-button").click(function (e) {
+        console.log("GOT HERE FIRST");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: projectRoot + "/publishComment",
+            data: JSON.stringify({
+                comment: $("#add-comment").val(),
+                commenter: $("#commenter").val(),
+                postId: $("#post-id").val(),
+                published: 1,
+                pending: 0,
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    });
+    
+
 });    

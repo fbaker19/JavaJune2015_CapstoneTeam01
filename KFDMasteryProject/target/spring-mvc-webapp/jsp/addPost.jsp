@@ -102,7 +102,7 @@
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
-    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+    
 
 </body>
 </html>
