@@ -6,6 +6,6 @@
 <!DOCTYPE html>
 <script type="text/javascript">
     
-    top.$('.mce-btn.mce-open').parent().find('.mce-textbox').val('${imagePath}'); //.closest('.mce-window').find('.mce-primary').click();
+    top.$('.mce-btn.mce-open').parent().find('.mce-textbox').val('${imagePath}');
     
 </script>
