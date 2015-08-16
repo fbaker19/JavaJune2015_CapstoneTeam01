@@ -67,15 +67,13 @@ public class PostImplTest {
     /**
      * Test of addPost method, of class PostImpl.
      */
-    @Test
-    public void testAddViewPost() throws ParseException {
-
-        Post fromDb = dao.viewPost(p.getPostId());
-
-        Assert.assertEquals(fromDb.getCreateDate(), p.getCreateDate());
-
-
-    }
+//    @Test
+//    public void testAddViewPost() throws ParseException {
+//
+//        Post fromDb = dao.viewPost(p.getPostId());
+//
+//        Assert.assertEquals(fromDb.getCreateDate(), p.getCreateDate());
+//    }
 //    @Test
 //    public void testDeletePost() throws ParseException {
 //

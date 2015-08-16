@@ -5,8 +5,8 @@
  */
 package com.swcguild.kfdmasteryproject.dao;
 
+import com.swcguild.kfdmasteryproject.model.Image;
 import com.swcguild.kfdmasteryproject.model.Post;
-import com.swcguild.kfdmasteryproject.model.User;
 import java.util.List;
 
 /**
@@ -24,4 +24,6 @@ public interface PostInterface {
     public List<Post> viewAllPublishedPosts();
     public Post viewLatestPost();
     public List<Post> viewAllPendingPosts();
+    public Image addImage(Image image);
+    public Image getImage(int image_id);
 }
