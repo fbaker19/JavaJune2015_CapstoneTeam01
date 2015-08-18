@@ -11,9 +11,18 @@
     <properties>
         <spring.version>4.0.3.RELEASE</spring.version>
         <junit.version>4.11</junit.version>
+        <mysql-version>5.1.36</mysql-version>
     </properties>
  
+    
     <dependencies>
+        
+        <dependency> 
+            <groupId>mysql</groupId> 
+            <artifactId>mysql-connector-java</artifactId> 
+            <version>${mysql-version}</version> 
+        </dependency>
+        
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>

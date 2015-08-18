@@ -51,4 +51,9 @@
     <bean id="cat" class="com.swcguild.kfdmasteryproject.dao.CategoryTagImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean> 
+     
+    <!--ADDED 8/13-->
+   <bean id="people" class="com.swcguild.kfdmasteryproject.dao.PeopleImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
 </beans>

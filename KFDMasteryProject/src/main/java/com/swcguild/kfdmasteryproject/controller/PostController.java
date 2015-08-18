@@ -91,4 +91,23 @@ public void deletePost(@PathVariable int postId){
 }
 
 
+//EMPLOYEE EMPLOYEE //EMPLOYEE EMPLOYEE  //EMPLOYEE EMPLOYEE 
+
+@RequestMapping(value="/addPostEmp", method=RequestMethod.GET)
+public String displayEmpAddPost(Model model){
+    Post post = new Post();
+    post.setPostId(-1);
+    model.addAttribute("post", post);
+    return "addPostEmp";
+}
+
+@RequestMapping(value="/addPostEmp/{postId}", method=RequestMethod.GET)
+public String displayEmpEditPost (@PathVariable("postId") int postId, Model model)
+{
+    Post post = pdao.viewPost(postId);
+    model.addAttribute("post", post);
+    return "addPostEmp";
+}
+
+
 }
