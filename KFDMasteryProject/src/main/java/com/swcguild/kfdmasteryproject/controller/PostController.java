@@ -90,6 +90,17 @@ public String displayEmpEditPost (@PathVariable("postId") int postId, Model mode
     return "addPostEmp";
 }
 
+    @RequestMapping(value = {"/saveEmpPost"}, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void saveEmpPost(@RequestBody Post post) {
+
+        if (post.getPostId() < 0) {
+            pdao.saveNewPost(post);
+        } else {
+            pdao.updatePost(post);
+        }
+    }
+
 
 
     @RequestMapping(value = "/addPost/{postId}", method = RequestMethod.GET)

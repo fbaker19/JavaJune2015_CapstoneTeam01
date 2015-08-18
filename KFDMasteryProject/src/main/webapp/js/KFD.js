@@ -269,7 +269,7 @@ $("#save-post-button").unbind("click");
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: projectRoot + "/savePost",
+            url: projectRoot + "/saveEmpPost",
             data: JSON.stringify({
                 content: tinyMCE.activeEditor.getContent(),
                 expDate: $("#exp-date").val(),
