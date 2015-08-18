@@ -51,7 +51,7 @@
                     <table class="table table-striped">
                         <c:forEach var="pendingPost" items="${ppList}">
                             <tr>
-                                <td><a href="addPost/${pendingPost.postId}" id="edit-post">${pendingPost.title} </a></td>
+                                <td><a href="addPost/${pendingPost.postId}">${pendingPost.title} </a></td>
                             </tr>
                         </c:forEach>
                     </table> 

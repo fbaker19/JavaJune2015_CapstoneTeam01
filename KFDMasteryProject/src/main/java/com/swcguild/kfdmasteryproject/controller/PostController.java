@@ -71,7 +71,7 @@ public class PostController {
         }
     }
 
-<<<<<<< HEAD
+
 //EMPLOYEE EMPLOYEE //EMPLOYEE EMPLOYEE  //EMPLOYEE EMPLOYEE 
 
 @RequestMapping(value="/addPostEmp", method=RequestMethod.GET)
@@ -91,7 +91,7 @@ public String displayEmpEditPost (@PathVariable("postId") int postId, Model mode
 }
 
 
-=======
+
     @RequestMapping(value = "/addPost/{postId}", method = RequestMethod.GET)
     public String displayEditPost(@PathVariable("postId") int postId, Model model) {
         Post post = pdao.viewPost(postId);
@@ -139,5 +139,5 @@ public String displayEmpEditPost (@PathVariable("postId") int postId, Model mode
             Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
->>>>>>> 72b9054319e9e9266961b4a5e329be7bdd7b6fd9
+
 }

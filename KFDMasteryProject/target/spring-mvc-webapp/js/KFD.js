@@ -48,32 +48,32 @@ $("#save-post-button").unbind("click");
         });
     });
 
-    $("#edit-post").unbind("click");
-    $("#edit-post").click(function (e) {
-        console.log("GOT HERE FIRST");
-        var element = $(event.relatedTarget);
-        var postId = element.data("post-id");
-        e.preventDefault();
-        $.ajax({
-            type: "GET",
-            url: projectRoot + "/addPost/" + postId,
-            data: JSON.stringify({
-                content: tinyMCE.activeEditor.getContent(),
-                expDate: $("#exp-date").val(),
-                title: $("#post-title").val(),
-                postId: $("#post-id").val()
-            }),
-        }).success(function (post) {
-            window.location = projectRoot + "/bossDashboard";
-            console.log("GOT HERE");
-
-        }).error(function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-
-        });
-    });
+//    $("#edit-post").unbind("click");
+//    $("#edit-post").click(function (e) {
+//        console.log("GOT HERE FIRST");
+//        var element = $(event.relatedTarget);
+//        var postId = element.data("post-id");
+//        e.preventDefault();
+//        $.ajax({
+//            type: "GET",
+//            url: projectRoot + "/addPost/" + postId,
+//            data: JSON.stringify({
+//                content: tinyMCE.activeEditor.getContent(),
+//                expDate: $("#exp-date").val(),
+//                title: $("#post-title").val(),
+//                postId: $("#post-id").val()
+//            }),
+//        }).success(function (post) {
+//            window.location = projectRoot + "/bossDashboard";
+//            console.log("GOT HERE");
+//
+//        }).error(function (jqXHR, textStatus, errorThrown) {
+//            console.log(jqXHR);
+//            console.log(textStatus);
+//            console.log(errorThrown);
+//
+//        });
+//    });
 
     $("#publish-post-button").unbind("click");
     $("#publish-post-button").click(function (e) {
@@ -170,7 +170,7 @@ $("#save-post-button").unbind("click");
             //dataType: "json"
         }).success(function (data, status) {
             $("#commentModal").modal();
-            window.location = projectRoot + "/viewPost/" + postId;
+            window.location = projectRoot + "/viewPost/" + $("#post-id").val();
             console.log("GOT HERE");
 
         }).error(function (jqXHR, textStatus, errorThrown) {
@@ -222,12 +222,8 @@ $("#save-post-button").unbind("click");
                 console.log(errorThrown);
 
             });
-
-        }
-        ;
-
+        };
     });
-
 
     $("#publish-comment-button").unbind("click");
     $("#publish-comment-button").click(function (e) {
@@ -237,11 +233,12 @@ $("#save-post-button").unbind("click");
             type: "POST",
             url: projectRoot + "/publishComment",
             data: JSON.stringify({
-                comment: $("#add-comment").val(),
-                commenter: $("#commenter").val(),
+                comment: $("#comment-comment").val(),
                 postId: $("#post-id").val(),
+                createDate: $("#comment-create-date").val(),
+                commenter: $("#commenter").val(),
                 published: 1,
-                pending: 0,
+                pending: 0
             }),
             headers: {
                 "Accept": "application/json",
