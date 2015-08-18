@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
     <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
     <div class="container">
@@ -42,12 +42,13 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <a href="viewPost/${post.postId}">${post.title} </a>
+                            <p style="font-size:60%"><i>${post.createDate}</i></p>
                         </h3>
                     </div>
                     <div class="panel-body">
                         ${post.blurb}...
                     </div>
-                    <div class="panel-footer">Comments ()</div>
+                    <div class="panel-footer">Comments (${post.categoryIds.length})</div>
                 </div>
             </div>
             <br/>

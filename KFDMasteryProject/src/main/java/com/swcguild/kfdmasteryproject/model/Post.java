@@ -5,6 +5,7 @@
  */
 package com.swcguild.kfdmasteryproject.model;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class Post {
     private Date expDate;
     private int published;
     private int pending;
+    private int[] categoryIds;
 
     public int getPending() {
         return pending;
@@ -115,21 +117,30 @@ public class Post {
     public void setBlurb(String blurb) {
         this.blurb = blurb;
     }
+    
+    public int[] getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(int[] categoryIds) {
+        this.categoryIds = categoryIds;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + this.postId;
-        hash = 61 * hash + Objects.hashCode(this.content);
-        hash = 61 * hash + Objects.hashCode(this.blurb);
-        hash = 61 * hash + Objects.hashCode(this.title);
-        hash = 61 * hash + this.userId;
-        hash = 61 * hash + this.lastModifiedUserId;
-        hash = 61 * hash + Objects.hashCode(this.createDate);
-        hash = 61 * hash + Objects.hashCode(this.lastModifiedDate);
-        hash = 61 * hash + Objects.hashCode(this.expDate);
-        hash = 61 * hash + this.published;
-        hash = 61 * hash + this.pending;
+        hash = 37 * hash + this.postId;
+        hash = 37 * hash + Objects.hashCode(this.content);
+        hash = 37 * hash + Objects.hashCode(this.blurb);
+        hash = 37 * hash + Objects.hashCode(this.title);
+        hash = 37 * hash + this.userId;
+        hash = 37 * hash + this.lastModifiedUserId;
+        hash = 37 * hash + Objects.hashCode(this.createDate);
+        hash = 37 * hash + Objects.hashCode(this.lastModifiedDate);
+        hash = 37 * hash + Objects.hashCode(this.expDate);
+        hash = 37 * hash + this.published;
+        hash = 37 * hash + this.pending;
+        hash = 37 * hash + Arrays.hashCode(this.categoryIds);
         return hash;
     }
 
@@ -171,10 +182,16 @@ public class Post {
         }
         if (this.published != other.published) {
             return false;
-        }if (this.pending != other.pending) {
+        }
+        if (this.pending != other.pending) {
+            return false;
+        }
+        if (!Arrays.equals(this.categoryIds, other.categoryIds)) {
             return false;
         }
         return true;
     }
 
+    
+    
 }

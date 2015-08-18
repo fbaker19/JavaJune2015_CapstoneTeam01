@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
 
     <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
@@ -36,6 +36,7 @@
             </ul>    
         </div>
         <div class="panel panel-default">
+            <input type="hidden" id="post-id" value="${post.postId}"/>
             <div class="panel-heading">
                 <h3 class="panel-title">
                     ${post.title} 
@@ -47,26 +48,46 @@
         </div>
 
         <div class="input-group col-lg-10 col-lg-offset-1">
-            <textarea class="form-control" rows="4" placeholder="Add Your Comment"></textarea>
+            <textarea class="form-control" rows="4" id="add-comment" placeholder="Add Your Comment"></textarea>
         </div>
         <br/>
-            <div class="input-group col-lg-4 col-lg-offset-1">
-                <input type="text" class="form-control" placeholder="Your Name (optional)">
-            </div>
+        <div class="input-group col-lg-4 col-lg-offset-1">
+            <input type="text" class="form-control" id="commenter"  placeholder="Your Name (optional)">
+        </div>
         <br/>
-            <div class="input-group col-lg-4 col-lg-offset-1">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" id="add-comment-button" type="button">Add Comment</button>
-                </span>
-            </div> 
+        <button class="btn btn-default col-lg-offset-1" id="add-comment-button" type="submit" >Add Comment</button>
     </div>
     <br/>
-</div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="commentModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <h3>Thank you for your comment!</h3>
+                <p>
+                    Your comment has been submitted for approval.
+                </p>
+                <p>
+                    Check back in a few days to see your comment up on our blog!
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/KFD.js"></script>
 
 </body>
 </html>

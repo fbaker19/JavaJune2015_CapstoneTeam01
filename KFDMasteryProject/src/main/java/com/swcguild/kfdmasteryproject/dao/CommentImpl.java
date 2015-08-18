@@ -8,6 +8,7 @@ package com.swcguild.kfdmasteryproject.dao;
 import com.swcguild.kfdmasteryproject.model.Comment;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,7 +27,7 @@ public class CommentImpl implements CommentInterface {
     private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM comments WHERE post_id = ?";
     private static final String SQL_SELECT_ALL_PENDING_COMMENTS = "SELECT * FROM comments WHERE pending=1";
     private static final String SQL_SELECT_COMMENT = "SELECT * FROM comments WHERE comment_id = ?";
-    
+    private static final String SQL_UPDATE_COMMENT ="UPDATE comments SET comment=?, post_id=?, create_date=?, commenter=?, published=?, pending=? WHERE comment_id =?";
   
     
     
@@ -59,6 +60,9 @@ public class CommentImpl implements CommentInterface {
 
     @Override
     public Comment addComment(Comment comment) {
+        
+        comment.setCreateDate(new Date());
+        
          jdbcTemplate.update(SQL_INSERT_COMMENT,
                 comment.getComment(),
                 comment.getPostId(),
@@ -71,6 +75,20 @@ public class CommentImpl implements CommentInterface {
          comment.setCommentId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
          return comment;
          
+    }
+    
+    @Override
+    public Comment updateComment(Comment comment){
+        jdbcTemplate.update(SQL_UPDATE_COMMENT,
+                comment.getComment(),
+                comment.getPostId(),
+                comment.getCreateDate(),
+                comment.getCommenter(),
+                comment.getPublished(),
+                comment.getPending(),
+                comment.getCommentId());
+        
+        return comment;
     }
 
     @Override

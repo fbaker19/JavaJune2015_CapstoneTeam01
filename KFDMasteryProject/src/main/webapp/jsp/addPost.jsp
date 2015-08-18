@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
     <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
     <div class="container">
         <div class="row" style="padding-top: 20px">
@@ -36,11 +36,25 @@
 
         <div class="panel panel-default">
             <br/>
+            
+            
+            
+            
+            
+            
+            
+            <iframe id="form_target" name="form_target" style="display:none"></iframe>
+            <form id="my_form" action="uploadImage" target="form_target" method="post" enctype="multipart/form-data" style="width:0px;height:0;overflow:hidden">
+                <input name="newImage" class="form-control" type="file" onchange="$('#my_form').submit(); this.value = '';">
+            </form>
+            
+            
+                
             <div class="panel-header">
                 <div class="input-group col-lg-10 col-lg-offset-1">
                     <input type="hidden" id="post-id" value="${post.postId}"/>
-                    
-                    
+
+
                     <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title"/>
                 </div>
             </div>
@@ -49,10 +63,10 @@
                 <input type="text" class="form-control editor" id="post-content" value ='${post.content}' placeholder="Blog Content"/> 
             </div>
             <div class="panel-footer">
-                   <div class="input-group col-lg-5">
-                       Expiration Date (optional)
+                <div class="input-group col-lg-5">
+                    Expiration Date (optional)
                     <input type="date" class="form-control" id="exp-date" value="${post.expDate}" >
-                   </div>
+                </div>
                 <br/>
                 <div class="row">
 
@@ -98,11 +112,13 @@
     </div>
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
-    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+
 
 </body>
 </html>

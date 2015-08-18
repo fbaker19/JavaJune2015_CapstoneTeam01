@@ -23,5 +23,7 @@ public interface CommentInterface {
     public void deleteComment (int commentId);
     
     public List<Comment> viewAllPendingComments();
+    
+    public Comment updateComment(Comment comment);
        
 }
