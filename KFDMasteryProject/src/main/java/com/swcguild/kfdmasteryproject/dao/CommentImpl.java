@@ -79,6 +79,9 @@ public class CommentImpl implements CommentInterface {
     
     @Override
     public Comment updateComment(Comment comment){
+        comment.setPublished(1);
+        comment.setPending(0);
+        
         jdbcTemplate.update(SQL_UPDATE_COMMENT,
                 comment.getComment(),
                 comment.getPostId(),
