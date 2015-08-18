@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
     <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
     <div class="container">
@@ -35,16 +35,19 @@
             </ul>    
         </div>
         <div class="row">
+           
             <div class="panel panel-default  col-md-5">
+                
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Pending Blog Posts</h3>
-
                 </div>
+               
+                
                 <div class="panel-body" style="max-height: 300px">
                     <table class="table table-striped">
                         <c:forEach var="pendingPost" items="${ppList}">
                             <tr>
-                                <td><a href="addPost/${pendingPost.postId}" id="edit-post">${pendingPost.title} </a></td>
+                                <td><a href="addPost/${pendingPost.postId}">${pendingPost.title} </a></td>
                             </tr>
                         </c:forEach>
                     </table> 
@@ -57,6 +60,8 @@
                     </ul> 
                 </div>
             </div>
+            
+            
             <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
                     <h3 class="dashboard-comment-title">Pending Comments</h3>
@@ -73,6 +78,8 @@
                 </div>
             </div>
         </div>
+            
+            
         <div class="row">
             <div class="panel panel-default  col-md-5">
                 <div class="panel-heading">
@@ -126,7 +133,7 @@
                         
                         <table class="table table"></table>
                         <tr>
-                            <td><label id="comment-id"></label></td>, 
+                            <td><label id="comment-id"></label><input type="hidden" id="post-id"></td>, 
                             <td><label id="comment-create-date"></label></td>,
                             <td><label id="comment-commenter"></label></td>
                         </tr>
@@ -137,8 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="publish-comment-button" class="btn btn-default">Publish</button>
-                    <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</bu
-                    tton>
+                    <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -148,8 +154,10 @@
                 
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
 

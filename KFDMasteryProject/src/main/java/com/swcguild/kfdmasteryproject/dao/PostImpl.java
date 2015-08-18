@@ -5,6 +5,7 @@
  */
 package com.swcguild.kfdmasteryproject.dao;
 
+import com.swcguild.kfdmasteryproject.model.Image;
 import com.swcguild.kfdmasteryproject.model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +28,7 @@ public class PostImpl implements PostInterface {
 
     private static final String SQL_SELECT_ALL_PUBLISHED_POSTS = "SELECT * FROM posts WHERE published=1 ORDER BY create_date DESC"; //make sure unpublished ones don't show up
     private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
-    private static final String SQL_SELECT_LATEST_POST = "SELECT * FROM posts WHERE published=1 ORDER BY create_date DESC LIMIT 1";//make sure unpublished ones don't show up
+    private static final String SQL_SELECT_LATEST_POST = "SELECT * FROM posts WHERE published=1 ORDER BY post_id DESC LIMIT 1";//make sure unpublished ones don't show up
     private static final String SQL_SELECT_ALL_PENDING_POSTS = "SELECT * FROM posts WHERE pending=1";
     
     
@@ -38,6 +39,10 @@ public class PostImpl implements PostInterface {
     private static final String SQL_DELETE_POST = "DELETE FROM posts WHERE post_id = ?";
     private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, "
             + "last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, pending = ?, blurb= ? WHERE post_id =?";
+    
+    //IMAGE
+    private static final String SQL_INSERT_IMAGE = "INSERT INTO image (image) VALUES (?)";
+    private static final String SQL_SELECT_IMAGE_BY_ID = "SELECT * FROM image WHERE image_id = ?";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -196,6 +201,24 @@ public class PostImpl implements PostInterface {
         return jdbcTemplate.query(SQL_SELECT_ALL_PUBLISHED_POSTS, new PostMapper());
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Image addImage(Image image) {
+        jdbcTemplate.update(SQL_INSERT_IMAGE, image.getImage());
+        image.setImage_id(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
+        return image;
+    }
+    
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Image getImage(int id) {
+        try {
+            return jdbcTemplate.queryForObject(SQL_SELECT_IMAGE_BY_ID, new ImageMapper(), id);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
     private static final class PostMapper implements ParameterizedRowMapper<Post> {
 
         @Override
@@ -203,9 +226,9 @@ public class PostImpl implements PostInterface {
             Post post = new Post();
             post.setBlurb(rs.getString("blurb"));
             post.setContent(rs.getString("content"));
-            post.setCreateDate(rs.getDate("create_date"));
+            post.setCreateDate(rs.getTimestamp("create_date"));
             post.setExpDate(rs.getDate("expiration_date"));
-            post.setLastModifiedDate(rs.getDate("last_modified_date"));
+            post.setLastModifiedDate(rs.getTimestamp("last_modified_date"));
             post.setLastModifiedUserId(rs.getInt("last_modified_user_id"));
             post.setPostId(rs.getInt("post_id"));
             post.setPublished(rs.getInt("published"));
@@ -217,6 +240,17 @@ public class PostImpl implements PostInterface {
 
         }
 
+    }
+    private static final class ImageMapper implements ParameterizedRowMapper<Image> {
+
+        @Override
+        public Image mapRow(ResultSet rs, int i) throws SQLException {
+            Image image = new Image();
+            image.setImage_id(rs.getInt("image_id"));
+            image.setImage(rs.getBytes("image"));
+            return image;
+        }
+       
     }
 
 }

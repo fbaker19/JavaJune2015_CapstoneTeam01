@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
     <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
     <div class="container">
@@ -42,12 +42,12 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <a href="viewPost/${post.postId}">${post.title} </a>
+                            <p style="font-size:60%"><i>${post.createDate}</i></p>
                         </h3>
                     </div>
                     <div class="panel-body">
                         ${post.blurb}...
                     </div>
-                    <div class="panel-footer">Comments ()</div>
                 </div>
             </div>
             <br/>
@@ -59,8 +59,13 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
+
 </body>
 </html>
 

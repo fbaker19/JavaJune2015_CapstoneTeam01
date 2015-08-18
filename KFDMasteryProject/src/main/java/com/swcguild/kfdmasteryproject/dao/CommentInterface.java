@@ -16,13 +16,15 @@ public interface CommentInterface {
     
     public Comment viewComment(int commentId);
     
-    public List<Comment> viewAllComments(int postId);
+    public List<Comment> viewAllPublishedComments(int postId);
     
     public Comment addComment(Comment comment);
     
     public void deleteComment (int commentId);
     
     public List<Comment> viewAllPendingComments();
+    
+    public int numberOfComments (int postId);
     
     public Comment updateComment(Comment comment);
        

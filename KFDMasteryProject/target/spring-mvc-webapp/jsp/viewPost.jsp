@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
     </div>
 </head>
-<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg)"> 
+<body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
 
     <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
 
@@ -56,38 +56,54 @@
         </div>
         <br/>
         <button class="btn btn-default col-lg-offset-1" id="add-comment-button" type="submit" >Add Comment</button>
+        <br/>
+        <br/>
+            <c:forEach var="comment" items="${comments}">
+                <div class="well">
+                    <p>${comment.commenter}</p>
+                    <p><i>${comment.createDate}</i></p>
+                    ${comment.comment}
+                </div>
+                <br/>
+            </c:forEach>
     </div>
     <br/>
 
 
-<!-- Modal -->
-<div class="modal fade" id="commentModal" role="dialog">
-    <div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade" id="commentModal" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
+            <!-- Modal content-->
+            <div class="modal-content">
 
-            <div class="modal-body">
-                <h3>Thank you for your comment!</h3>
-                <p>
-                    Your comment has been submitted for approval.
-                </p>
-                <p>
-                    Check back in a few days to see your comment up on our blog!
-                </p>
+                <div class="modal-body">
+                    <h3>Thank you for your comment!</h3>
+                    <p>
+                        Your comment has been submitted for approval.
+                    </p>
+                    <p>
+                        Check back in a few days to see your comment up on our blog!
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+
         </div>
-
     </div>
-</div>
 
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
+
 
 </body>
 </html>

@@ -79,5 +79,21 @@ public class StaticPageController {
  public String displayAddPage(){
      return "addPage";
  }
-    
+ 
+ 
+   @RequestMapping(value={"/employeeDash"}, method = RequestMethod.GET)
+  public String displayEmployeeDashboard(Model model)
+  {
+       List<Post> ppList = pdao.viewAllPendingPosts();
+       List<Comment> pcList = com.viewAllPendingComments();
+       List<StaticPage> spList = sp.viewAllContent();
+       List<Category> catList = cat.viewAllCategories();
+       
+       model.addAttribute("ppList", ppList);
+       model.addAttribute("pcList", pcList);
+       model.addAttribute("spList", spList);
+       model.addAttribute("catList", catList);
+       
+  return "employeeDash";
+  }   
 }
