@@ -40,10 +40,7 @@
                 
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Pending Blog Posts</h3>
-<<<<<<< HEAD
-=======
 
->>>>>>> 72b9054319e9e9266961b4a5e329be7bdd7b6fd9
                 </div>
                
                 

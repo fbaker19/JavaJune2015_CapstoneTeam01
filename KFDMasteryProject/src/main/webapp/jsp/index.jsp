@@ -55,6 +55,7 @@
 
             </div>
         </div>
+            
         <div class="panel panel-default col-md-6">
             <div class="panel-heading">
                 <h3 class="panel-title">Upcoming Events</h3>
@@ -66,15 +67,13 @@
 
             </div>
         </div>
-
-
     </div>
-</div>
+            <!--Sign In Modal-->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/bossDashboard" method="POST">
+                <form method="post" class ="signin" action="j_spring_security_check">
                     <div class="form-group">
                         <label for="login-user-name" class="col-md-4 control-label">User Name</label>
                         <div class="col-md-8">
@@ -84,7 +83,7 @@
                     <div class="form-group">
                         <label for="login-password" class="col-md-4 control-label">Password</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="login-password" placeholder="Password"/>
+                            <input type="password" class="form-control" id="login-password" placeholder="Password"/>
                         </div>
                     </div>
                     <div class="form-group">
