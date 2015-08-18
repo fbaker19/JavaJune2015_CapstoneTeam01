@@ -79,6 +79,7 @@ public class CommentImpl implements CommentInterface {
     
     @Override
     public Comment updateComment(Comment comment){
+        
         jdbcTemplate.update(SQL_UPDATE_COMMENT,
                 comment.getComment(),
                 comment.getPostId(),

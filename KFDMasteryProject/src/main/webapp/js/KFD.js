@@ -8,7 +8,7 @@ $(document).ready(function () {
     
 $("#save-post-button").unbind("click");
     $("#save-post-button").click(function (e) {
-        console.log("GOT HERE FIRST");
+        console.log("GOT HERE SAVE FIRST");
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -45,7 +45,7 @@ $("#save-post-button").unbind("click");
     
 $("#edit-post").unbind("click");
 $("#edit-post").click(function (e) {
-        console.log("GOT HERE FIRST");
+        console.log("GOT HERE EDIT FIRST");
         var element = $(event.relatedTarget);
         var postId = element.data("post-id");
         e.preventDefault();
@@ -73,7 +73,7 @@ $("#edit-post").click(function (e) {
     
 $("#publish-post-button").unbind("click");
 $("#publish-post-button").click(function (e) {
-        console.log("GOT HERE FIRST");
+        console.log("GOT HERE PUBLISH FIRST");
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -110,7 +110,7 @@ $("#publish-post-button").click(function (e) {
     
 $("#delete-post-button").unbind("click");
 $("#delete-post-button").click(function (e) {
-        console.log("GOT HERE FIRST");
+        console.log("GOT HERE DELETE FIRST");
         e.preventDefault();
         var postId = $("#post-id").val();//element.data("post-id");
         var answer = confirm("Do you really want to delete this blog post?");
