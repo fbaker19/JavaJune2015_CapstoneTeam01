@@ -71,6 +71,38 @@ public class PostController {
         }
     }
 
+
+//EMPLOYEE EMPLOYEE //EMPLOYEE EMPLOYEE  //EMPLOYEE EMPLOYEE 
+
+@RequestMapping(value="/addPostEmp", method=RequestMethod.GET)
+public String displayEmpAddPost(Model model){
+    Post post = new Post();
+    post.setPostId(-1);
+    model.addAttribute("post", post);
+    return "addPostEmp";
+}
+
+@RequestMapping(value="/addPostEmp/{postId}", method=RequestMethod.GET)
+public String displayEmpEditPost (@PathVariable("postId") int postId, Model model)
+{
+    Post post = pdao.viewPost(postId);
+    model.addAttribute("post", post);
+    return "addPostEmp";
+}
+
+    @RequestMapping(value = {"/saveEmpPost"}, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void saveEmpPost(@RequestBody Post post) {
+
+        if (post.getPostId() < 0) {
+            pdao.saveNewPost(post);
+        } else {
+            pdao.updatePost(post);
+        }
+    }
+
+
+
     @RequestMapping(value = "/addPost/{postId}", method = RequestMethod.GET)
     public String displayEditPost(@PathVariable("postId") int postId, Model model) {
         Post post = pdao.viewPost(postId);
@@ -118,4 +150,5 @@ public class PostController {
             Logger.getLogger(PostController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

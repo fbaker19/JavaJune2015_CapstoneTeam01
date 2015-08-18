@@ -35,11 +35,18 @@
             </ul>    
         </div>
         <div class="row">
+           
             <div class="panel panel-default  col-md-5">
+                
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Pending Blog Posts</h3>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 72b9054319e9e9266961b4a5e329be7bdd7b6fd9
                 </div>
+               
+                
                 <div class="panel-body" style="max-height: 300px">
                     <table class="table table-striped">
                         <c:forEach var="pendingPost" items="${ppList}">
@@ -57,6 +64,8 @@
                     </ul> 
                 </div>
             </div>
+            
+            
             <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
                     <h3 class="dashboard-comment-title">Pending Comments</h3>
@@ -73,6 +82,8 @@
                 </div>
             </div>
         </div>
+            
+            
         <div class="row">
             <div class="panel panel-default  col-md-5">
                 <div class="panel-heading">
