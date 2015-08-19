@@ -28,10 +28,10 @@
         <hr/>
         <div class="navbar">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index">Home</a></li>
+                <li role="presentation"  class="active"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/blogposts">Blog Posts</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">About</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/aboutUs">About</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
             </ul>    
         </div>
         <div class="panel panel-default">

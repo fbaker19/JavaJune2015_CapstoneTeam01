@@ -29,28 +29,30 @@
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/blogposts">Blog Posts</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">About</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/aboutUs">About</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
                 <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/bossDashboard">Dashboard</a></li>
             </ul>    
         </div>
         <div class="row">
-           
+
             <div class="panel panel-default  col-md-5">
-                
+
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Pending Blog Posts</h3>
                 </div>
-               
-                
-                <div class="panel-body" style="max-height: 300px">
+
+
+                <div class="panel-body">
+                    <pre class="pre-scrollable">
                     <table class="table table-striped">
-                        <c:forEach var="pendingPost" items="${ppList}">
+                            <c:forEach var="pendingPost" items="${ppList}">
                             <tr>
                                 <td><a href="addPost/${pendingPost.postId}">${pendingPost.title} </a></td>
                             </tr>
-                        </c:forEach>
+                            </c:forEach>
                     </table> 
+                    </pre>
                 </div>
                 <div class="panel-footer">
                     <ul>
@@ -60,39 +62,42 @@
                     </ul> 
                 </div>
             </div>
-            
-            
+
+
             <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
                     <h3 class="dashboard-comment-title">Pending Comments</h3>
                 </div>
-                <div class="panel-body" style="max-height: 300px">
+                <div class="panel-body">
+                    <pre class="pre-scrollable">
                     <table class="table table-striped">
-                        <c:forEach var="pendingComment" items="${pcList}">
+                            <c:forEach var="pendingComment" items="${pcList}">
                             <tr>
                                 <td><a data-toggle="modal" href="#editCommentModal" data-comment-id="${pendingComment.commentId}">${pendingComment.commentId} </a></td>
                             </tr>
-                        </c:forEach>
+                            </c:forEach>
                     </table> 
-
+                    </pre>
                 </div>
             </div>
         </div>
-            
-            
+
+
         <div class="row">
             <div class="panel panel-default  col-md-5">
                 <div class="panel-heading">
                     <h3 class="dashboard-page-title">Static Pages</h3>
                 </div>
-                <div class="panel-body" style="max-height: 300px">
+                <div class="panel-body">
+                    <pre class="pre-scrollable">
                     <table class="table table-striped">
-                        <c:forEach var="staticPage" items="${spList}">
+                            <c:forEach var="staticPage" items="${spList}">
                             <tr>
                                 <td><a href="editPage/${staticPage.pageId}">${staticPage.title} </a></td>
                             </tr>
-                        </c:forEach>
+                            </c:forEach>
                     </table> 
+                    </pre>
                 </div>
                 <div class="panel-footer">
                     <ul>
@@ -106,18 +111,42 @@
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>
-                <div class="panel-body" style="max-height: 300px">
+                <div class="panel-body">
+                    <pre class="pre-scrollable">
                     <table class="table table-striped">
-                        <c:forEach var="category" items="${catList}">
+                            <c:forEach var="category" items="${catList}">
                             <tr>
                                 <td><a href="editPage/${category.categoryId}">${category.categoryName} </a></td>
                             </tr>
-                        </c:forEach>
+                            </c:forEach>
                     </table> 
-
+                    </pre>
                 </div>
             </div>
         </div>
+            
+            <div class="row">
+
+            <div class="panel panel-default  col-md-5">
+
+                <div class="panel-heading">
+                    <h3 class="dashboard-blog-title">Published Blog Posts</h3>
+                </div>
+
+
+                <div class="panel-body">
+                    <pre class="pre-scrollable">
+                    <table class="table table-striped">
+                            <c:forEach var="publishedPost" items="${pList}">
+                            <tr>
+                                <td><a href="addPost/${publishedPost.postId}">${publishedPost.title} </a></td>
+                            </tr>
+                            </c:forEach>
+                    </table> 
+                    </pre>
+                </div>
+                
+            </div>
     </div>    
 
     <!-- Modal -->
@@ -128,9 +157,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    
+
                     <h4 class="modal-title">
-                        
+
                         <table class="table table"></table>
                         <tr>
                             <td><label id="comment-id"></label><input type="hidden" id="post-id"></td>, 
@@ -151,7 +180,7 @@
 
         </div>
     </div>   
-                
+
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>

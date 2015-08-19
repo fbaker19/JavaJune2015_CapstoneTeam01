@@ -17,7 +17,7 @@
     </div>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
-
+    <input type="hidden" value="${pageContext.request.contextPath}" id="projectRoot"/>
     <div class="container">
         <div class="row" style="padding-top: 20px">
             <img src="${pageContext.request.contextPath}/img/logo.jpg" class="img-rounded"; style="float:left; width:150px;height:150px" />
@@ -28,59 +28,57 @@
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/blogposts">Blog Posts</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">About</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/aboutUs">About</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
                 <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/bossDashboard">Dashboard</a></li>
             </ul>    
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-body editor">
-
+            <br/>
+            <iframe id="form_target" name="form_target" style="display:none"></iframe>
+            <form id="my_form" action="uploadImage" target="form_target" method="post" enctype="multipart/form-data" style="width:0px;height:0;overflow:hidden">
+                <input name="newImage" class="form-control" type="file" onchange="$('#my_form').submit();
+                        this.value = '';">
+            </form>
+            <div class="panel-header">
+                <div class="input-group col-lg-10 col-lg-offset-1">
+                    <input type="hidden" id="page-id" value="${page.pageId}"/>
+                    <input type="text" class="form-control" id="page-title" value="${page.title}" placeholder="Title"/>
+                </div>
+            </div>
+            <br/>
+            <div class="panel-body ">
+                <input type="text" class="form-control editor" id="page-content" value ='${page.content}' placeholder="Page Content"/> 
             </div>
             <div class="panel-footer">
+                <br/>
                 <div class="row">
-                    
-                    
-                    <div class="col-lg-2 col-lg-offset-9">
-                    <button type="submit" id="publish-add-button" class="btn btn-default btn-block">Publish</button>
-                    <button type="submit" id="save-add-button" class="btn btn-default btn-block">Save</button>
+                    <div class="col-lg-2 col-lg-offset-8">
+                        <button type="submit" id="publish-page-button" class="btn btn-default">Publish</button>
                     </div>
-
                 </div><!--row-->
                 <br/>
                 <div class="row">
-                    
-                      <div class="col-lg-2 col-lg-offset-9">
-                    <button type="submit" id="delete-add-button" class="btn btn-default btn-block">Delete</button>
-                    <button type="submit" id="cancel-add-button" class="btn btn-default btn-block">Cancel</button>
+                    <div class="col-lg-2 col-lg-offset-8">
+                        <button type="submit" id="delete-page-button" class="btn btn-default ">Delete</button>
+                        <button type="submit" id="cancel-page-button" class="btn btn-default ">Cancel</button>
                     </div>
-
-                   
                 </div><!--row-->
+
             </div><!--panel footer-->
         </div>
         <br/>
     </div>
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
 
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
-    <script type="text/javascript">
-        tinymce.init({
-            selector: ".editor", theme: "modern",
-            plugins: [
-                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
-                "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
-            ],
-            toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
-            toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
-            image_advtab: true,
-            external_filemanager_path: "${pageContext.request.contextPath}/filemanager/",
-            filemanager_title: "Responsive Filemanager",
-            external_plugins: {"filemanager": "${pageContext.request.contextPath}/filemanager/plugin.min.js"}
-        });
-    </script>
+
 </body>
 </html>

@@ -29,8 +29,8 @@
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/blogposts">Blog Posts</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">About</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/#">Contact Us</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/aboutUs">About</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
                 <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/employeeDash">Employee Dashboard</a></li>
             </ul>    
         </div>
@@ -41,7 +41,8 @@
                     <h3 class="dashboard-blog-title">Pending Blog Posts</h3>
 
                 </div>
-                <div class="panel-body" style="max-height: 300px">
+                <div class="panel-body">
+                    <pre class="pre-scrollable">
                     <table class="table table-striped">
                         <c:forEach var="pendingPost" items="${ppList}">
                             <tr>
@@ -49,6 +50,7 @@
                             </tr>
                         </c:forEach>
                     </table> 
+                    </pre>
                 </div>
                 <div class="panel-footer">
                     <ul>

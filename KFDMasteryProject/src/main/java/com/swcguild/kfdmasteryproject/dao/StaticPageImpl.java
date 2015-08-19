@@ -8,6 +8,7 @@ package com.swcguild.kfdmasteryproject.dao;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 
@@ -38,6 +39,10 @@ public class StaticPageImpl implements StaticPageInterface {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public StaticPage addContent(StaticPage staticPage) {
+        
+        staticPage.setDate(new Date());
+        staticPage.setUserId(1);
+        
         jdbcTemplate.update(SQL_INSERT_STATIC_PAGE,
                 
                 staticPage.getContent(),
@@ -53,6 +58,10 @@ public class StaticPageImpl implements StaticPageInterface {
 
     @Override
     public void editContent(StaticPage staticPage) {
+        
+        staticPage.setDate(new Date());
+        staticPage.setUserId(1);
+        
         jdbcTemplate.update(SQL_UPDATE_STATIC_PAGE,
                 
                 staticPage.getContent(),
