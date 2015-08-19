@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix ="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,7 +63,7 @@
                 </div>
             </div>
             
-            
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
             <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
                     <h3 class="dashboard-comment-title">Pending Comments</h3>
@@ -78,14 +79,17 @@
 
                 </div>
             </div>
+            </sec:authorize>
         </div>
             
             
         <div class="row">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
             <div class="panel panel-default  col-md-5">
                 <div class="panel-heading">
                     <h3 class="dashboard-page-title">Static Pages</h3>
                 </div>
+                
                 <div class="panel-body" style="max-height: 300px">
                     <table class="table table-striped">
                         <c:forEach var="staticPage" items="${spList}">
@@ -95,6 +99,7 @@
                         </c:forEach>
                     </table> 
                 </div>
+              
                 <div class="panel-footer">
                     <ul>
                         <li class="btn btn-default col-md-offset-8">
@@ -103,7 +108,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="panel panel-default col-md-5 col-md-offset-1">
+             </sec:authorize>
+            <div class="panel panel-default col-md-5">
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>
@@ -118,6 +124,7 @@
 
                 </div>
             </div>
+            
         </div>
     </div>    
 
@@ -134,7 +141,7 @@
                         
                         <table class="table table"></table>
                         <tr>
-                            <td><label id="comment-id"></label></td>, 
+                            <td><label id="comment-id"></label><input type="hidden" id="post-id"></td>, 
                             <td><label id="comment-create-date"></label></td>,
                             <td><label id="comment-commenter"></label></td>
                         </tr>
@@ -145,8 +152,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="publish-comment-button" class="btn btn-default">Publish</button>
-                    <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</bu
-                    tton>
+                    <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -156,8 +162,10 @@
                 
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
 

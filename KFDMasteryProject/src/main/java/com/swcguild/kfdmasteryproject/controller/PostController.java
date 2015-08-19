@@ -5,12 +5,15 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
+import com.swcguild.kfdmasteryproject.dao.CommentInterface;
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
+import com.swcguild.kfdmasteryproject.model.Comment;
 import com.swcguild.kfdmasteryproject.model.Image;
 import com.swcguild.kfdmasteryproject.model.Post;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -37,18 +40,22 @@ public class PostController {
 
     private StaticPageInterface sp;
     private PostInterface pdao;
+    private CommentInterface com;
 
     @Inject
-    public PostController(StaticPageInterface sp, PostInterface pdao) {
+    public PostController(StaticPageInterface sp, PostInterface pdao, CommentInterface com) {
         this.pdao = pdao;
         this.sp = sp;
+        this.com = com;
 
     }
 
     @RequestMapping(value = "/viewPost/{postId}", method = RequestMethod.GET)
     public String displayPost(@PathVariable("postId") int postId, Model model) {
         Post post = pdao.viewPost(postId);
+        List<Comment> comments = com.viewAllPublishedComments(postId);
         model.addAttribute("post", post);
+        model.addAttribute("comments", comments);
         return "viewPost";
     }
 
@@ -71,38 +78,6 @@ public class PostController {
         }
     }
 
-
-//EMPLOYEE EMPLOYEE //EMPLOYEE EMPLOYEE  //EMPLOYEE EMPLOYEE 
-
-@RequestMapping(value="/addPostEmp", method=RequestMethod.GET)
-public String displayEmpAddPost(Model model){
-    Post post = new Post();
-    post.setPostId(-1);
-    model.addAttribute("post", post);
-    return "addPostEmp";
-}
-
-@RequestMapping(value="/addPostEmp/{postId}", method=RequestMethod.GET)
-public String displayEmpEditPost (@PathVariable("postId") int postId, Model model)
-{
-    Post post = pdao.viewPost(postId);
-    model.addAttribute("post", post);
-    return "addPostEmp";
-}
-
-    @RequestMapping(value = {"/saveEmpPost"}, method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public void saveEmpPost(@RequestBody Post post) {
-
-        if (post.getPostId() < 0) {
-            pdao.saveNewPost(post);
-        } else {
-            pdao.updatePost(post);
-        }
-    }
-
-
-
     @RequestMapping(value = "/addPost/{postId}", method = RequestMethod.GET)
     public String displayEditPost(@PathVariable("postId") int postId, Model model) {
         Post post = pdao.viewPost(postId);
@@ -120,6 +95,35 @@ public String displayEmpEditPost (@PathVariable("postId") int postId, Model mode
         }
     }
 
+//EMPLOYEE EMPLOYEE //EMPLOYEE EMPLOYEE  //EMPLOYEE EMPLOYEE 
+//
+//@RequestMapping(value="/addPostEmp", method=RequestMethod.GET)
+//public String displayEmpAddPost(Model model){
+//    Post post = new Post();
+//    post.setPostId(-1);
+//    model.addAttribute("post", post);
+//    return "addPostEmp";
+//}
+//
+//@RequestMapping(value="/addPostEmp/{postId}", method=RequestMethod.GET)
+//public String displayEmpEditPost (@PathVariable("postId") int postId, Model model)
+//{
+//    Post post = pdao.viewPost(postId);
+//    model.addAttribute("post", post);
+//    return "addPostEmp";
+//}
+//
+//    @RequestMapping(value = {"/saveEmpPost"}, method = RequestMethod.POST)
+//    @ResponseStatus(HttpStatus.OK)
+//    public void saveEmpPost(@RequestBody Post post) {
+//
+//        if (post.getPostId() < 0) {
+//            pdao.saveNewPost(post);
+//        } else {
+//            pdao.updatePost(post);
+//        }
+//    }
+       
     @RequestMapping(value = {"/deletePost/{postId}"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePost(@PathVariable int postId) {

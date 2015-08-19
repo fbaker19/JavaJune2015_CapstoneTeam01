@@ -13,25 +13,29 @@
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
     <http pattern="/img/**" security="none" />
+    <http pattern="/photo/**" security="none" />
+    <http pattern="/image/**" security="none" />
+    <http pattern="/blogposts/**" security="none" />
+    <http pattern="/about/**" security="none" />
+     
     <!-- #3 - Authentication/login form and protected endpoint configuration --> 
     <http auto-config="true" use-expressions="false">
         <!-- #3a - Login via html form, use Spring to do the security check --> 
         <!-- #3b - Use the login page at this endpoint --> 
         <!-- #3c - Redirect here if login fails --> 
         <form-login login-processing-url="/j_spring_security_check"
-                    login-page="/login"<!--Default page where placed-->
-                    authentication-failure-url="/login?login_error=1"/>
-        <!-- #3d - Go back to home page when user logs out -->
-        <logout logout-success-url="/home" />
+                    login-page="/index"
+                    default-target-url="/bossDashboard"
+                    authentication-failure-url="/index?login_error=1"/>
         <!-- #3e - Access to these endpoints require admin role -->
-        <intercept-url pattern="/bossDashboard" access="ROLE_ADMIN" />
-        <intercept-url pattern="/employeeDash" access="ROLE_ADMIN" />
+        <intercept-url pattern="/bossDashboard" access="ROLE_USER" />
+        <!---intercept-url pattern="/employeeDash" access="ROLE_USER" /-->
         <intercept-url pattern="/addPage" access="ROLE_ADMIN" />
         <intercept-url pattern="/publishPost" access="ROLE_ADMIN" />
-        <intercept-url pattern="/addPost" access="ROLE_ADMIN" />
-        <intercept-url pattern="/addPostEmp" access="ROLE_ADMIN" />
-        <intercept-url pattern="/saveEmpPost" access="ROLE_ADMIN" />
-        <intercept-url pattern="/viewPost" access="ROLE_ADMIN" />
+        <intercept-url pattern="/addPost" access="ROLE_USER" />
+        <!--intercept-url pattern="/addPostEmp" access="ROLE_ADMIN" /-->
+        <!--intercept-url pattern="/saveEmpPost" access="ROLE_ADMIN" /-->
+        <intercept-url pattern="/viewPost" access="ROLE_USER" />
         <!--intercept-url pattern="/contact/**" access="ROLE_ADMIN" /-->
         <!-- #3f - Access to all other controller endpoints require user role -->
         <intercept-url pattern="/**" access="ROLE_USER" />
@@ -48,9 +52,12 @@
             <jdbc-user-service id="userService"
                                data-source-ref="dataSource"
                                users-by-username-query=
-          "SELECT username, password, enabled FROM users WHERE username=?"
+          "SELECT user_name AS username, password, enabled FROM users WHERE user_name=?"
                                authorities-by-username-query=
-          "SELECT username, role_name FROM roles WHERE username=?" />
+          "SELECT u.user_name AS username, r.role_name AS authority
+            FROM user_roles AS ur JOIN 
+            users AS u ON ur.user_id = u.user_id
+            JOIN roles AS r ON ur.role_id = r.role_id WHERE u.user_name =?" />
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

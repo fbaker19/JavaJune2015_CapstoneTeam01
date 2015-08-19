@@ -24,7 +24,7 @@ public class CommentImpl implements CommentInterface {
    
     private static final String SQL_INSERT_COMMENT ="INSERT INTO comments (comment, post_id, create_date, commenter, published, pending) VALUES(?,?,?,?,?,?)";
     private static final String SQL_DELETE_COMMENT ="DELETE FROM comments WHERE comment_id = ?";
-    private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM comments WHERE post_id = ?";
+    private static final String SQL_SELECT_ALL_PUBLISHED_COMMENTS = "SELECT * FROM comments WHERE post_id = ? and published=1";
     private static final String SQL_SELECT_ALL_PENDING_COMMENTS = "SELECT * FROM comments WHERE pending=1";
     private static final String SQL_SELECT_COMMENT = "SELECT * FROM comments WHERE comment_id = ?";
     private static final String SQL_UPDATE_COMMENT ="UPDATE comments SET comment=?, post_id=?, create_date=?, commenter=?, published=?, pending=? WHERE comment_id =?";
@@ -49,8 +49,8 @@ public class CommentImpl implements CommentInterface {
     }
 
     @Override
-    public List<Comment> viewAllComments(int postId) {
-        return jdbcTemplate.query(SQL_SELECT_ALL_COMMENTS, new CommentMapper(), postId);
+    public List<Comment> viewAllPublishedComments(int postId) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_PUBLISHED_COMMENTS, new CommentMapper(), postId);
     }
     
     @Override
@@ -62,6 +62,8 @@ public class CommentImpl implements CommentInterface {
     public Comment addComment(Comment comment) {
         
         comment.setCreateDate(new Date());
+        comment.setPublished(0);
+        comment.setPending(1);
         
          jdbcTemplate.update(SQL_INSERT_COMMENT,
                 comment.getComment(),
@@ -79,8 +81,8 @@ public class CommentImpl implements CommentInterface {
     
     @Override
     public Comment updateComment(Comment comment){
-        comment.setPublished(1);
-        comment.setPending(0);
+  //      comment.setPublished(1);
+  //      comment.setPending(0);
         
         jdbcTemplate.update(SQL_UPDATE_COMMENT,
                 comment.getComment(),
@@ -117,5 +119,11 @@ public class CommentImpl implements CommentInterface {
             return comment;
         }
     
-    } 
+    }
+    
+    @Override
+    public int numberOfComments (int postId){
+        List<Comment> comments = viewAllPublishedComments(postId);
+        return comments.size();
+    }
 }

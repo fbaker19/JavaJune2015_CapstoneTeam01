@@ -19,6 +19,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -75,25 +76,27 @@ public class StaticPageController {
        return "bossDashboard";
    }
   
+ 
+  
  @RequestMapping(value="/addPage", method=RequestMethod.GET)
  public String displayAddPage(){
      return "addPage";
  }
  
  
-   @RequestMapping(value={"/employeeDash"}, method = RequestMethod.GET)
-  public String displayEmployeeDashboard(Model model)
-  {
-       List<Post> ppList = pdao.viewAllPendingPosts();
-       List<Comment> pcList = com.viewAllPendingComments();
-       List<StaticPage> spList = sp.viewAllContent();
-       List<Category> catList = cat.viewAllCategories();
-       
-       model.addAttribute("ppList", ppList);
-       model.addAttribute("pcList", pcList);
-       model.addAttribute("spList", spList);
-       model.addAttribute("catList", catList);
-       
-  return "employeeDash";
-  }   
+//   @RequestMapping(value={"/employeeDash"}, method = RequestMethod.GET)
+//  public String displayEmployeeDashboard(Model model)
+//  {
+//       List<Post> ppList = pdao.viewAllPendingPosts();
+//       List<Comment> pcList = com.viewAllPendingComments();
+//       List<StaticPage> spList = sp.viewAllContent();
+//       List<Category> catList = cat.viewAllCategories();
+//       
+//       model.addAttribute("ppList", ppList);
+//       model.addAttribute("pcList", pcList);
+//       model.addAttribute("spList", spList);
+//       model.addAttribute("catList", catList);
+//       
+//  return "employeeDash";
+//  }   
 }

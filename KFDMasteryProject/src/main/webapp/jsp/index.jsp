@@ -55,7 +55,7 @@
 
             </div>
         </div>
-            
+
         <div class="panel panel-default col-md-6">
             <div class="panel-heading">
                 <h3 class="panel-title">Upcoming Events</h3>
@@ -67,44 +67,55 @@
 
             </div>
         </div>
+        <c:if test = "${param.login_error == 1}">
+            <h3>WRONG ID or PASSWORD</h3>
+        </c:if> 
     </div>
-            <!--Sign In Modal-->
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <form method="post" class ="signin" action="j_spring_security_check">
-                    <div class="form-group">
-                        <label for="login-user-name" class="col-md-4 control-label">User Name</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="login-user-name" placeholder="User Name"/>
+    <!--Sign In Modal-->
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                   
+                    <form id ="login-form-name" method="post" class ="form-horizontal" action ="j_spring_security_check">
+                        <div class="form-group">
+                            <label for="login-user-name" class="col-md-4 control-label">User Name</label>
+                            <div class="col-md-8">
+                                <input type="text" name="j_username" class="form-control" id="login-user-name" placeholder="User Name"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password" class="col-md-4 control-label">Password</label>
-                        <div class="col-md-8">
-                            <input type="password" class="form-control" id="login-password" placeholder="Password"/>
+                        <div class="form-group">
+                            <label for="login-password" class="col-md-4 control-label">Password</label>
+                            <div class="col-md-8">
+                                <input type="password" name="j_password" class="form-control" id="login-password" placeholder="Password"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-4 col-md-8">
-                            <button type="submit" id="login-button" class="btn btn-default">Sign In</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">
+                                <button type="submit" id="login-button" class="btn btn-default">Sign In</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
 
 
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
 
 </body>
 </html>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix ="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,6 @@
         <title>Sea Legs Nautical Academy</title>
         <!-- Bootstrap core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
 
         <!-- Logo -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
@@ -36,19 +36,11 @@
 
         <div class="panel panel-default">
             <br/>
-            
-            
-            
-            
-            
-            
-            
+   
             <iframe id="form_target" name="form_target" style="display:none"></iframe>
             <form id="my_form" action="uploadImage" target="form_target" method="post" enctype="multipart/form-data" style="width:0px;height:0;overflow:hidden">
                 <input name="newImage" class="form-control" type="file" onchange="$('#my_form').submit(); this.value = '';">
             </form>
-            
-            
                 
             <div class="panel-header">
                 <div class="input-group col-lg-10 col-lg-offset-1">
@@ -85,8 +77,12 @@
                     </div><!-- /.col-lg-6 -->
                     <div class="col-lg-2 col-lg-offset-4">
                         <button type="submit" id="save-post-button" class="btn btn-default">Save</button>
+                       
+                      
+                       <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <button type="submit" id="publish-post-button" class="btn btn-default">Publish</button>
-                    </div>
+                      </sec:authorize>
+                        </div>
 
                 </div><!--row-->
                 <br/>

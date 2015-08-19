@@ -141,6 +141,7 @@
             <version>2.2</version>
             <type>jar</type>
         </dependency>
+        
         <!--ADDED-->  
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -167,6 +168,7 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>                              
+   
     </dependencies>
 
     <build>

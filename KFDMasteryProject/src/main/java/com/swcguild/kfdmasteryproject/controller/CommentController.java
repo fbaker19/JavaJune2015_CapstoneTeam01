@@ -47,7 +47,7 @@ public class CommentController {
     
     @RequestMapping(value={"/publishComment"}, method=RequestMethod.POST)
 @ResponseStatus(HttpStatus.OK)
-public void publishPost(@RequestBody Comment comment){
+public void publishComment(@RequestBody Comment comment){
    com.updateComment(comment);
 }
 
