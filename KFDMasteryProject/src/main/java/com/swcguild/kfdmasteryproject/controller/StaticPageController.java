@@ -11,8 +11,6 @@ import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Comment;
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
-import com.swcguild.kfdmasteryproject.dao.PostInterface;
-import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.util.List;
@@ -52,6 +50,10 @@ public class StaticPageController {
    {
        Post currentPost=pdao.viewLatestPost();
        model.addAttribute("currentPost", currentPost);
+       StaticPage page1 = sp.viewContentById(3);
+       StaticPage page2 = sp.viewContentById(4);
+       model.addAttribute("page1", page1);
+       model.addAttribute("page2", page2);
        return "index";
    }
   
@@ -60,7 +62,23 @@ public class StaticPageController {
    {
        List<Post> pList = pdao.viewAllPublishedPosts();
        model.addAttribute("pList", pList);
+       
+       List<Category> cList = cat.viewAllCategories();
+       model.addAttribute("cList", cList);
+       
        return "blogposts";
+   }
+  
+  @RequestMapping(value={"/displayCatPage/{categoryId}"}, method = RequestMethod.GET)
+  public String displayCatPage(@PathVariable("categoryId") int categoryId, Model model)
+   {
+       List<Post> pList = pdao.viewAllPublishedPostsByCategoryId(categoryId);
+       model.addAttribute("pList", pList);
+       
+       List<Category> cList = cat.viewAllCategories();
+       model.addAttribute("cList", cList);
+       
+       return "category";
    }
   
    @RequestMapping(value={"/aboutUs"}, method = RequestMethod.GET)
@@ -127,6 +145,7 @@ public class StaticPageController {
     }
 }
  
+
  
 //   @RequestMapping(value={"/employeeDash"}, method = RequestMethod.GET)
 //  public String displayEmployeeDashboard(Model model)
@@ -162,3 +181,7 @@ public class StaticPageController {
 //  return "employeeDash";
 //  }
 //}
+
+    
+
+

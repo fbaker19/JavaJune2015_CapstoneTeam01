@@ -5,9 +5,11 @@
  */
 package com.swcguild.kfdmasteryproject.controller;
 
+import com.swcguild.kfdmasteryproject.dao.CategoryTagInterface;
 import com.swcguild.kfdmasteryproject.dao.CommentInterface;
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
+import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Comment;
 import com.swcguild.kfdmasteryproject.model.Image;
 import com.swcguild.kfdmasteryproject.model.Post;
@@ -41,13 +43,14 @@ public class PostController {
     private StaticPageInterface sp;
     private PostInterface pdao;
     private CommentInterface com;
+    private CategoryTagInterface cat;
 
     @Inject
-    public PostController(StaticPageInterface sp, PostInterface pdao, CommentInterface com) {
+    public PostController(StaticPageInterface sp, PostInterface pdao, CommentInterface com, CategoryTagInterface cat) {
         this.pdao = pdao;
         this.sp = sp;
         this.com = com;
-
+        this.cat = cat;
     }
 
     @RequestMapping(value = "/viewPost/{postId}", method = RequestMethod.GET)
@@ -56,6 +59,9 @@ public class PostController {
         List<Comment> comments = com.viewAllPublishedComments(postId);
         model.addAttribute("post", post);
         model.addAttribute("comments", comments);
+        int categoryId = post.getCategoryId();
+        Category category = cat.viewCategory(categoryId);
+        model.addAttribute("category", category);
         return "viewPost";
     }
 
@@ -64,6 +70,11 @@ public class PostController {
         Post post = new Post();
         post.setPostId(-1);
         model.addAttribute("post", post);
+        Category category = new Category();
+        List<Category> catList = cat.viewAllCategories();
+        model.addAttribute("catList", catList);
+        model.addAttribute("category", category);
+        //model.addAttribute("categoryId", category.getCategoryId());
         return "addPost";
     }
 
@@ -78,10 +89,15 @@ public class PostController {
         }
     }
 
+
     @RequestMapping(value = "/addPost/{postId}", method = RequestMethod.GET)
     public String displayEditPost(@PathVariable("postId") int postId, Model model) {
         Post post = pdao.viewPost(postId);
         model.addAttribute("post", post);
+        Category category = new Category();
+        List<Category> catList = cat.viewAllCategories();
+        model.addAttribute("catList", catList);
+        model.addAttribute("category", category);
         return "addPost";
     }
 
@@ -130,7 +146,7 @@ public class PostController {
         pdao.deletePost(postId);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = {"/uploadImage"}, method = RequestMethod.POST)
     public String postImage(@RequestParam("newImage") MultipartFile file, HttpServletRequest req, Model model) {
         Image image = new Image();
         Image newImage = null;

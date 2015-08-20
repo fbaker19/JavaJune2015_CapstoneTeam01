@@ -8,7 +8,9 @@ package com.swcguild.kfdmasteryproject.controller;
 import com.swcguild.kfdmasteryproject.dao.CategoryTagInterface;
 import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Tag;
+import java.io.IOException;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,6 +57,13 @@ public class CategoryTagController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable int categoryId) {
         cat.deleteCategory(categoryId);
+    }
+    
+    @RequestMapping(value="/deleteCategory", method=RequestMethod.GET)
+    public String deleteCategory(HttpServletRequest req) throws IOException {
+        int categoryId = Integer.parseInt(req.getParameter("categoryId"));
+        cat.deleteCategory(categoryId);
+        return "redirect:bossDashboard";
     }
     
     @RequestMapping(value = {"/addTag"}, method = RequestMethod.POST)

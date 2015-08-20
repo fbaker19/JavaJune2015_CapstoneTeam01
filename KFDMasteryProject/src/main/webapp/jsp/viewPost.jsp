@@ -37,15 +37,24 @@
         </div>
         <div class="panel panel-default">
             <input type="hidden" id="post-id" value="${post.postId}"/>
+            <input type="hidden" id="category-id" value="${category.categoryId}"/>
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    ${post.title} 
+                    ${post.title}
                 </h3>
+                <a href="${pageContext.request.contextPath}/displayCatPage/${category.categoryId}">${category.categoryName}</a>
             </div>
             <div class="panel-body">
-                ${post.content}
+                ${post.content} 
             </div>
         </div>
+            <div class="row">
+                <div style='float:left;padding:5px 5px 5px 0; col' class="col-lg-offset-1"> <a expr:share_url='data:post.url' href='http://www.facebook.com/sharer.php' name='fb_share' type='box_count'>Share</a></div>
+<div style='float:left;padding:5px 5px 5px 0;'><a href="https://twitter.com/share" class="twitter-share-button col-lg-offset-2">Tweet</a>
+</div>
+             </div>
+                
+                 <br/>
 
         <div class="input-group col-lg-10 col-lg-offset-1">
             <textarea class="form-control" rows="4" id="add-comment" placeholder="Add Your Comment"></textarea>
@@ -103,7 +112,8 @@
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
     <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
-
+<script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 </body>
 </html>

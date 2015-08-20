@@ -127,12 +127,26 @@
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="category-name" name="categoryName" placeholder="Add New Category"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="add-category-button"type="submit">Add Category</button>
+                    </span>
+                </div>
+
                 <div class="panel-body">
                     <pre class="pre-scrollable">
                     <table class="table table-striped">
                             <c:forEach var="category" items="${catList}">
+                                
+                                <s:url value="deleteCategory" var="deleteCategory_url">
+                                    <s:param name="categoryId" value="${category.categoryId}"/>
+                                </s:url>
+                                
                             <tr>
-                                <td><a href="editPage/${category.categoryId}">${category.categoryName} </a></td>
+                                <td>${category.categoryName}     <a href="${deleteCategory_url}">Delete</a></td>
+                                
                             </tr>
                             </c:forEach>
                     </table> 
@@ -141,8 +155,8 @@
             </div>
            
         </div>
-            
-            <div class="row">
+
+        <div class="row">
 
             <div class="panel panel-default  col-md-5 ">
 
@@ -162,9 +176,9 @@
                     </table> 
                     </pre>
                 </div>
-                
+
             </div>
-                 </sec:authorize>
+        </sec:authorize>
     </div>    
             
       <div class="modal fade" id="myModal">
@@ -212,22 +226,49 @@
                     <button type="submit" id="publish-comment-button" class="btn btn-default">Publish</button>
                     <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
 
+        </div>    
+
+        <!-- Modal -->
+        <div class="modal fade" id="editCommentModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        <h4 class="modal-title">
+
+                            <table class="table table"></table>
+                            <tr>
+                                <td><label id="comment-id"></label><input type="hidden" id="post-id"></td>, 
+                                <td><label id="comment-create-date"></label></td>,
+                                <td><label id="comment-commenter"></label></td>
+                            </tr>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="comment-comment"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="publish-comment-button" class="btn btn-default">Publish</button>
+                        <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
         </div>
     </div>   
-    
-      
-
-    <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
-    <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
-    <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
+ 
+        <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
+        <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>
+        <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.dev.js"></script>
+        <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.jquery.js"></script>
+        <script src="${pageContext.request.contextPath}/js/KFD.js"></script>
+        <script src="${pageContext.request.contextPath}/js/tinymce.js"></script>
 
 </body>
 </html>

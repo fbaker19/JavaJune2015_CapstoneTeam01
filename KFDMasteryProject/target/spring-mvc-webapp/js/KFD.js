@@ -6,9 +6,9 @@
 var projectRoot = $("#projectRoot").val();
 $(document).ready(function () {
 
- 
+
     // BOSS DASHBOARD
-$("#save-post-button").unbind("click");
+    $("#save-post-button").unbind("click");
     $("#save-post-button").click(function (e) {
         console.log("GOT HERE SAVE FIRST");
         e.preventDefault();
@@ -26,7 +26,8 @@ $("#save-post-button").unbind("click");
                 published: 0,
                 pending: 1,
                 lastModifiedUserId: $("#post-last-modified-user-id").val(),
-                userId: $("#post-user-id").val()
+                userId: $("#post-user-id").val(),
+                categoryId: $("#category-id").val()
             }),
             headers: {
                 "Accept": "application/json",
@@ -44,40 +45,41 @@ $("#save-post-button").unbind("click");
 
         });
     });
-    
 
-//    $("#edit-post").unbind("click");
-//    $("#edit-post").click(function (e) {
-//        console.log("GOT HERE FIRST");
-//        var element = $(event.relatedTarget);
-//        var postId = element.data("post-id");
-//        e.preventDefault();
-//        $.ajax({
-//            type: "GET",
-//            url: projectRoot + "/addPost/" + postId,
-//            data: JSON.stringify({
-//                content: tinyMCE.activeEditor.getContent(),
-//                expDate: $("#exp-date").val(),
-//                title: $("#post-title").val(),
-//                postId: $("#post-id").val()
-//            }),
-//        }).success(function (post) {
-//            window.location = projectRoot + "/bossDashboard";
-//            console.log("GOT HERE");
-//
-//        }).error(function (jqXHR, textStatus, errorThrown) {
-//            console.log(jqXHR);
-//            console.log(textStatus);
-//            console.log(errorThrown);
-//
-//        });
-//    });
 
-       
- 
-    
-$("#publish-post-button").unbind("click");
-$("#publish-post-button").click(function (e) {
+    $("#add-category-button").unbind("click");
+    $("#add-category-button").click(function (e) {
+        console.log("GOT HERE FIRST");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: projectRoot + "/addCategory",
+            data: JSON.stringify({
+                categoryName: $("#category-name").val()
+
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).success(function (post) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
+
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
+        });
+    });
+
+    $("#publish-post-button").unbind("click");
+    $("#publish-post-button").click(function (e) {
         console.log("GOT HERE PUBLISH FIRST");
         e.preventDefault();
         $.ajax({
@@ -94,7 +96,8 @@ $("#publish-post-button").click(function (e) {
                 published: 1,
                 pending: 0,
                 lastModifiedUserId: $("#post-last-modified-user-id").val(),
-                userId: $("#post-user-id").val()
+                userId: $("#post-user-id").val(),
+                categoryId: $("#category-id").val()
             }),
             headers: {
                 "Accept": "application/json",
@@ -112,9 +115,9 @@ $("#publish-post-button").click(function (e) {
 
         });
     });
-    
-$("#delete-post-button").unbind("click");
-$("#delete-post-button").click(function (e) {
+
+    $("#delete-post-button").unbind("click");
+    $("#delete-post-button").click(function (e) {
         console.log("GOT HERE DELETE FIRST");
         var postId = $("#post-id").val();//element.data("post-id");
         var answer = confirm("Do you really want to delete this blog post?");
@@ -181,8 +184,8 @@ $("#delete-post-button").click(function (e) {
 
         });
     });
-    
-    
+
+
     $("#save-page-button").unbind("click");
     $("#save-page-button").click(function (e) {
         console.log("GOT HERE SAVE FIRST");
@@ -246,7 +249,7 @@ $("#delete-post-button").click(function (e) {
 
         });
     });
-    
+
     $("#delete-page-button").unbind("click");
     $("#delete-page-button").click(function (e) {
         console.log("GOT HERE DELETE FIRST");
@@ -315,8 +318,8 @@ $("#delete-post-button").click(function (e) {
 
         });
     });
-    
-    
+
+
 
     $("#editCommentModal").on("show.bs.modal", function (event) {
         var element = $(event.relatedTarget);
@@ -360,7 +363,8 @@ $("#delete-post-button").click(function (e) {
                 console.log(errorThrown);
 
             });
-        };
+        }
+        ;
     });
 
     $("#publish-comment-button").unbind("click");

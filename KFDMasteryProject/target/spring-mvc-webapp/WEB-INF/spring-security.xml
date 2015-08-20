@@ -60,4 +60,5 @@
             JOIN roles AS r ON ur.role_id = r.role_id WHERE u.user_name =?" />
         </authentication-provider>
     </authentication-manager>
-</beans:beans>
+    
+    </beans:beans>

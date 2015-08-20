@@ -27,7 +27,7 @@ public class Post {
     private Date expDate;
     private int published;
     private int pending;
-    private int[] categoryIds;
+    private int categoryId;
 
     public int getPending() {
         return pending;
@@ -118,12 +118,12 @@ public class Post {
         this.blurb = blurb;
     }
     
-    public int[] getCategoryIds() {
-        return categoryIds;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryIds(int[] categoryIds) {
-        this.categoryIds = categoryIds;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
@@ -140,7 +140,7 @@ public class Post {
         hash = 37 * hash + Objects.hashCode(this.expDate);
         hash = 37 * hash + this.published;
         hash = 37 * hash + this.pending;
-        hash = 37 * hash + Arrays.hashCode(this.categoryIds);
+        hash = 37 * hash + this.categoryId;
         return hash;
     }
 
@@ -186,7 +186,7 @@ public class Post {
         if (this.pending != other.pending) {
             return false;
         }
-        if (!Arrays.equals(this.categoryIds, other.categoryIds)) {
+        if (this.categoryId != other.categoryId) {
             return false;
         }
         return true;
