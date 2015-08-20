@@ -92,7 +92,7 @@
 
         <div class="row">
             <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <div class="panel panel-default  col-md-5">
+            <div class="panel panel-default  col-md-5 ">
                 <div class="panel-heading">
                     <h3 class="dashboard-page-title">Static Pages</h3>
                 </div>
@@ -121,8 +121,9 @@
                     </ul>
                 </div>
             </div>
-             </sec:authorize>
-            <div class="panel panel-default col-md-5">
+        </div>
+             
+            <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>
@@ -138,12 +139,12 @@
                     </pre>
                 </div>
             </div>
-            
+           
         </div>
             
             <div class="row">
 
-            <div class="panel panel-default  col-md-5">
+            <div class="panel panel-default  col-md-5 ">
 
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Published Blog Posts</h3>
@@ -163,6 +164,7 @@
                 </div>
                 
             </div>
+                 </sec:authorize>
     </div>    
             
       <div class="modal fade" id="myModal">

@@ -34,7 +34,9 @@
                 <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
             </ul>    
         </div>
+
         <div class="panel panel-default">
+           
             <div class="panel-heading">
                 <h3 class="panel-title">Latest Blog Post: ${currentPost.title}</h3>
                 <p style="font-size:70%"><i>${currentPost.createDate}</i></p>
@@ -43,7 +45,7 @@
                 ${currentPost.content}
             </div>
         </div>
-
+  
         <div class="panel panel-default col-md-6">
             <div class="panel-heading">
                 <h3 class="panel-title">Schedule of Events</h3>
@@ -67,15 +69,18 @@
 
             </div>
         </div>
-        
-    </div>
-    <!--Sign In Modal-->
 
-    <div class="modal fade" id="myModal">
+    </div>
+   
+      <!--Sign In Modal-->
+
+    <div class="modal fade" id="myModal">      
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                   
+             <c:if test = "${param.login_error == 1}">
+                <h3><font color = "red">WRONG ID or PASSWORD</font></h3>
+            </c:if>
                     <form id ="login-form-name" method="post" class ="form-horizontal" action ="j_spring_security_check">
                         <div class="form-group">
                             <label for="login-user-name" class="col-md-4 control-label">User Name</label>
@@ -101,10 +106,7 @@
         </div>
     </div>
 
-
-
-
-
+    
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

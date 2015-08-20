@@ -78,7 +78,6 @@
                     <div class="col-lg-2 col-lg-offset-4">
                         <button type="submit" id="save-post-button" class="btn btn-default">Save</button>
                        
-                      
                        <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <button type="submit" id="publish-post-button" class="btn btn-default">Publish</button>
                       </sec:authorize>
