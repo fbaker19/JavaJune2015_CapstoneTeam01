@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix ="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,10 +11,11 @@
         <title>Sea Legs Nautical Academy</title>
         <!-- Bootstrap core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
-
-        <!-- Logo -->
-        <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg">
+         <!-- Logo -->
+            <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.jpg" >
+          <div class="row col-lg-offset-11">
+            <a data-toggle="modal" href="#myModal">Sign Out</a> 
+        </div>
     </div>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/img/background1.jpg); background-attachment:fixed;"> 
@@ -40,6 +42,7 @@
 
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Pending Blog Posts</h3>
+
                 </div>
 
 
@@ -63,6 +66,9 @@
                 </div>
             </div>
 
+            
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+
 
             <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
@@ -80,16 +86,23 @@
                     </pre>
                 </div>
             </div>
+            </sec:authorize>
         </div>
 
 
         <div class="row">
-            <div class="panel panel-default  col-md-5">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <div class="panel panel-default  col-md-5 ">
                 <div class="panel-heading">
                     <h3 class="dashboard-page-title">Static Pages</h3>
                 </div>
+
+                
+                <div class="panel-body" style="max-height: 300px">
+
                 <div class="panel-body">
                     <pre class="pre-scrollable">
+
                     <table class="table table-striped">
                             <c:forEach var="staticPage" items="${spList}">
                             <tr>
@@ -99,6 +112,7 @@
                     </table> 
                     </pre>
                 </div>
+              
                 <div class="panel-footer">
                     <ul>
                         <li class="btn btn-default col-md-offset-8">
@@ -107,6 +121,8 @@
                     </ul>
                 </div>
             </div>
+        </div>
+             
             <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
@@ -137,11 +153,12 @@
                     </pre>
                 </div>
             </div>
+           
         </div>
 
         <div class="row">
 
-            <div class="panel panel-default  col-md-5">
+            <div class="panel panel-default  col-md-5 ">
 
                 <div class="panel-heading">
                     <h3 class="dashboard-blog-title">Published Blog Posts</h3>
@@ -161,6 +178,55 @@
                 </div>
 
             </div>
+        </sec:authorize>
+    </div>    
+            
+      <div class="modal fade" id="myModal">
+        <div class= "modal-dialog"  style="float: right; width: 15%;">
+            <div class="modal-content">
+                <div class="modal-body">
+                   
+                    <form id ="login-form-name" method="post" class ="form-horizontal">
+                     
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">                          
+                                <a href= "${pageContext.request.contextPath}/index" title=”sign-out”><strong>Sign Out</strong></a>  
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="editCommentModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4 class="modal-title">
+
+                        <table class="table table"></table>
+                        <tr>
+                            <td><label id="comment-id"></label><input type="hidden" id="post-id"></td>, 
+                            <td><label id="comment-create-date"></label></td>,
+                            <td><label id="comment-commenter"></label></td>
+                        </tr>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p id="comment-comment"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="publish-comment-button" class="btn btn-default">Publish</button>
+                    <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>    
 
         <!-- Modal -->
@@ -190,11 +256,11 @@
                         <button type="submit" id="delete-comment-button" class="btn btn-default">Delete</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
+
                 </div>
-
-            </div>
-        </div>   
-
+        </div>
+    </div>   
+ 
         <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>

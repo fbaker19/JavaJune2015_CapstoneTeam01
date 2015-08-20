@@ -43,6 +43,37 @@
             </div>
         </div>
     </div>
+             <!--Sign In Modal-->
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                   
+                    <form id ="login-form-name" method="post" class ="form-horizontal" action ="j_spring_security_check">
+                        <div class="form-group">
+                            <label for="login-user-name" class="col-md-4 control-label">User Name</label>
+                            <div class="col-md-8">
+                                <input type="text" name="j_username" class="form-control" id="login-user-name" placeholder="User Name"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password" class="col-md-4 control-label">Password</label>
+                            <div class="col-md-8">
+                                <input type="password" name="j_password" class="form-control" id="login-password" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">
+                                <button type="submit" id="login-button" class="btn btn-default">Sign In</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>

@@ -11,8 +11,6 @@ import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Comment;
 import com.swcguild.kfdmasteryproject.dao.PostInterface;
 import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
-import com.swcguild.kfdmasteryproject.dao.PostInterface;
-import com.swcguild.kfdmasteryproject.dao.StaticPageInterface;
 import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.util.List;
@@ -122,6 +120,8 @@ public class StaticPageController {
        return "bossDashboard";
    }
   
+ 
+  
  @RequestMapping(value="/addPage", method=RequestMethod.GET)
  public String displayAddPage(Model model){
      StaticPage page = new StaticPage();
@@ -146,27 +146,45 @@ public class StaticPageController {
             sp.editContent(page);
         }
     }
- 
- 
-   @RequestMapping(value={"/employeeDash"}, method = RequestMethod.GET)
-  public String displayEmployeeDashboard(Model model)
-  {
-       List<Post> ppList = pdao.viewAllPendingPosts();
-       List<Comment> pcList = com.viewAllPendingComments();
-       List<StaticPage> spList = sp.viewAllContent();
-       List<Category> catList = cat.viewAllCategories();
-       List<Post> pList = pdao.viewAllPublishedPosts();
-       
-       model.addAttribute("ppList", ppList);
-       model.addAttribute("pcList", pcList);
-       model.addAttribute("spList", spList);
-       model.addAttribute("catList", catList);
-       model.addAttribute("pList", pList);
-       
-  return "employeeDash";
-  } 
-  
- 
-  
-    
 }
+ 
+
+ 
+//   @RequestMapping(value={"/employeeDash"}, method = RequestMethod.GET)
+//  public String displayEmployeeDashboard(Model model)
+//  {
+//       List<Post> ppList = pdao.viewAllPendingPosts();
+//       List<Comment> pcList = com.viewAllPendingComments();
+//       List<StaticPage> spList = sp.viewAllContent();
+//       List<Category> catList = cat.viewAllCategories();
+//       
+//       model.addAttribute("ppList", ppList);
+//       model.addAttribute("pcList", pcList);
+//       model.addAttribute("spList", spList);
+//       model.addAttribute("catList", catList);
+//       
+//  return "employeeDash";
+//  }   
+
+//   @RequestMapping(value={"/employeeDash"}, method = RequestMethod.GET)
+//  public String displayEmployeeDashboard(Model model)
+//  {
+//       List<Post> ppList = pdao.viewAllPendingPosts();
+//       List<Comment> pcList = com.viewAllPendingComments();
+//       List<StaticPage> spList = sp.viewAllContent();
+//       List<Category> catList = cat.viewAllCategories();
+//       List<Post> pList = pdao.viewAllPublishedPosts();
+//       
+//       model.addAttribute("ppList", ppList);
+//       model.addAttribute("pcList", pcList);
+//       model.addAttribute("spList", spList);
+//       model.addAttribute("catList", catList);
+//       model.addAttribute("pList", pList);
+//       
+//  return "employeeDash";
+//  }
+//}
+
+    
+
+
