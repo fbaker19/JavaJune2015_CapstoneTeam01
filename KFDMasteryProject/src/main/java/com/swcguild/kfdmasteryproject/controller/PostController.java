@@ -60,6 +60,8 @@ public class PostController {
         model.addAttribute("post", post);
         model.addAttribute("comments", comments);
         int categoryId = post.getCategoryId();
+        List<Category> cList = cat.viewAllCategories();
+        model.addAttribute("cList", cList);
         Category category = cat.viewCategory(categoryId);
         model.addAttribute("category", category);
         return "viewPost";
@@ -88,7 +90,6 @@ public class PostController {
             pdao.updatePost(post);
         }
     }
-
 
     @RequestMapping(value = "/addPost/{postId}", method = RequestMethod.GET)
     public String displayEditPost(@PathVariable("postId") int postId, Model model) {
@@ -139,7 +140,6 @@ public class PostController {
 //            pdao.updatePost(post);
 //        }
 //    }
-       
     @RequestMapping(value = {"/deletePost/{postId}"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePost(@PathVariable int postId) {

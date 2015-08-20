@@ -98,7 +98,7 @@
                 </div>
 
                 
-                <div class="panel-body" style="max-height: 300px">
+                <!--<div class="panel-body" style="max-height: 300px">-->
 
                 <div class="panel-body">
                     <pre class="pre-scrollable">
@@ -120,7 +120,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            <!--</div>-->
         </div>
              
             <div class="panel panel-default col-md-5 col-md-offset-1">

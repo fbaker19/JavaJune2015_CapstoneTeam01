@@ -55,19 +55,14 @@
 
     
     <bean id="multipartResolver"
-<<<<<<< HEAD
-    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-     <!-- one of the properties available; the maximum file size in bytes -->
-    <property name="maxUploadSize" value="2000000"/>
-</bean>
-=======
-      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- one of the properties available; the maximum file size in bytes -->
         <property name="maxUploadSize" value="2000000"/>
     </bean>
+
     
     <!--ADDED 8/19 for security-->  
     <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 
->>>>>>> 4517a231cc7708bf6154bc8a2e2d7bec842f9d15
 </beans>

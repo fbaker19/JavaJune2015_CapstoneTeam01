@@ -55,8 +55,6 @@
         </div>
 
   
-        <div class="panel panel-default col-md-6">
-
         <br/><br/>
         <div class="panel panel-default col-md-5">
 
@@ -69,7 +67,6 @@
         </div>
 
 
-        <div class="panel panel-default col-md-6">
 
         <div class="panel panel-default col-md-6 col-md-offset-1">
 
