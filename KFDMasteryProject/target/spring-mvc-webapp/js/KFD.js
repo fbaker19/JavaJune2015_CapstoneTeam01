@@ -9,9 +9,6 @@ $(document).ready(function () {
  
     // BOSS DASHBOARD
 $("#save-post-button").unbind("click");
-
-
-    
     $("#save-post-button").click(function (e) {
         console.log("GOT HERE SAVE FIRST");
         e.preventDefault();
@@ -184,6 +181,142 @@ $("#delete-post-button").click(function (e) {
 
         });
     });
+    
+    
+    $("#save-page-button").unbind("click");
+    $("#save-page-button").click(function (e) {
+        console.log("GOT HERE SAVE FIRST");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: projectRoot + "/savePage",
+            data: JSON.stringify({
+                content: tinyMCE.activeEditor.getContent(),
+                title: $("#page-title").val(),
+                pageId: $("#page-id").val(),
+                date: $("#page-date").val(),
+                published: 0,
+                userId: $("#page-user-id").val()
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    });
+
+    $("#publish-page-button").unbind("click");
+    $("#publish-page-button").click(function (e) {
+        console.log("GOT HERE PUBLISH FIRST");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: projectRoot + "/publishPage",
+            data: JSON.stringify({
+                content: tinyMCE.activeEditor.getContent(),
+                title: $("#page-title").val(),
+                pageId: $("#page-id").val(),
+                date: $("#page-date").val(),
+                published: 1,
+                userId: $("#page-user-id").val()
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            window.location = projectRoot + "/bossDashboard";
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    });
+    
+    $("#delete-page-button").unbind("click");
+    $("#delete-page-button").click(function (e) {
+        console.log("GOT HERE DELETE FIRST");
+        var pageId = $("#page-id").val();//element.data("post-id");
+        var answer = confirm("Do you really want to delete this page?");
+        if (answer === true) {
+            $.ajax({
+                type: "DELETE",
+                url: projectRoot + "/deletePage/" + pageId,
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }//,
+                //dataType: "json"
+            }).success(function (data, status) {
+                window.location = projectRoot + "/bossDashboard";
+                console.log("GOT HERE");
+
+            }).error(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+
+            });
+
+        }
+        ;
+
+    });
+
+    $("#cancel-page-button").unbind("click");
+    $("#cancel-page-button").click(function (e) {
+        e.preventDefault();
+        window.location = projectRoot + "/bossDashboard";
+    });
+
+    $("#add-comment-button").unbind("click");
+    $("#add-comment-button").click(function (e) {
+        console.log("GOT HERE FIRST");
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: projectRoot + "/addComment",
+            data: JSON.stringify({
+                comment: $("#add-comment").val(),
+                commenter: $("#commenter").val(),
+                postId: $("#post-id").val(),
+                published: 0,
+                pending: 1,
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }//,
+            //dataType: "json"
+        }).success(function (data, status) {
+            $("#commentModal").modal();
+            $("#add-comment").val("");
+            $("#commenter").val("");
+            console.log("GOT HERE");
+
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+        });
+    });
+    
+    
 
     $("#editCommentModal").on("show.bs.modal", function (event) {
         var element = $(event.relatedTarget);
@@ -206,7 +339,7 @@ $("#delete-post-button").click(function (e) {
     $("#delete-comment-button").click(function (e) {
         console.log("GOT HERE FIRST");
         e.preventDefault();
-        var commentId = $("#comment-id").val();//element.data("post-id");
+        var commentId = $("#comment-id").text();//element.data("post-id");
         var answer = confirm("Do you really want to delete this comment?");
         if (answer === true) {
             $.ajax({
@@ -263,133 +396,4 @@ $("#delete-post-button").click(function (e) {
         });
     });
 
-
-
-
-
-//EMPLOYEE DASHBOARD EMPLOYEE DASHBOARD EMPLOYEE DASHBOARD EMPLOYEE DASHBOARD EMPLOYEE DASHBOARD EMPLOYEE DASHBOARD
-
-//$("#save-post-button").unbind("click");
-//    $("#save-post-button").click(function (e) {
-//        console.log("GOT HERE FIRST");
-//        e.preventDefault();
-//        $.ajax({
-//            type: "POST",
-//            url: projectRoot + "/saveEmpPost",
-//            data: JSON.stringify({
-//                content: tinyMCE.activeEditor.getContent(),
-//                expDate: $("#exp-date").val(),
-//                title: $("#post-title").val(),
-//                postId: $("#post-id").val(),
-//                blurb: $("#post-blurb").val(),
-//                createDate: $("#post-create-date").val(),
-//                lastModifiedDate: $("#post-last-modified-date").val(),
-//               // published: 0,
-//                pending: 1,
-//                lastModifiedUserId: $("#post-last-modified-user-id").val(),
-//                userId: $("#post-user-id").val()
-//            }),
-//            headers: {
-//                "Accept": "application/json",
-//                "Content-Type": "application/json"
-//            }//,
-//            //dataType: "json"
-//        }).success(function (data, status) {
-//            window.location = projectRoot + "/employeeDash";
-//            console.log("GOT HERE");
-//
-//        }).error(function (jqXHR, textStatus, errorThrown) {
-//            console.log(jqXHR);
-//            console.log(textStatus);
-//            console.log(errorThrown);
-//
-//        });
-//    });
-//    
-//$("#edit-post").unbind("click");
-//$("#edit-post").click(function (e) {
-//        console.log("GOT HERE FIRST");
-//        var element = $(event.relatedTarget);
-//        var postId = element.data("post-id");
-//        e.preventDefault();
-//        $.ajax({
-//            type: "GET",
-//            url: projectRoot + "/addPostEmp/" + postId,
-//            data: JSON.stringify({
-//                content: tinyMCE.activeEditor.getContent(),
-//                expDate: $("#exp-date").val(),
-//                title: $("#post-title").val(),
-//                postId: $("#post-id").val()
-//            }),
-//            
-//        }).success(function (post) {
-//            window.location = projectRoot + "/employeeDash";
-//            console.log("GOT HERE");
-//
-//        }).error(function (jqXHR, textStatus, errorThrown) {
-//            console.log(jqXHR);
-//            console.log(textStatus);
-//            console.log(errorThrown);
-//
-//        });
-////    });
-//$("#delete-post-button").unbind("click");
-//$("#delete-post-button").click(function (e) {
-//        console.log("GOT HERE FIRST");
-//        e.preventDefault();
-//        var postId = $("#post-id").val();//element.data("post-id");
-//        var answer = confirm("Do you really want to delete this blog post?");
-//    if (answer === true) {
-//        $.ajax({
-//            type: "DELETE",
-//            url: projectRoot + "/deletePost/" + postId,
-//         
-//            headers: {
-//                "Accept": "application/json",
-//                "Content-Type": "application/json"
-//            }//,
-//            //dataType: "json"
-//        }).success(function (data, status) {
-//            window.location = projectRoot + "/employeeDash";
-//            console.log("GOT HERE");
-//
-//        }).error(function (jqXHR, textStatus, errorThrown) {
-//            console.log(jqXHR);
-//            console.log(textStatus);
-//            console.log(errorThrown);
-//
-//        });
-//    
-//        };
-//
-//        });
-//
-//$("#cancel-post-button").unbind("click");
-//$("#cancel-post-button").click( function (e){
-//    e.preventDefault();
-//    window.location = projectRoot + "/employeeDash";
-//});
-
-//
-//$("#sign-in-link").unbind("click");
-//$("#sign-in-link").click(function (e) {
-//        console.log("you made it boss!");
-//        e.preventDefault();
-//        var userId = $("#user_id").val();
-//          
-//$.ajax({
-//    url: "j_spring_security_check",
-//    type: "POST",
-//    data: $("#login-form-name").serialize()
-//   // beforeSend: function (xhr) {
-//        //xhr.setRequestHeader("X-Ajax-call", "true");
-//   // },
-//    
-//    
-//}).success(function(data,status){
-//    console.log(status);
-//});
-
-
-//});  
 });

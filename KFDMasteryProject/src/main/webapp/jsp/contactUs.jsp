@@ -28,48 +28,22 @@
         <hr/>
         <div class="navbar">
             <ul class="nav nav-tabs">
-                <li role="presentation"  class="active"><a href="${pageContext.request.contextPath}/index">Home</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/blogposts">Blog Posts</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/aboutUs">About</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
+                <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
             </ul>    
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Latest Blog Post: ${currentPost.title}</h3>
-                <p style="font-size:70%"><i>${currentPost.createDate}</i></p>
+                <h3 class="panel-title">${page.title}</h3>
             </div>
             <div class="panel-body">
-                ${currentPost.content}
+                ${page.content}
             </div>
         </div>
-
-        <div class="panel panel-default col-md-6">
-            <div class="panel-heading">
-                <h3 class="panel-title">Schedule of Events</h3>
-            </div>
-            <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac enim cursus augue aliquet convallis nec sed velit. Ut vulputate venenatis massa, vel tincidunt elit vehicula sit amet. Donec tincidunt accumsan maximus. Aliquam convallis rhoncus augue eget suscipit. Ut elementum ante a erat efficitur posuere. Curabitur ut posuere dolor, at placerat risus. Vivamus quis tincidunt purus. Sed imperdiet quis neque non tristique.
-
-                Nulla ut nisi urna. Nulla consequat fringilla efficitur. Vestibulum quis diam faucibus, condimentum est a, vestibulum augue. Mauris luctus tempus mollis. Cras eu sodales sem, a congue diam. Vestibulum vehicula blandit neque at ornare. Aenean suscipit augue quis mi consectetur, eget lobortis metus eleifend. Ut consectetur luctus urna, a lacinia urna tincidunt nec. Vestibulum pretium pharetra augue, sit amet malesuada felis sodales in.
-
-            </div>
-        </div>
-
-        <div class="panel panel-default col-md-6">
-            <div class="panel-heading">
-                <h3 class="panel-title">Upcoming Events</h3>
-            </div>
-            <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac enim cursus augue aliquet convallis nec sed velit. Ut vulputate venenatis massa, vel tincidunt elit vehicula sit amet. Donec tincidunt accumsan maximus. Aliquam convallis rhoncus augue eget suscipit. Ut elementum ante a erat efficitur posuere. Curabitur ut posuere dolor, at placerat risus. Vivamus quis tincidunt purus. Sed imperdiet quis neque non tristique.
-
-                Nulla ut nisi urna. Nulla consequat fringilla efficitur. Vestibulum quis diam faucibus, condimentum est a, vestibulum augue. Mauris luctus tempus mollis. Cras eu sodales sem, a congue diam. Vestibulum vehicula blandit neque at ornare. Aenean suscipit augue quis mi consectetur, eget lobortis metus eleifend. Ut consectetur luctus urna, a lacinia urna tincidunt nec. Vestibulum pretium pharetra augue, sit amet malesuada felis sodales in.
-
-            </div>
-        </div>
-        
     </div>
-    <!--Sign In Modal-->
+             <!--Sign In Modal-->
 
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
@@ -101,12 +75,8 @@
         </div>
     </div>
 
-
-
-
-
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.js"></script>
     <script src="${pageContext.request.contextPath}/js/tinymce/tinymce.dev.js"></script>

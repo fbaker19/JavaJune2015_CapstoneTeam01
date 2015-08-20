@@ -26,7 +26,7 @@
         <property name="initialSize" value="5"/>
         <property name="maxActive" value="10"/>
     </bean>
-   <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+  
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -44,7 +44,7 @@
     
     
     <!--ADDED 8/9-->
-   <bean id="com" class="com.swcguild.kfdmasteryproject.dao.CommentImpl">
+    <bean id="com" class="com.swcguild.kfdmasteryproject.dao.CommentImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
  
@@ -53,13 +53,15 @@
     </bean> 
      
     <!--ADDED 8/13-->
-   <bean id="people" class="com.swcguild.kfdmasteryproject.dao.PeopleImpl">
+    <bean id="people" class="com.swcguild.kfdmasteryproject.dao.PeopleImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     
     <bean id="multipartResolver"
-    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-     <!-- one of the properties available; the maximum file size in bytes -->
-    <property name="maxUploadSize" value="500000"/>
-</bean>
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="500000"/>
+    </bean>
+    <!--ADDED 8/19 for security-->  
+    <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 </beans>
