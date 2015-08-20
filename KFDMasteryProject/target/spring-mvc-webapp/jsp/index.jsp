@@ -43,27 +43,21 @@
                 ${currentPost.content}
             </div>
         </div>
-
-        <div class="panel panel-default col-md-6">
+<br/><br/>
+        <div class="panel panel-default col-md-5">
             <div class="panel-heading">
-                <h3 class="panel-title">Schedule of Events</h3>
+                <h3 class="panel-title">${page1.title}</h3>
             </div>
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac enim cursus augue aliquet convallis nec sed velit. Ut vulputate venenatis massa, vel tincidunt elit vehicula sit amet. Donec tincidunt accumsan maximus. Aliquam convallis rhoncus augue eget suscipit. Ut elementum ante a erat efficitur posuere. Curabitur ut posuere dolor, at placerat risus. Vivamus quis tincidunt purus. Sed imperdiet quis neque non tristique.
-
-                Nulla ut nisi urna. Nulla consequat fringilla efficitur. Vestibulum quis diam faucibus, condimentum est a, vestibulum augue. Mauris luctus tempus mollis. Cras eu sodales sem, a congue diam. Vestibulum vehicula blandit neque at ornare. Aenean suscipit augue quis mi consectetur, eget lobortis metus eleifend. Ut consectetur luctus urna, a lacinia urna tincidunt nec. Vestibulum pretium pharetra augue, sit amet malesuada felis sodales in.
-
+               ${page1.content}
             </div>
         </div>
-        <div class="panel panel-default col-md-6">
+        <div class="panel panel-default col-md-6 col-md-offset-1">
             <div class="panel-heading">
-                <h3 class="panel-title">Upcoming Events</h3>
+                <h3 class="panel-title">${page2.title}</h3>
             </div>
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac enim cursus augue aliquet convallis nec sed velit. Ut vulputate venenatis massa, vel tincidunt elit vehicula sit amet. Donec tincidunt accumsan maximus. Aliquam convallis rhoncus augue eget suscipit. Ut elementum ante a erat efficitur posuere. Curabitur ut posuere dolor, at placerat risus. Vivamus quis tincidunt purus. Sed imperdiet quis neque non tristique.
-
-                Nulla ut nisi urna. Nulla consequat fringilla efficitur. Vestibulum quis diam faucibus, condimentum est a, vestibulum augue. Mauris luctus tempus mollis. Cras eu sodales sem, a congue diam. Vestibulum vehicula blandit neque at ornare. Aenean suscipit augue quis mi consectetur, eget lobortis metus eleifend. Ut consectetur luctus urna, a lacinia urna tincidunt nec. Vestibulum pretium pharetra augue, sit amet malesuada felis sodales in.
-
+               ${page2.content}
             </div>
         </div>
 
