@@ -7,6 +7,7 @@ package com.swcguild.kfdmasteryproject.dao;
 
 import com.swcguild.kfdmasteryproject.model.Image;
 import com.swcguild.kfdmasteryproject.model.Post;
+import com.swcguild.kfdmasteryproject.model.UserModel;
 import java.util.List;
 
 /**
@@ -18,6 +19,8 @@ public interface PostInterface {
     public Post saveNewPost(Post post);
 
     public Post publishNewPost(Post post);
+    
+    public UserModel getUserByName (String userName);
 
     public Post updatePost(Post post);
 

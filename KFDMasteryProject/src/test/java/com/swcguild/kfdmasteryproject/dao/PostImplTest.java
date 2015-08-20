@@ -6,7 +6,7 @@
 package com.swcguild.kfdmasteryproject.dao;
 
 import com.swcguild.kfdmasteryproject.model.Post;
-import com.swcguild.kfdmasteryproject.model.User;
+import com.swcguild.kfdmasteryproject.model.UserModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;

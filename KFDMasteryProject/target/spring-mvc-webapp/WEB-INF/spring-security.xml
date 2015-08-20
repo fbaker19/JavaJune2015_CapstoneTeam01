@@ -18,6 +18,7 @@
     <http pattern="/blogposts/**" security="none" />
     <http pattern="/aboutUs/**" security="none" />
     <http pattern="/contactUs/**" security="none" />
+    <http pattern="/viewPost/**" security="none" />
 
      
     <!-- #3 - Authentication/login form and protected endpoint configuration --> 

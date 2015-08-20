@@ -96,10 +96,7 @@
                 <div class="panel-heading">
                     <h3 class="dashboard-page-title">Static Pages</h3>
                 </div>
-
-                
-                <div class="panel-body" style="max-height: 300px">
-
+              
                 <div class="panel-body">
                     <pre class="pre-scrollable">
 
@@ -121,9 +118,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
-             
-            <div class="panel panel-default col-md-5 col-md-offset-1">
+             <div class="panel panel-default col-md-5 col-md-offset-1">
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>
@@ -155,6 +150,9 @@
             </div>
            
         </div>
+             
+           
+        
 
         <div class="row">
 
@@ -180,7 +178,7 @@
             </div>
         </sec:authorize>
     </div>    
-            
+          </div>  
       <div class="modal fade" id="myModal">
         <div class= "modal-dialog"  style="float: right; width: 15%;">
             <div class="modal-content">
