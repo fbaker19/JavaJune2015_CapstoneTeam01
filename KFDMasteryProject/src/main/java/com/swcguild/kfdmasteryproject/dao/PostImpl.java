@@ -34,12 +34,13 @@ public class PostImpl implements PostInterface {
     
     //userid/foreign key????? post? catagory  deletion?
     private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, user_id, "
-            + "last_modified_user_id, create_date, last_modified_date, expiration_date, published, pending, blurb)VALUES(?,?,?,?,?,?,?,?,?,?)";
+            + "last_modified_user_id, create_date, last_modified_date, expiration_date, published, pending, blurb, category_id)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
     
     private static final String SQL_DELETE_POST = "DELETE FROM posts WHERE post_id = ?";
     private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, "
-            + "last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, pending = ?, blurb= ? WHERE post_id =?";
+            + "last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, pending = ?, blurb= ? , category_id=? WHERE post_id =?";
     
+    private static final String SQL_SELECT_ALL_PUBLISHED_POSTS_BY_CATEGORY_ID = "SELECT * FROM posts WHERE published=1 AND category_id=?";
     //IMAGE
     private static final String SQL_INSERT_IMAGE = "INSERT INTO image (image) VALUES (?)";
     private static final String SQL_SELECT_IMAGE_BY_ID = "SELECT * FROM image WHERE image_id = ?";
@@ -80,7 +81,8 @@ public class PostImpl implements PostInterface {
                 post.getExpDate(),
                 post.getPublished(),
                 post.getPending(),
-                post.getBlurb());
+                post.getBlurb(),
+                post.getCategoryId());
        
         post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
                 
@@ -118,7 +120,8 @@ public class PostImpl implements PostInterface {
                 post.getExpDate(),
                 post.getPublished(),
                 post.getPending(),
-                post.getBlurb());
+                post.getBlurb(),
+                post.getCategoryId());
                 
         post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
         return post;
@@ -152,6 +155,7 @@ public class PostImpl implements PostInterface {
                 post.getPublished(),
                 post.getPending(),
                 post.getBlurb(),
+                post.getCategoryId(),
                 post.getPostId());
         
         return post;
@@ -200,6 +204,13 @@ public class PostImpl implements PostInterface {
         expirePosts();
         return jdbcTemplate.query(SQL_SELECT_ALL_PUBLISHED_POSTS, new PostMapper());
     }
+    
+    @Override
+    public List<Post> viewAllPublishedPostsByCategoryId(int categoryId){
+        expirePosts();
+        return jdbcTemplate.query(SQL_SELECT_ALL_PUBLISHED_POSTS_BY_CATEGORY_ID, new PostMapper(), categoryId);
+    
+    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -235,6 +246,7 @@ public class PostImpl implements PostInterface {
             post.setPending(rs.getInt("pending"));
             post.setTitle(rs.getString("title"));
             post.setUserId(rs.getInt("user_id"));
+            post.setCategoryId(rs.getInt("category_id"));
 
             return post;
 

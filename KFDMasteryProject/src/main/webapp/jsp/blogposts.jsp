@@ -28,12 +28,25 @@
         <hr/>
         <div class="navbar">
             <ul class="nav nav-tabs">
-               <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                 <li role="presentation"  class="active"><a href="${pageContext.request.contextPath}/blogposts">Blog Posts</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/aboutUs">About</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
             </ul>    
         </div>
+            <br/>
+        <!-- Button (Double) -->
+        <div class="container">
+
+            <div class="col-md-8">
+                <c:forEach var="category" items="${cList}">
+                    <tr>
+                        <td><button id="button-${category.categoryId}"><a href="displayCatPage/${category.categoryId}">${category.categoryName} </a></button></td>
+                    </tr>
+                </c:forEach>
+            </div>
+        </div>
+        <br/>
 
         <c:forEach var="post" items="${pList}">
             <div class="container">
@@ -55,6 +68,11 @@
 
     </div>
 
+
+
+
+    <br/>
+    <br/>
 
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>

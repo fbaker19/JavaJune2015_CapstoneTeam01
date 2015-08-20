@@ -6,6 +6,8 @@
 package com.swcguild.kfdmasteryproject.model;
 
 import java.util.Objects;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -14,6 +16,9 @@ import java.util.Objects;
 public class Category {
     
     private int categoryId;
+    
+    @NotEmpty(message = "You must supply a value for Category")
+    @Length(max = 50, message = "Category must be no more than 25 characters")
     private String categoryName;
 
     public int getCategoryId() {

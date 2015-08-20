@@ -26,7 +26,7 @@
         <hr/>
         <div class="navbar">
             <ul class="nav nav-tabs">
-               <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
+                <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/blogposts">Blog Posts</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/aboutUs">About</a></li>
                 <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
@@ -36,20 +36,16 @@
 
         <div class="panel panel-default">
             <br/>
-            
-            
-            
-            
-            
-            
-            
+
+
             <iframe id="form_target" name="form_target" style="display:none"></iframe>
             <form id="my_form" action="uploadImage" target="form_target" method="post" enctype="multipart/form-data" style="width:0px;height:0;overflow:hidden">
-                <input name="newImage" class="form-control" type="file" onchange="$('#my_form').submit(); this.value = '';">
+                <input name="newImage" class="form-control" type="file" onchange="$('#my_form').submit();
+                        this.value = '';">
             </form>
-            
-            
-                
+
+
+
             <div class="panel-header">
                 <div class="input-group col-lg-10 col-lg-offset-1">
                     <input type="hidden" id="post-id" value="${post.postId}"/>
@@ -70,20 +66,38 @@
                 <br/>
                 <div class="row">
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" aria-label="..." placeholder="Add New Category"/>
+                            <!--                            <input type="text" class="form-control" aria-label="..." placeholder="Add New Category"/>-->
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Category<span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#">Add Category</a></li>
-                                    <li><a href="#">Events</a></li>
-                                    <li><a href="#">Good Times</a></li>
-                                </ul>
+                                <div class ="form-group">
+                                    <select id="category-id" class="form-control" name="category">
+                                        <c:choose>
+                                            <c:when test="${category.categoryId == null}">
+                                                <option value="" selected="selected">--Select Category--</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="">--Select Category--</option>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <c:forEach var="listCategory" items="${catList}">
+                                            <c:choose>
+                                                <c:when test="${category.categoryId != null && listCategory.categoryId == category.categoryId}">
+                                                    <option selected="selected" value="${listCategory.categoryId}" >${listCategory.categoryName}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${listCategory.categoryId}" >${listCategory.categoryName}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                </div> 
+                                <!--                                </ul>-->
                             </div><!-- /btn-group -->
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-2 col-lg-offset-4">
+                    <div class="col-lg-2 col-lg-offset-5">
                         <button type="submit" id="save-post-button" class="btn btn-default">Save</button>
                         <button type="submit" id="publish-post-button" class="btn btn-default">Publish</button>
                     </div>

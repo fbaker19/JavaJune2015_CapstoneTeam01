@@ -37,13 +37,15 @@
         </div>
         <div class="panel panel-default">
             <input type="hidden" id="post-id" value="${post.postId}"/>
+            <input type="hidden" id="category-id" value="${category.categoryId}"/>
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    ${post.title} 
+                    ${post.title}
                 </h3>
+                <a href="${pageContext.request.contextPath}/displayCatPage/${category.categoryId}">${category.categoryName}</a>
             </div>
             <div class="panel-body">
-                ${post.content}
+                ${post.content} 
             </div>
         </div>
 

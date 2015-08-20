@@ -60,7 +60,23 @@ public class StaticPageController {
    {
        List<Post> pList = pdao.viewAllPublishedPosts();
        model.addAttribute("pList", pList);
+       
+       List<Category> cList = cat.viewAllCategories();
+       model.addAttribute("cList", cList);
+       
        return "blogposts";
+   }
+  
+  @RequestMapping(value={"/displayCatPage/{categoryId}"}, method = RequestMethod.GET)
+  public String displayCatPage(@PathVariable("categoryId") int categoryId, Model model)
+   {
+       List<Post> pList = pdao.viewAllPublishedPostsByCategoryId(categoryId);
+       model.addAttribute("pList", pList);
+       
+       List<Category> cList = cat.viewAllCategories();
+       model.addAttribute("cList", cList);
+       
+       return "category";
    }
   
    @RequestMapping(value={"/aboutUs"}, method = RequestMethod.GET)
