@@ -72,25 +72,43 @@
                             <div class="input-group-btn">
                                 <div class ="form-group">
                                     <select id="category-id" class="form-control" name="category">
-                                        <c:choose>
-                                            <c:when test="${category.categoryId == null}">
-                                                <option value="" selected="selected">--Select Category--</option>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <option value="">--Select Category--</option>
-                                            </c:otherwise>
-                                        </c:choose>
 
-                                        <c:forEach var="listCategory" items="${catList}">
-                                            <c:choose>
-                                                <c:when test="${category.categoryId != null && listCategory.categoryId == category.categoryId}">
-                                                    <option selected="selected" value="${listCategory.categoryId}" >${listCategory.categoryName}</option>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <option value="${listCategory.categoryId}" >${listCategory.categoryName}</option>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
+
+
+
+                                        <c:if test="${empty category.categoryId}">
+                                            <option value="" selected="selected">--Select Category--</option>
+                                            <c:forEach var="listCategory" items="${catList}">
+                                                <option value="${listCategory.categoryId}" >${listCategory.categoryName}</option>
+                                            </c:forEach>
+                                        </c:if>
+
+                                        <c:if test="${not empty category.categoryId}">
+                                            <option value="">--Select Category--</option>
+                                            <c:forEach var="listCategory" items="${catList}">
+                                                <option value="${listCategory.categoryId}" selected="selected">${listCategory.categoryName}</option>
+                                            </c:forEach>
+                                        </c:if>
+
+                                        <%--<c:choose>--%>
+                                        <%--<c:when test="${category.categoryId == null}">--%>
+                                        <!--<option value="" selected="selected">--Select Category--</option>-->
+                                        <%--</c:when>--%>
+                                        <%--<c:otherwise>--%>
+                                        <!--<option value="">--Select Category--</option>-->
+                                        <%--</c:otherwise>--%>
+                                        <%--</c:choose>--%>
+
+                                        <%--<c:forEach var="listCategory" items="${catList}">--%>
+                                        <%--<c:choose>--%>
+                                        <%--<c:when test="${category.categoryId != null && listCategory.categoryId == category.categoryId}">--%>
+                                            <!--<option selected="selected" value="${listCategory.categoryId}" >${listCategory.categoryName}</option>-->
+                                        <%--</c:when>--%>
+                                        <%--<c:otherwise>--%>
+                                            <!--<option value="${listCategory.categoryId}" >${listCategory.categoryName}</option>-->
+                                        <%--</c:otherwise>--%>
+                                        <%--</c:choose>--%>
+                                        <%--</c:forEach>--%>
                                     </select>
                                 </div> 
                                 <!--                                </ul>-->
@@ -106,15 +124,19 @@
                 <br/>
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Add New Tag"/>
-                            <span class="input-group-btn">
+                    <div class="col-lg-8">
+                        <form class="form-inline">
+                             
+                            <input type="text" id="hashtag1" class="form-control" placeholder="Add Hash Tag" value="${post.hashtag1}"/>
+                            <input type="text" id="hashtag2" class="form-control" placeholder="Add Hash Tag" value="${post.hashtag2}"/>
+                            <input type="text" id="hashtag3" class="form-control" placeholder="Add Hash Tag" value="${post.hashtag3}"/>
+                             
+<!--                            <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">Add Tag</button>
-                            </span>
-                        </div><!-- /input-group -->
+                            </span>-->
+                        </form><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-2 col-lg-offset-4">
+                    <div class="col-lg-2 col-lg-offset-2">
                         <button type="submit" id="delete-post-button" class="btn btn-default ">Delete</button>
                         <button type="submit" id="cancel-post-button" class="btn btn-default ">Cancel</button>
                     </div>

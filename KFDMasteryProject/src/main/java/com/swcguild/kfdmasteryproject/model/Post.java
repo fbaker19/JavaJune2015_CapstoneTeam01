@@ -27,6 +27,9 @@ public class Post {
     private Date expDate;
     private int published;
     private int pending;
+    private String hashtag1;
+    private String hashtag2;
+    private String hashtag3;
     private int categoryId;
 
     public int getPending() {
@@ -126,21 +129,48 @@ public class Post {
         this.categoryId = categoryId;
     }
 
+    public String getHashtag1() {
+        return hashtag1;
+    }
+
+    public void setHashtag1(String hashtag1) {
+        this.hashtag1 = hashtag1;
+    }
+
+    public String getHashtag2() {
+        return hashtag2;
+    }
+
+    public void setHashtag2(String hashtag2) {
+        this.hashtag2 = hashtag2;
+    }
+
+    public String getHashtag3() {
+        return hashtag3;
+    }
+
+    public void setHashtag3(String hashtag3) {
+        this.hashtag3 = hashtag3;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + this.postId;
-        hash = 37 * hash + Objects.hashCode(this.content);
-        hash = 37 * hash + Objects.hashCode(this.blurb);
-        hash = 37 * hash + Objects.hashCode(this.title);
-        hash = 37 * hash + this.userId;
-        hash = 37 * hash + this.lastModifiedUserId;
-        hash = 37 * hash + Objects.hashCode(this.createDate);
-        hash = 37 * hash + Objects.hashCode(this.lastModifiedDate);
-        hash = 37 * hash + Objects.hashCode(this.expDate);
-        hash = 37 * hash + this.published;
-        hash = 37 * hash + this.pending;
-        hash = 37 * hash + this.categoryId;
+        int hash = 5;
+        hash = 59 * hash + this.postId;
+        hash = 59 * hash + Objects.hashCode(this.content);
+        hash = 59 * hash + Objects.hashCode(this.blurb);
+        hash = 59 * hash + Objects.hashCode(this.title);
+        hash = 59 * hash + this.userId;
+        hash = 59 * hash + this.lastModifiedUserId;
+        hash = 59 * hash + Objects.hashCode(this.createDate);
+        hash = 59 * hash + Objects.hashCode(this.lastModifiedDate);
+        hash = 59 * hash + Objects.hashCode(this.expDate);
+        hash = 59 * hash + this.published;
+        hash = 59 * hash + this.pending;
+        hash = 59 * hash + Objects.hashCode(this.hashtag1);
+        hash = 59 * hash + Objects.hashCode(this.hashtag2);
+        hash = 59 * hash + Objects.hashCode(this.hashtag3);
+        hash = 59 * hash + this.categoryId;
         return hash;
     }
 
@@ -184,6 +214,15 @@ public class Post {
             return false;
         }
         if (this.pending != other.pending) {
+            return false;
+        }
+        if (!Objects.equals(this.hashtag1, other.hashtag1)) {
+            return false;
+        }
+        if (!Objects.equals(this.hashtag2, other.hashtag2)) {
+            return false;
+        }
+        if (!Objects.equals(this.hashtag3, other.hashtag3)) {
             return false;
         }
         if (this.categoryId != other.categoryId) {

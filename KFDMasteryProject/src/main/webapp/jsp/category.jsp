@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix ="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,28 @@
                 <li role="presentation"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
             </ul>    
         </div>
+            <br/>
+            <!-- Button (Double) -->
+            <div class="container">
 
+                <div class="col-md-8">
+                    Categories: 
+                    <c:forEach var="category" items="${cList}">
+                        <tr>
+                            <td><button id="button-${category.categoryId}"><a href="${pageContext.request.contextPath}/displayCatPage/${category.categoryId}">${category.categoryName} </a></button></td>
+                        </tr>
+                    </c:forEach>
+                </div>
+            </div>
+            <br/>
+
+            <h2>${category.categoryName}</h2>
+            
+            <c:if test="${empty pList}">
+                <h3>This category is empty</h3>
+            </c:if>
+            
+            
         <c:forEach var="post" items="${pList}">
             <div class="container">
                 <div class="panel panel-default">

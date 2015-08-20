@@ -80,6 +80,9 @@ public class StaticPageController {
        List<Category> cList = cat.viewAllCategories();
        model.addAttribute("cList", cList);
        
+       Category category = cat.viewCategory(categoryId);
+       model.addAttribute("category", category);
+       
        return "category";
    }
   
