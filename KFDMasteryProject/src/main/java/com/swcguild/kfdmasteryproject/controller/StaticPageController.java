@@ -52,6 +52,10 @@ public class StaticPageController {
    {
        Post currentPost=pdao.viewLatestPost();
        model.addAttribute("currentPost", currentPost);
+       StaticPage page1 = sp.viewContentById(3);
+       StaticPage page2 = sp.viewContentById(4);
+       model.addAttribute("page1", page1);
+       model.addAttribute("page2", page2);
        return "index";
    }
   
