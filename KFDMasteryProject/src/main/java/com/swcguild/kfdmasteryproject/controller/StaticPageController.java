@@ -15,6 +15,7 @@ import com.swcguild.kfdmasteryproject.model.Post;
 import com.swcguild.kfdmasteryproject.model.StaticPage;
 import java.util.List;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -139,7 +140,7 @@ public class StaticPageController {
     
     @RequestMapping(value = {"/publishPage"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void publishPage(@RequestBody StaticPage page) {
+    public void publishPage(@Valid @RequestBody StaticPage page) {
         if (page.getPageId() < 0) {
             sp.addContent(page);
         } else {

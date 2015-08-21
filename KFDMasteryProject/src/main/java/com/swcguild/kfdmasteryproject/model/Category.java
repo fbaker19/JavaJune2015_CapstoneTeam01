@@ -18,7 +18,7 @@ public class Category {
     private int categoryId;
     
     @NotEmpty(message = "You must supply a value for Category")
-    @Length(max = 50, message = "Category must be no more than 25 characters")
+    @Length(max = 25, message = "Category must be no more than 25 characters")
     private String categoryName;
 
     public int getCategoryId() {

@@ -127,14 +127,25 @@
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>
-
+                
+                
+                <sf:form class="form-horizontal"
+                         role="form"
+                         modelAttribute="category"
+                         action="addCategory"
+                         method="POST">
                 <div class="input-group">
                     <input type="text" class="form-control" id="category-name" name="categoryName" placeholder="Add New Category"/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" id="add-category-button"type="submit">Add Category</button>
                     </span>
+                    <sf:errors path="categoryName" cssClass="error"></sf:errors>
+                    
                 </div>
-
+                    <div id="validationErrors" style="color: red"></div>
+                </sf:form>
+                
+                
                 <div class="panel-body">
                     <pre class="pre-scrollable">
                     <table class="table table-striped">

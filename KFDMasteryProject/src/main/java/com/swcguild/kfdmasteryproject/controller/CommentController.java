@@ -7,8 +7,8 @@ package com.swcguild.kfdmasteryproject.controller;
 
 import com.swcguild.kfdmasteryproject.dao.CommentInterface;
 import com.swcguild.kfdmasteryproject.model.Comment;
-import com.swcguild.kfdmasteryproject.model.Post;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +34,7 @@ public class CommentController {
 
     @RequestMapping(value = {"/addComment"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void addComment(@RequestBody Comment comment) {
+    public void addComment(@Valid @RequestBody Comment comment) {
 
         com.addComment(comment);
         

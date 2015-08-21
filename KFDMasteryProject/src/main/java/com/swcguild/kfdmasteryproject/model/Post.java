@@ -5,10 +5,10 @@
  */
 package com.swcguild.kfdmasteryproject.model;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -17,8 +17,12 @@ import java.util.Objects;
 public class Post {
 
     private int postId;
+    
+    @NotEmpty(message="Post content cannot be empty")
     private String content;
     private String blurb;
+    @NotEmpty(message="Please enter a title")
+    @Length(message="Title cannot be longer than 50 characters")
     private String title;
     private int userId;
     private int lastModifiedUserId;

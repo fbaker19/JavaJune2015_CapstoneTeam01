@@ -41,16 +41,32 @@
                 <input name="newImage" class="form-control" type="file" onchange="$('#my_form').submit();
                         this.value = '';">
             </form>
-            <div class="panel-header">
-                <div class="input-group col-lg-10 col-lg-offset-1">
-                    <input type="hidden" id="page-id" value="${page.pageId}"/>
-                    <input type="text" class="form-control" id="page-title" value="${page.title}" placeholder="Title"/>
+
+
+
+            <sf:form class="form-horizontal"
+                     role="form"
+                     modelAttribute="page"
+                     action="publishPage"
+                     method="POST">
+                <div class="panel-header">
+                    <div class="input-group col-lg-10 col-lg-offset-1">
+                        <input type="hidden" id="page-id" value="${page.pageId}"/>
+                        <input type="text" class="form-control" id="page-title" value="${page.title}" placeholder="Title"/>
+                    <div id="validationErrors" style="color: red"></div>
+                    </div>
+                    
+
                 </div>
-            </div>
-            <br/>
-            <div class="panel-body ">
-                <input type="text" class="form-control editor" id="page-content" value ='${page.content}' placeholder="Page Content"/> 
-            </div>
+                <br/>
+                <div class="panel-body ">
+                    <input type="text" class="form-control editor" id="page-content" value ='${page.content}' placeholder="Page Content"/> 
+                </div>
+                <sf:errors path="content" cssClass="error"></sf:errors>
+            </sf:form>
+
+
+
             <div class="panel-footer">
                 <br/>
                 <div class="row">

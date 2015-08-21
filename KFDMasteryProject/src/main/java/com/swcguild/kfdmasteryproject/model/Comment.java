@@ -7,6 +7,7 @@ package com.swcguild.kfdmasteryproject.model;
 
 import java.util.Date;
 import java.util.Objects;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -14,6 +15,8 @@ import java.util.Objects;
  */
 public class Comment {
     private int commentId;
+    
+    @NotEmpty(message="Comment cannot be empty")
     private String comment;
     private int postId;
     private Date createDate;

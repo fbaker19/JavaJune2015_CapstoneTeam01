@@ -3,6 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+function clearEditErrorMsg() {
+    $('#editValidationErrors').empty();
+}
+
+function clearAddErrorMsg() {
+    $('#validationErrors').empty();
+    
+}
 var projectRoot = $("#projectRoot").val();
 $(document).ready(function () {
 
@@ -41,11 +50,16 @@ $(document).ready(function () {
             window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
-
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
         });
     });
 
@@ -70,6 +84,7 @@ $(document).ready(function () {
             console.log("GOT HERE");
 
         }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
@@ -114,11 +129,16 @@ $(document).ready(function () {
             window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
-
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
         });
     });
 
@@ -183,11 +203,16 @@ $(document).ready(function () {
             $("#commenter").val("");
             console.log("GOT HERE");
 
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
-
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
         });
     });
 
@@ -216,11 +241,16 @@ $(document).ready(function () {
             window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
-
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
         });
     });
 
@@ -248,11 +278,16 @@ $(document).ready(function () {
             window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
-
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
         });
     });
 
@@ -317,11 +352,16 @@ $(document).ready(function () {
             $("#commenter").val("");
             console.log("GOT HERE");
 
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
-
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
         });
     });
 
@@ -398,11 +438,16 @@ $(document).ready(function () {
             window.location = projectRoot + "/bossDashboard";
             console.log("GOT HERE");
 
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).error(function (data, jqXHR, textStatus, errorThrown) {
+            clearAddErrorMsg();
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
-
+            var errors = data.responseJSON.fieldErrors;
+            $.each(errors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
         });
     });
 

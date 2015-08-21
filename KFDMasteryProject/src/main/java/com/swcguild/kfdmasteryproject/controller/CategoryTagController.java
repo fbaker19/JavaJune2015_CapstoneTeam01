@@ -11,6 +11,7 @@ import com.swcguild.kfdmasteryproject.model.Tag;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,7 @@ public class CategoryTagController {
 
     @RequestMapping(value = {"/addCategory"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void addCategory(@RequestBody Category category) {
+    public void addCategory(@Valid @RequestBody Category category) {
 
         cat.addCategory(category);
     }

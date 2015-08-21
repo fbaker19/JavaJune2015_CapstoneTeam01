@@ -75,9 +75,20 @@
 
         <br/>
 
-        <div class="input-group col-lg-10 col-lg-offset-1">
-            <textarea class="form-control" rows="4" id="add-comment" placeholder="Add Your Comment"></textarea>
-        </div>
+
+        <sf:form class="form-horizontal"
+                 role="form"
+                 modelAttribute="comment"
+                 action="addComment"
+                 method="POST">
+            <div class="input-group col-lg-10 col-lg-offset-1">
+                <textarea class="form-control" rows="4" id="add-comment" placeholder="Add Your Comment"></textarea>
+                <div id="validationErrors" style="color: red"></div>
+            </div>
+            <sf:errors path="content" cssClass="error"></sf:errors>
+        </sf:form>
+
+
         <br/>
         <div class="input-group col-lg-4 col-lg-offset-1">
             <input type="text" class="form-control" id="commenter"  placeholder="Your Name (optional)">

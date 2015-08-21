@@ -44,17 +44,27 @@
             </form>
 
             <div class="panel-header">
-                <div class="input-group col-lg-10 col-lg-offset-1">
-                    <input type="hidden" id="post-id" value="${post.postId}"/>
+                <sf:form class="form-horizontal"
+                         role="form"
+                         modelAttribute="post"
+                         action="savePost, publishPost"
+                         method="POST">
+                    <div class="input-group col-lg-10 col-lg-offset-1">
+                        <input type="hidden" id="post-id" value="${post.postId}"/>
 
 
-                    <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title"/>
+                        <input type="text" class="form-control" id="post-title" value="${post.title}" placeholder="Title"/>
+                    </div>
+                    <div id="validationErrors" style="color: red"></div>
+                    <sf:errors path="title" cssClass="error"></sf:errors>
+                    </div>
+                    <br/>
+                    <div class="panel-body ">
+                        <input type="text" class="form-control editor" id="post-content" value ='${post.content}' placeholder="Blog Content"/> 
                 </div>
-            </div>
-            <br/>
-            <div class="panel-body ">
-                <input type="text" class="form-control editor" id="post-content" value ='${post.content}' placeholder="Blog Content"/> 
-            </div>
+                <sf:errors path="content" cssClass="error"></sf:errors>
+
+            </sf:form>
             <div class="panel-footer">
                 <div class="input-group col-lg-5">
                     Expiration Date (optional)
@@ -69,10 +79,10 @@
                             <div class="input-group-btn">
                                 <div class ="form-group">
                                     <select id="category-id" class="form-control" name="category" data-select-category="${post.categoryId}">
-                                            <option value="" selected="selected">--Select Category--</option>
-                                            <c:forEach var="listCategory" items="${catList}">
-                                                <option value="${listCategory.categoryId}" >${listCategory.categoryName}</option>
-                                            </c:forEach>
+                                        <option value="" selected="selected">--Select Category--</option>
+                                        <c:forEach var="listCategory" items="${catList}">
+                                            <option value="${listCategory.categoryId}" >${listCategory.categoryName}</option>
+                                        </c:forEach>
                                     </select>
                                 </div> 
                             </div><!-- /btn-group -->
@@ -80,11 +90,11 @@
                     </div><!-- /.col-lg-6 -->
                     <div class="col-lg-2 col-lg-offset-5">
                         <button type="submit" id="save-post-button" class="btn btn-default">Save</button>
-                       
-                       <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <button type="submit" id="publish-post-button" class="btn btn-default">Publish</button>
-                      </sec:authorize>
-                        </div>
+
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <button type="submit" id="publish-post-button" class="btn btn-default">Publish</button>
+                        </sec:authorize>
+                    </div>
 
                 </div><!--row-->
                 <br/>
@@ -92,14 +102,14 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <form class="form-inline">
-                             
+
                             <input type="text" id="hashtag1" class="form-control" placeholder="Add Hash Tag" value="${post.hashtag1}"/>
                             <input type="text" id="hashtag2" class="form-control" placeholder="Add Hash Tag" value="${post.hashtag2}"/>
                             <input type="text" id="hashtag3" class="form-control" placeholder="Add Hash Tag" value="${post.hashtag3}"/>
-                             
-<!--                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Add Tag</button>
-                            </span>-->
+
+                            <!--                            <span class="input-group-btn">
+                                                            <button class="btn btn-default" type="button">Add Tag</button>
+                                                        </span>-->
                         </form><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
                     <div class="col-lg-2 col-lg-offset-2">

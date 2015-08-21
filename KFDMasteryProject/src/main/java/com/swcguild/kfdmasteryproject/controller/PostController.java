@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,7 +83,7 @@ public class PostController {
 
     @RequestMapping(value = {"/savePost"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void savePost(@RequestBody Post post) {
+    public void savePost(@Valid @RequestBody Post post) {
 
         if (post.getPostId() < 0) {
             pdao.saveNewPost(post);
@@ -104,7 +105,7 @@ public class PostController {
 
     @RequestMapping(value = {"/publishPost"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void publishPost(@RequestBody Post post) {
+    public void publishPost(@Valid @RequestBody Post post) {
         if (post.getPostId() < 0) {
             pdao.publishNewPost(post);
         } else {

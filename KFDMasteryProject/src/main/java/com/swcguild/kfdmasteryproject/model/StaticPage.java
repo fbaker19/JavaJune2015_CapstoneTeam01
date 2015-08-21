@@ -5,9 +5,10 @@
  */
 package com.swcguild.kfdmasteryproject.model;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.util.Date;
 import java.util.Objects;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -17,8 +18,10 @@ public class StaticPage {
 
     private int pageId;
 
+    @NotEmpty(message="Page content cannot be empty ")
     private String content;
-    
+    @NotEmpty(message="Title cannot be empty")
+    @Length(message="Title cannot be longer than 50 characters")
     private String title;
     
     private Date date;
