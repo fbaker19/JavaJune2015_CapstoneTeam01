@@ -37,11 +37,11 @@ public class PostImpl implements PostInterface {
     
     //userid/foreign key????? post? catagory  deletion?
     private static final String SQL_INSERT_POST = "INSERT INTO posts (content, title, user_id, "
-            + "last_modified_user_id, create_date, last_modified_date, expiration_date, published, pending, blurb, category_id)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            + "last_modified_user_id, create_date, last_modified_date, expiration_date, published, pending, blurb, hashtag1, hashtag2, hashtag3, category_id)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     private static final String SQL_DELETE_POST = "DELETE FROM posts WHERE post_id = ?";
     private static final String SQL_UPDATE_POST = "UPDATE posts SET content = ?, title =?, user_id = ?, "
-            + "last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, pending = ?, blurb= ? , category_id=? WHERE post_id =?";
+            + "last_modified_user_id = ?, create_date = ?, last_modified_date= ?, expiration_date = ?, published= ?, pending = ?, blurb= ? , hashtag1=?, hashtag2=?, hashtag3=?,  category_id=? WHERE post_id =?";
     
     private static final String SQL_SELECT_ALL_PUBLISHED_POSTS_BY_CATEGORY_ID = "SELECT * FROM posts WHERE published=1 AND category_id=?";
     //IMAGE
@@ -85,6 +85,9 @@ public class PostImpl implements PostInterface {
                 post.getPublished(),
                 post.getPending(),
                 post.getBlurb(),
+                post.getHashtag1(),
+                post.getHashtag2(),
+                post.getHashtag3(),
                 post.getCategoryId());
        
         post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
@@ -124,6 +127,9 @@ public class PostImpl implements PostInterface {
                 post.getPublished(),
                 post.getPending(),
                 post.getBlurb(),
+                post.getHashtag1(),
+                post.getHashtag2(),
+                post.getHashtag3(),
                 post.getCategoryId());
                 
         post.setPostId(jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
@@ -158,6 +164,9 @@ public class PostImpl implements PostInterface {
                 post.getPublished(),
                 post.getPending(),
                 post.getBlurb(),
+                post.getHashtag1(),
+                post.getHashtag2(),
+                post.getHashtag3(),
                 post.getCategoryId(),
                 post.getPostId());
         
@@ -172,7 +181,9 @@ public class PostImpl implements PostInterface {
     @Override
     public Post viewPost(int postId) {
         try {
-            return jdbcTemplate.queryForObject(SQL_SELECT_POST, new PostMapper(), postId);
+            Post post = jdbcTemplate.queryForObject(SQL_SELECT_POST, new PostMapper(), postId);
+            //return jdbcTemplate.queryForObject(SQL_SELECT_POST, new PostMapper(), postId);
+            return post;
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
@@ -250,6 +261,9 @@ public class PostImpl implements PostInterface {
             post.setTitle(rs.getString("title"));
             post.setUserId(rs.getInt("user_id"));
             post.setCategoryId(rs.getInt("category_id"));
+            post.setHashtag1(rs.getString("hashtag1"));
+            post.setHashtag2(rs.getString("hashtag2"));
+            post.setHashtag3(rs.getString("hashtag3"));
 
             return post;
 

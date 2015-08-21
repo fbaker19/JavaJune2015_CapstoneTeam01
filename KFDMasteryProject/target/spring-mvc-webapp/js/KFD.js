@@ -27,6 +27,9 @@ $(document).ready(function () {
                 pending: 1,
                 lastModifiedUserId: $("#post-last-modified-user-id").val(),
                 userId: $("#post-user-id").val(),
+                hashtag1: $("#hashtag1").val(),
+                hashtag2: $("#hashtag2").val(),
+                hashtag3: $("#hashtag3").val(),
                 categoryId: $("#category-id").val()
             }),
             headers: {
@@ -97,6 +100,9 @@ $(document).ready(function () {
                 pending: 0,
                 lastModifiedUserId: $("#post-last-modified-user-id").val(),
                 userId: $("#post-user-id").val(),
+                hashtag1: $("#hashtag1").val(),
+                hashtag2: $("#hashtag2").val(),
+                hashtag3: $("#hashtag3").val(),
                 categoryId: $("#category-id").val()
             }),
             headers: {
@@ -399,5 +405,7 @@ $(document).ready(function () {
 
         });
     });
+
+
 
 });

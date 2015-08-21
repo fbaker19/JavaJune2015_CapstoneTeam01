@@ -39,6 +39,7 @@
         <div class="container">
 
             <div class="col-md-8">
+                Categories: 
                 <c:forEach var="category" items="${cList}">
                     <tr>
                         <td><button id="button-${category.categoryId}"><a href="displayCatPage/${category.categoryId}">${category.categoryName} </a></button></td>
