@@ -96,14 +96,10 @@
                 <div class="panel-heading">
                     <h3 class="dashboard-page-title">Static Pages</h3>
                 </div>
-<<<<<<< HEAD
-              
-=======
 
                 
                 <!--<div class="panel-body" style="max-height: 300px">-->
 
->>>>>>> 3a7eea37c4b427e8c7841d4e99ed98f31d29143a
                 <div class="panel-body">
                     <pre class="pre-scrollable">
 
@@ -124,15 +120,15 @@
                         </li>
                     </ul>
                 </div>
-<<<<<<< HEAD
+
             </div>
              <div class="panel panel-default col-md-5 col-md-offset-1">
-=======
+
             <!--</div>-->
         </div>
              
             <div class="panel panel-default col-md-5 col-md-offset-1">
->>>>>>> 3a7eea37c4b427e8c7841d4e99ed98f31d29143a
+
                 <div class="panel-heading">
                     <h3 class="dashboard-category-title">Categories</h3>
                 </div>

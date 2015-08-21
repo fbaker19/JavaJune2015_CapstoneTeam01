@@ -67,68 +67,68 @@ public class PostImplTest {
     /**
      * Test of addPost method, of class PostImpl.
      */
-//    @Test
-//    public void testAddViewPost() throws ParseException {
-//
-//        Post fromDb = dao.viewPost(p.getPostId());
-//
-//        Assert.assertEquals(fromDb.getCreateDate(), p.getCreateDate());
-//    }
-//    @Test
-//    public void testDeletePost() throws ParseException {
-//
-//        dao.deletePost(p.getPostId());
-//
-//        Assert.assertNull(dao.viewPost(p.getPostId()));
-//
-//    }
-//    
-//
-//    /**
-//     * Test of editPost method, of class PostImpl.
-//     */
-//    @Test
-//    public void testAddEditDeletePost() throws ParseException {
-//
-//        p.setTitle("New Title");
-//        dao.updatePost(p);
-//
-//        Post fromDb = dao.viewPost(p.getPostId());
-//
-//        Assert.assertEquals(fromDb.getTitle(), p.getTitle());
-//
-//    }
-//
-//    /**
-//     * Test of viewAllPosts method, of class PostImpl.
-//     */
-//    @Test
-//    public void testViewAllPublishedPosts() throws ParseException {
-//        
-//        p2 = new Post();
-//        p2.setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla diam tellus, efficitur vel ligula non, pretium pretium odio. Nulla fringilla sem vestibulum ipsum porta mollis. Integer tempus enim ac faucibus mattis. Aliquam sed nibh quis sem tristique dictum. Morbi dapibus gravida lobortis. Nam consectetur metus id orci tempus iaculis. Curabitur semper tellus in lacus pharetra aliquam. Fusce scelerisque dictum turpis. Phasellus congue nulla sed egestas venenatis. Aliquam a consequat ipsum. Quisque semper vel arcu ac hendrerit.");
-//        p2.setTitle("Test Title 5");
-//        p2.setUserId(1);
-//        p2.setLastModifiedUserId(1);
-////        p2.setCreateDate(dtf.parse("2012-12-12"));
-////        p2.setLastModifiedDate(dtf.parse("2015-03-14"));
-//        p2.setExpDate(dtf.parse("2015-12-31"));
-//        p2.setPublished(1);
-//        p2.setPending(0);
-//        p2.setBlurb("Blurb");
-//
-//        
-//
-//        dao.publishNewPost(p2);
-//        
-//        List<Post> pList = dao.viewAllPublishedPosts();
-//        
-//        Assert.assertEquals(2, pList.size());
-//        
-//        Assert.assertEquals(dao.viewPost(p.getPostId()).getTitle(), p.getTitle());
-//        
-//        Assert.assertEquals(dao.viewPost(p2.getPostId()).getTitle(), p2.getTitle());
-//        
-//    }
+    @Test
+    public void testAddViewPost() throws ParseException {
+
+        Post fromDb = dao.viewPost(p.getPostId());
+
+        Assert.assertEquals(fromDb.getTitle(), p.getTitle());
+    }
+    @Test
+    public void testDeletePost() throws ParseException {
+
+        dao.deletePost(p.getPostId());
+
+        Assert.assertNull(dao.viewPost(p.getPostId()));
+
+    }
+    
+
+    /**
+     * Test of editPost method, of class PostImpl.
+     */
+    @Test
+    public void testAddEditDeletePost() throws ParseException {
+
+        p.setTitle("New Title");
+        dao.updatePost(p);
+
+        Post fromDb = dao.viewPost(p.getPostId());
+
+        Assert.assertEquals(fromDb.getTitle(), p.getTitle());
+
+    }
+
+    /**
+     * Test of viewAllPosts method, of class PostImpl.
+     */
+    @Test
+    public void testViewAllPublishedPosts() throws ParseException {
+        
+        p2 = new Post();
+        p2.setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla diam tellus, efficitur vel ligula non, pretium pretium odio. Nulla fringilla sem vestibulum ipsum porta mollis. Integer tempus enim ac faucibus mattis. Aliquam sed nibh quis sem tristique dictum. Morbi dapibus gravida lobortis. Nam consectetur metus id orci tempus iaculis. Curabitur semper tellus in lacus pharetra aliquam. Fusce scelerisque dictum turpis. Phasellus congue nulla sed egestas venenatis. Aliquam a consequat ipsum. Quisque semper vel arcu ac hendrerit.");
+        p2.setTitle("Test Title 5");
+        p2.setUserId(1);
+        p2.setLastModifiedUserId(1);
+//        p2.setCreateDate(dtf.parse("2012-12-12"));
+//        p2.setLastModifiedDate(dtf.parse("2015-03-14"));
+        p2.setExpDate(dtf.parse("2015-12-31"));
+        p2.setPublished(1);
+        p2.setPending(0);
+        p2.setBlurb("Blurb");
+
+        
+
+        dao.publishNewPost(p2);
+        
+        List<Post> pList = dao.viewAllPublishedPosts();
+        
+        Assert.assertEquals(2, pList.size());
+        
+        Assert.assertEquals(dao.viewPost(p.getPostId()).getTitle(), p.getTitle());
+        
+        Assert.assertEquals(dao.viewPost(p2.getPostId()).getTitle(), p2.getTitle());
+        
+    }
 }
 
