@@ -13,6 +13,8 @@ import com.swcguild.kfdmasteryproject.model.Category;
 import com.swcguild.kfdmasteryproject.model.Comment;
 import com.swcguild.kfdmasteryproject.model.Image;
 import com.swcguild.kfdmasteryproject.model.Post;
+import com.swcguild.kfdmasteryproject.model.UserModel;
+//import com.swcguild.kfdmasteryproject.model.User;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -33,6 +35,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.IOUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 
 /**
  *
@@ -71,7 +75,12 @@ public class PostController {
     @RequestMapping(value = "/addPost", method = RequestMethod.GET)
     public String displayAddPost(Model model) {
         Post post = new Post();
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getUsername();
+        UserModel userModel = pdao.getUserByName(name);
+       int userId = userModel.getUserId(); //get logged in username
         post.setPostId(-1);
+        post.setUserId(userId);
         model.addAttribute("post", post);
         Category category = new Category();
         List<Category> catList = cat.viewAllCategories();
@@ -88,6 +97,11 @@ public class PostController {
         if (post.getPostId() < 0) {
             pdao.saveNewPost(post);
         } else {
+            User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getUsername();
+        UserModel userModel = pdao.getUserByName(name);
+       int userId = userModel.getUserId(); //get logged in username
+            post.setLastModifiedUserId(userId);
             pdao.updatePost(post);
         }
     }
@@ -109,6 +123,11 @@ public class PostController {
         if (post.getPostId() < 0) {
             pdao.publishNewPost(post);
         } else {
+             User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getUsername();
+        UserModel userModel = pdao.getUserByName(name);
+       int userId = userModel.getUserId(); //get logged in username
+            post.setLastModifiedUserId(userId);
             pdao.updatePost(post);
         }
     }

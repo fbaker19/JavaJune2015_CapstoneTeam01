@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author apprentice
  */
-public class User {
+public class UserModel {
     
         private int userId;
         private String userName;
@@ -56,7 +56,7 @@ public class User {
         hash = 79 * hash + this.userId;
         hash = 79 * hash + Objects.hashCode(this.userName);
         hash = 79 * hash + Objects.hashCode(this.password);
-        hash = 79 * hash + this.roleId;
+//        hash = 79 * hash + this.roleId;
         return hash;
     }
 
@@ -68,7 +68,7 @@ public class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final UserModel other = (UserModel) obj;
         if (this.userId != other.userId) {
             return false;
         }

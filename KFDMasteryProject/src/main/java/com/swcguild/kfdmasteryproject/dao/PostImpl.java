@@ -7,6 +7,7 @@ package com.swcguild.kfdmasteryproject.dao;
 
 import com.swcguild.kfdmasteryproject.model.Image;
 import com.swcguild.kfdmasteryproject.model.Post;
+import com.swcguild.kfdmasteryproject.model.UserModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -30,6 +31,8 @@ public class PostImpl implements PostInterface {
     private static final String SQL_SELECT_POST = "SELECT * FROM posts WHERE post_id = ?";
     private static final String SQL_SELECT_LATEST_POST = "SELECT * FROM posts WHERE published=1 ORDER BY post_id DESC LIMIT 1";//make sure unpublished ones don't show up
     private static final String SQL_SELECT_ALL_PENDING_POSTS = "SELECT * FROM posts WHERE pending=1";
+    
+     private static final String SQL_SELECT_USER = "SELECT * FROM users WHERE user_name=?";
     
     
     //userid/foreign key????? post? catagory  deletion?
@@ -60,8 +63,8 @@ public class PostImpl implements PostInterface {
         
             post.setCreateDate(new Date());
             post.setLastModifiedDate(new Date());
-            post.setUserId(1);
-            post.setLastModifiedUserId(1);
+            //post.setUserId(1);
+            //post.setLastModifiedUserId(1);
             post.setPending(1);
             post.setPublished(0);
 
@@ -100,9 +103,9 @@ public class PostImpl implements PostInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Post publishNewPost(Post post) {
             post.setCreateDate(new Date());
-            post.setUserId(1);
+            //post.setUserId(1);
             post.setLastModifiedDate(new Date());
-            post.setLastModifiedUserId(1);
+            //post.setLastModifiedUserId(1);
             post.setPending(0);
             post.setPublished(1);
             
@@ -139,10 +142,10 @@ public class PostImpl implements PostInterface {
        
             Post existingPost = viewPost(post.getPostId());
             post.setPostId(existingPost.getPostId());
-            post.setUserId(existingPost.getUserId());
+            //post.setUserId(existingPost.getUserId());
             post.setCreateDate(existingPost.getCreateDate());
             post.setLastModifiedDate(new Date());
-            post.setLastModifiedUserId(2);
+            //post.setLastModifiedUserId(2);
             
             if (post.getContent().length()<500){
                 post.setBlurb(post.getContent());
@@ -276,7 +279,32 @@ public class PostImpl implements PostInterface {
             image.setImage(rs.getBytes("image"));
             return image;
         }
-       
     }
+        @Override
+        public UserModel getUserByName (String userName){
+        try {
+    return jdbcTemplate.queryForObject(SQL_SELECT_USER, new UserMapper(), userName);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+        }
+      private static final class UserMapper implements ParameterizedRowMapper<UserModel> {
+
+        @Override
+        public UserModel mapRow(ResultSet rs, int i) throws SQLException {
+           
+            UserModel userModel = new UserModel();
+            userModel.setUserId(rs.getInt("user_id"));
+            userModel.setUserName(rs.getString("user_name"));
+            userModel.setPassword(rs.getString("password"));
+            //userModel.setRoleId(rs.getInt("role_id"));
+
+            return userModel;
+        }
+
+        
+        }
+       
+   
 
 }

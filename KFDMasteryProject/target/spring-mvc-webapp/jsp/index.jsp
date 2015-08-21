@@ -54,7 +54,13 @@
             </div>
         </div>
 
+<<<<<<< HEAD
+            <div class="row">  
+        
+
+=======
   
+>>>>>>> 3a7eea37c4b427e8c7841d4e99ed98f31d29143a
         <br/><br/>
         <div class="panel panel-default col-md-5">
 
@@ -67,6 +73,10 @@
         </div>
 
 
+<<<<<<< HEAD
+      
+=======
+>>>>>>> 3a7eea37c4b427e8c7841d4e99ed98f31d29143a
 
         <div class="panel panel-default col-md-6 col-md-offset-1">
 
@@ -79,6 +89,7 @@
         </div>
 
     </div>
+            </div>
    
       <!--Sign In Modal-->
 
